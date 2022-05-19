@@ -1,7 +1,7 @@
 <html>
 	<h1 align="center">Elaborato per il corso</h1>
 	<h1 align="center">di basi di dati</h1>
-	<h3 align="center">2021/2022</h1>
+	<h3 align="center">2021/2022</h3>
 
 
 <br/><br/>
