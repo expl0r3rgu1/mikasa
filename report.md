@@ -39,3 +39,26 @@ Ci sono diversi tipi di impiegati: i tecnici, i tecnici commerciali e gli ammini
 Ogni tecnico commerciale può occuparsi: di uno o nessuno shop, di uno o nessun alimentari, di zero/N ordini. Per quanto riguarda l'alimentari e il ristoro, questi possono avere da 1 a N tecnici commerciali mentre, ogni ordine è gestito da un solo tecnico commerciale.
 Gli ordini vengono effettuati dai clienti: ogni cliente può fare più ordini e ogni ordine è relativo ad un solo cliente. Il singolo ordine è formato da zero/N dettagli ordine per prodotto/composizione. Un dettaglio ordine tiene conto della quantità acquistata di ogni singolo/a prodotto/composizione ordinato/a. Oltre alla quantità, un dettaglio ordine mantiene il prezzo totale per quel/la prodotto/composizione. Per ogni ordine vengono mantenuti: la data di effettuazione, il costo totale, il peso totale, lo sconto totale dell'ordine, la data di arrivo e il codice ordine. Un cliente può essere socio o meno; in caso sia socio ha diritto ad uno sconto sull'ordine totale. Gli ordini si dividono in due categorie: con e senza spedizione. Di un ordine spedizione si può fare il ritiro in un solo negozio, in ogni negozio vengono spediti più ordini. Per la spedizione, di un ordine con spedizione, viene mantenuto l'indirizzo di spedizione e il codice spedizione. Ogni spedizione viene consegnata da uno o più tecnici e ogni tecnico si può occupare di zero/N spedizioni.
 Per un ordine con spedizione si può richiedere il montaggio. L'assemblaggio viene gestito da uno o più tecnici e ogni tecnico può occuparsi di zero/N assemblaggi. Infine, un tecnico può lavorare o meno come magazziniere nel magazzino di un negozio, ogni magazzino ha uno o più tecnici che vi lavorano.
+
+## Estrazione dei concetti principali
+
+| Termine | Descrizione |
+| ------- | ----------- |
+| Negozio | Un negozio della catena
+| Zona | Ogni negozio viene diviso in zone
+| Acquirente | Colui che acquista e apre un negozio
+| Cliente | Colui che effettua acquisti in un negozio creando ordini
+| Manager | Colui che gestisce un negozio
+| Amministratore | Colui che si occupa di una zona di un negozio |
+| Tecnico commerciale | Colui che gestisce o la zona ristoro o lo shop alimentari (di un determinato negozio) o gli ordini
+| Tecnico | Colui che si occupa o del magazzino di un negozio o delle spedizioni o degli assemblaggi
+| Shop alimentari | La zona di un negozio dove vengono venduti gli alimenti all'ingrosso
+| Ristoro | La zona di un negozio dove vengono venduti gli alimenti al dettaglio | Punto ristoro
+| Alimento | Venduto in ogni shop alimentari e in ogni punto ristoro
+| Magazzino | La zona di un negozio dove vengono stoccati i prodotti
+| Esposizione | La zona di un negozio in cui vi sono le varie composizione
+| Composizione | Una composizione è formata da tanti prodotti. Ogni composizione mostra in modo visivamente gradevole un insieme di prodotti relativi ad una determinata zona della casa (bagno, camera da letto, cucina, ...). Ogni composizione può essere interamente acquistata da un cliente
+| Prodotto | Venduto da ogni negozio, può essere acquistato dal cliente. Ogni prodotto può essere diversamente scontato in base al periodo dell'anno
+| Ordine | Ogni ordine viene effettuato da un cliente. L'ordine è formato da tanti dettagli ordine, specifici o per un prodotto o per una composizione. In caso il cliente che effettua l'ordine, sia socio, viene applicato uno sconto totale sull'ordine. Ogni ordine può essere richiesto con o senza spedizione: un ordine senza spedizione verrà spedito ad un negozio scelto dal cliente mentre, un ordine con spedizione viene spedito all'indirizzo del cliente. Inoltre, per ogni ordine con spedizione può essere richiesto o meno il montaggio
+
+Non sono stati individuati sinonimi.
