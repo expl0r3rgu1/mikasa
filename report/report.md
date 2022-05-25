@@ -109,7 +109,11 @@ Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposiz
  
  La zona **esposizioni** di ogni negozio è formata da tante **composizioni** di mobili. Questa zona è pensata per mostrare al cliente, non solo ogni singolo prodotto venduto (in quanto non ci sono prodotti non esposti), ma anche per creare composizioni che siano esteticamente belle e funzionali. Tra le composizioni proposte ci sono infatti diverse proposte di cucina, salotto, bagno, ufficio, camera da letto, ecc ...
  
-
-
+ ### Prodotto
  
+ ![Prodotto](resources/prodotto.jpeg)
  
+ I **prodotti** venduti in ogni negozio sono divisi in tre categorie (mobili, accessori, elettrodomestici) tramite una gerarchia totale ed esclusiva. 
+ Ogni prodotto può avere uno o più **colori** e può essere scontato o meno.
+ Il sistema degli **sconti** viene gestito mediante uno **storico sconti** che, per ogni sconto, mantiene il suo periodo di validità annuale.
+ Ogni prodotto può avere uno, nessuno o molti sconti; in quanto questi hanno tutti diversi periodi di validità
