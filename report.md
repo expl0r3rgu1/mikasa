@@ -62,3 +62,14 @@ Per un ordine con spedizione si può richiedere il montaggio. L'assemblaggio vie
 | Ordine | Ogni ordine viene effettuato da un cliente. L'ordine è formato da tanti dettagli ordine, specifici o per un prodotto o per una composizione. In caso il cliente che effettua l'ordine, sia socio, viene applicato uno sconto totale sull'ordine. Ogni ordine può essere richiesto con o senza spedizione: un ordine senza spedizione verrà spedito ad un negozio scelto dal cliente mentre, un ordine con spedizione viene spedito all'indirizzo del cliente. Inoltre, per ogni ordine con spedizione può essere richiesto o meno il montaggio
 
 Non sono stati individuati sinonimi.
+
+## Progettazione concettuale
+
+Per lo sviluppo dello schema ER generale si procede suddividendolo in  schemi ER più piccoli che modellano i singoli concetti di MiKasa.
+
+### Persona
+
+![Persona](persona.jpeg)
+
+'Per modellare i vari ruoli presenti nel database si parte da un'entità padre: **Persona**. Persona racchiude tutti i campi necessari al modellamento di **Cliente**, **Acquirente** e **Personale**. L'entità Personale modella un generico membro del corpo lavorativo di MiKasa e si divide in **Impiegato** e **Manager**. Infine, l'entità Impiegato è stata divisa nelle tre categorie; **Tecnico**, **Tecnico Commerciale** e **Amministratore**.
+La gerarchia Persona-Cliente-Personale-Acquirente è totale ma non esclusiva; è infatti possibile, ad esempio, che una stessa persona possa sia essere un cliente che un membro del personale. Entrambi le gerarchie Personale-Impiegato-Manager e Impiegato-Tecnico-Tecnico Commerciale-Amministratore sono sia totale che esclusive.
