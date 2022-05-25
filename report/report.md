@@ -81,3 +81,10 @@ La gerarchia Persona-Cliente-Personale-Acquirente è totale ma non esclusiva; è
 Una relazione fontamentale è quella del **Cliente** che effettua un **Ordine**. 
 Ogni cliente può effettuare tutti gli ordini che vuole. Per ogni ordine è fondamentale calcolare il suo peso e costo totale, ottenuti dai dati dei singoli prodotti acquistati. Per il prezzo totale è importante controllare che il cliente sia socio o meno, da socio infatti si ha diritto ha uno sconto sul prezzo totale dell'ordine.
 Il cliente può anche scegliere se far spedire l'ordine al suo indirizzo o ad un negozio MiKasa dove si recherà il cliente stesso per ritirarlo. In caso di ordine con spedizione si hanno due ulteriori scelte: ordine senza montaggio e ordine con montaggio, in quest'ultimo l'assemblaggio dei mobili viene eseguito da un tecnico del personale.
+
+### Personale-Ordine
+
+![Personale-Ordine](personaleOrdine.jpg)
+
+L'altra importante relazione in cui c'è **Ordine** è quella tra gli ordini e il **Personale**.  
+I tecnici commerciali gestiscono gli ordini: mettono insieme i vari articoli ordinati, stabiliscono la data di arrivo, gestiscono i soldi in entrata Invece, di spedizione e montaggio se ne occupano i tecnici. 
