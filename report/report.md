@@ -101,4 +101,15 @@ Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposiz
 
 ![Alimentari-Ristoro](resources/alimento.jpeg)
 
- Sia nell'**alimentari** che nella zona **ristoro** vengono venduti degli **alimenti**, nel primo si vendono in pacchi contenenti diversi pacchi di quell'alimento, nel secondo, essendo una zona bar/bistrot, ogni alimento è venduto singolarmente. 
+ Sia nella zona **alimentari** che nella zona **ristoro** vengono venduti degli **alimenti**, nel primo si vendono in pacchi contenenti diversi pacchi di quell'alimento, nel secondo, essendo una zona bar/bistrot, ogni alimento è venduto singolarmente. 
+ 
+ ###  Prodotto-Composizione
+ 
+ ![Prodotto-Composizione](resources/prodottoComposizione.jpg)
+ 
+ La zona **esposizioni** di ogni negozio è formata da tante **composizioni** di mobili. Questa zona è pensata per mostrare al cliente, non solo ogni singolo prodotto venduto (in quanto non ci sono prodotti non esposti), ma anche per creare composizioni che siano esteticamente belle e funzionali. Tra le composizioni proposte ci sono infatti diverse proposte di cucina, salotto, bagno, ufficio, camera da letto, ecc ...
+ 
+
+
+ 
+ 
