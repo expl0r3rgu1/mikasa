@@ -69,14 +69,14 @@ Per lo sviluppo dello schema ER generale si procede suddividendolo in  schemi ER
 
 ### Persona
 
-![Persona](persona.jpeg)
+![Persona](resources/persona.jpeg)
 
 Per modellare i vari ruoli presenti nel database si parte da un'entità padre: **Persona**. Persona racchiude tutti i campi necessari al modellamento di **Cliente**, **Acquirente** e **Personale**. L'entità Personale modella un generico membro del corpo lavorativo di MiKasa e si divide in **Impiegato** e **Manager**. Infine, l'entità Impiegato è stata divisa nelle tre categorie; **Tecnico**, **Tecnico Commerciale** e **Amministratore**.
 La gerarchia Persona-Cliente-Personale-Acquirente è totale ma non esclusiva; è infatti possibile, ad esempio, che una stessa persona possa sia essere un cliente che un membro del personale. Entrambi le gerarchie Personale-Impiegato-Manager e Impiegato-Tecnico-Tecnico Commerciale-Amministratore sono sia totale che esclusive.
 
 ### Cliente-Ordine
 
-![Cliente-Ordine](clienteOrdine.jpg)
+![Cliente-Ordine](resources/clienteOrdine.jpg)
 
 Una relazione fontamentale è quella del **Cliente** che effettua un **Ordine**. 
 Ogni cliente può effettuare tutti gli ordini che vuole. Per ogni ordine è fondamentale calcolare il suo peso e costo totale, ottenuti dai dati dei singoli prodotti acquistati. Per il prezzo totale è importante controllare che il cliente sia socio o meno, da socio infatti si ha diritto ha uno sconto sul prezzo totale dell'ordine.
@@ -84,7 +84,7 @@ Il cliente può anche scegliere se far spedire l'ordine al suo indirizzo o ad un
 
 ### Personale-Ordine
 
-![Personale-Ordine](personaleOrdine.jpg)
+![Personale-Ordine](resources/personaleOrdine.jpg)
 
 L'altra importante relazione in cui c'è **Ordine** è quella tra gli ordini e il **Personale**.  
 I tecnici commerciali gestiscono gli ordini: mettono insieme i vari articoli ordinati, stabiliscono la data di arrivo, gestiscono i soldi in entrata Invece, di spedizione e montaggio se ne occupano i tecnici. 
