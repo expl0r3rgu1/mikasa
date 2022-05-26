@@ -117,3 +117,11 @@ Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposiz
  Ogni prodotto può avere uno o più **colori** e può essere scontato o meno.
  Il sistema degli **sconti** viene gestito mediante uno **storico sconti** che, per ogni sconto, mantiene il suo periodo di validità annuale.
  Ogni prodotto può avere uno, nessuno o molti sconti; in quanto questi hanno tutti diversi periodi di validità
+ 
+ ### Prodotto-Magazzino
+ 
+  ![ProdottoMagazzino](resources/prodottoMagazzino.jpg)
+  
+  In ogni **Negozio** vi è un **Magazzino**; quest'ultimo può contenere o meno tutti i prodotti oppure essere addirittura vuoto.  Ogni **Prodotto** venduto nei negozi della catena infatti, si potrebbe trovare in ogni magazzino, in solo alcuni magazzini (quindi è presente in solo alcuni negozi) o anche in nessuno magazzino se la sua disponibilità è terminata ovunque. 
+  In ogni magazzino ci lavorano alcuni tecnici detti magazzinieri.
+  
