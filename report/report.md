@@ -95,13 +95,12 @@ I tecnici commerciali gestiscono gli ordini: mettono insieme i vari articoli ord
 
 Ogni **Negozio** della catena viene aperto da un **Acquirente** e gestito da un **Manager**. 
 Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposizione** e **Magazzino**.
- Sia nell'alimentari che nella zona ristoro vengono venduti degli alimenti, nel primo si vendono in pacchi contenenti diversi pacchi di quell'alimento, nel secondo, essendo una zona bar/bistrot, ogni alimento è venduto singolarmente. 
  
 ### Alimentari-Ristoro
 
 ![Alimentari-Ristoro](resources/alimento.jpeg)
 
- Sia nella zona **alimentari** che nella zona **ristoro** vengono venduti degli **alimenti**, nel primo si vendono in pacchi contenenti diversi pacchi di quell'alimento, nel secondo, essendo una zona bar/bistrot, ogni alimento è venduto singolarmente. 
+ Sia nella zona **alimentari** che nella zona **ristoro** vengono venduti degli **alimenti**, nel primo si vendono in confezioni contenenti diverse unità di quell'alimento, nel secondo, essendo una zona bar/bistrot, ogni alimento è venduto singolarmente. 
  
  ###  Prodotto-Composizione
  
