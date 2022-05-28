@@ -136,6 +136,11 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 
 ## Raffinamenti proposti
 
-![Raffinamenti](resources/raffinamenti.png)
+![Orario](resources/raffinamentiOrario.jpg)
 
 Visto che sia nell'entità **Personale** che nell'entità **Negozio** è presente un attributo orario, si è deciso di trasformare quell'attributo in un'entità . In questo modo ogni Personale ha un suo specifico orario lavorativo, identificato dal CodOrario e, allo stesso tempo ogni Orario può essere affidato a 0-N membri del personale. Allo stesso modo funziona per Negozio: ogni Negozio ha un suo orario di apertura e dall'altra parte, ogni orario di apertura può essere affidato a 0-N negozi.
+
+## Schema concettuale finale
+
+![SchemaConcettuale1](resources/schemaConcettuale1.jpg)
+![SchemaConcettuale2](resources/schemaConcettuale2.jpg)
