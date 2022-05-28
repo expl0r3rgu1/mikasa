@@ -133,3 +133,9 @@ Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposiz
 Ogni **Ordine** è formato da più dettagli ordine. Ci sono due tipi di dettaglio ordine: **Dettaglio Ordine per Prodotto** e **Dettaglio Ordine per Composizione**.  
 Ogni dettaglio ordine per prodotto mantiene i dati per un solo prodotto acquistato: quanti pezzi sono stati acquistati di quel prodotto e il costo totale per quel prodotto (ottenuto moltiplicando il prezzo, già scontato se ha uno sconto applicato valido nel periodo di effettuazione dell'ordine, del singolo prodotto per la quantità).
 Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
+
+## Raffinamenti proposti
+
+![Raffinamenti](resources/raffinamenti.png)
+
+Visto che sia nell'entità **Personale** che nell'entità **Negozio** è presente un attributo orario, si è deciso di trasformare quell'attributo in un'entità . In questo modo ogni Personale ha un suo specifico orario lavorativo, identificato dal CodOrario e, allo stesso tempo ogni Orario può essere affidato a 0-N membri del personale. Allo stesso modo funziona per Negozio: ogni Negozio ha un suo orario di apertura e dall'altra parte, ogni orario di apertura può essere affidato a 0-N negozi.
