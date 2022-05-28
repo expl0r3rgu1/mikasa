@@ -63,7 +63,9 @@ Per un ordine con spedizione si può richiedere il montaggio. L'assemblaggio vie
 
 Non sono stati individuati sinonimi.
 
-## Progettazione concettuale
+# Capitolo 2 - Progettazione concettuale
+
+## Schema scheletro 
 
 Per lo sviluppo dello schema ER generale si procede suddividendolo in  schemi ER più piccoli che modellano i singoli concetti di MiKasa.
 
