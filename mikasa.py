@@ -35,3 +35,10 @@ while True:
             [sg.Button('Indietro')]
         ]
         window = sg.Window('Clienti', layout, margins=(400, 200))
+    elif event == 'Indietro':
+        window.close()
+        layout = [
+            [sg.Text('Mikasa')],
+            [sg.Button('Visualizza clienti')]
+        ]
+        window = sg.Window('Mikasa', layout, margins=(400, 200))
