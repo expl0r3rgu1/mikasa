@@ -7,16 +7,18 @@
 <br><br>
 </div>
 
-	
+
 ### Componenti
 
 Salvatore Antonio Addimando, matricola : 0000970539<br>
 Benedetta Pacilli, matricola: 0000975296<br>
 Valentina Pieri, matricola: 0000974789
 
+<div style="page-break-after: always;"></div>
 
 # Indice
 
+<div style="page-break-after: always;"></div>
 
 # Capitolo 1 - Analisi dei requisiti
 
@@ -144,3 +146,69 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 
 ![SchemaConcettuale1](resources/concettualept1.jpg)
 ![SchemaConcettuale2](resources/concettualept2.jpg)
+
+# Capitolo 3 - Progettazione logica
+
+## Stima del volume dei dati
+
+| Concetto | Costrutto | Volume|
+| ----------- | ----------- | ----------- |
+| Persona | E | 20,002,200
+| Cliente | E | 20,000,000
+| Personale | E | 2,100
+| Acquirente | E | 100
+| Impiegato | E | 2,000
+| Manager | E | 100
+| Tecnico | E | 2,000
+| Amministratore | E | 2,000
+| Tecnico Commerciale | E | 2,000
+| Negozio | E | 100
+| Orario | E | 2,300
+| Zona | E | 400
+| Alimentari | E | 100
+| Ristoro | E | 100
+| Esposizione | E | 100
+| Magazzino | E | 100
+| Alimento | E | 10,000
+| Prodotto | E | 1000
+| Mobile | E | 400
+| Elettrodomestico | E | 400
+| Accessorio | E | 200
+| Colore | E | 10
+| Sconto | E | 10
+| Storico sconti | E | 10
+| Composizione | E | 10
+| Dettaglio Ordine per Prodotto | E | 50,000,000,000
+| Dettaglio Ordine per Composizione | E | 50,000,000,000
+| Ordine | E | 1,000,000,000
+| Ordine senza Spedizione | E | 500,000,000
+| Ordine con Spedizione | E | 500,000,000
+| Ordine senza Montaggio | E | 250,000,000
+| Ordine con Montaggio | E | 250,000,000
+| Effettua | R | 1,000,000,000
+| Ritiro | R | 500,000,000
+| Consegna | R | 500,000,000
+| Montaggio | R | 250,000,000
+| Dettaglio Prodotto | R | 50,000,000,000
+| Dettaglio Composizione | R | 50,000,000,000
+| Riferimento Prodotto | R | 50,000,000,000
+| Riferimento Composizione | R | 50,000,000,000
+| Gestione | R | 1,000,000,000
+| Orario Lavorativo | R | 2,100
+| Orario Apertura | R | 100
+| Apertura | R | 100
+| Management | R | 100
+| Amministra | R | 400
+| Suddivisione | R | 400
+| Cassiere | R | 100
+| Ristorazione | R | 100
+| Magazziniere | R | 100
+| Esposizione | R | 100
+| Confezione | R | 100,000
+| Porzione | R | 100,000
+| Esposta | R | 10,000
+| Composta | R | 100,000
+| Colorazione | R | 100,000
+| Applicato | R | 1,000
+| Storico | R | 10
+
