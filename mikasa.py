@@ -42,3 +42,7 @@ while True:
             [sg.Button('Visualizza clienti')]
         ]
         window = sg.Window('Mikasa', layout, margins=(400, 200))
+    elif event == sg.WIN_CLOSED:
+        break
+
+window.close()
