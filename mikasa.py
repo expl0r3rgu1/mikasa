@@ -4,9 +4,9 @@ import PySimpleGUI as sg
 import mysql.connector
 
 db = mysql.connector.connect(
-    host="192.168.1.18",
-    user="root",
-    passwd="root",
+    host="detu.ddns.net",
+    user="mikasa",
+    passwd="Mikasa@",
     database="mikasa",
     auth_plugin='caching_sha2_password'
 )
