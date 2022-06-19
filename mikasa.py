@@ -20,3 +20,18 @@ empty_layout = [
 ]
 
 window = sg.Window('Mikasa', empty_layout, margins=(400, 200))
+
+while True:
+    event, values = window.read()
+    if event == 'Visualizza clienti':
+        db_cursor.execute("SELECT * FROM persone WHERE cf = (SELECT cf_cliente FROM clienti)")
+        clienti = db_cursor.fetchall()
+        window.close()
+        table = sg.Table(values=clienti, headings=['Codice Fiscale', 'Nome', 'Cognome',
+                                                    'Telefono', 'E-mail', 'Via', 'Civico', 'CAP', 'CITTÀ'])
+        layout = [
+            [sg.Text('Clienti')],
+            [table],
+            [sg.Button('Indietro')]
+        ]
+        window = sg.Window('Clienti', layout, margins=(400, 200))
