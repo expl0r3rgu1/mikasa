@@ -89,7 +89,7 @@ Il cliente può anche scegliere se far spedire l'ordine al suo indirizzo o ad un
 ![Personale-Ordine](resources/personaleOrdine.jpg)
 
 L'altra importante relazione in cui c'è **Ordine** è quella tra gli ordini e il **Personale**.  
-I tecnici commerciali gestiscono gli ordini: mettono insieme i vari articoli ordinati, stabiliscono la data di arrivo, gestiscono i soldi in entrata Invece, di spedizione e montaggio se ne occupano i tecnici. 
+I tecnici commerciali gestiscono gli ordini: mettono insieme i vari articoli ordinati, stabiliscono la data di arrivo, gestiscono i soldi in entrata. Invece, di spedizione e montaggio se ne occupano i tecnici. 
 
 ### Negozio-Zona
 
@@ -98,9 +98,15 @@ I tecnici commerciali gestiscono gli ordini: mettono insieme i vari articoli ord
 Ogni **Negozio** della catena viene aperto da un **Acquirente** e gestito da un **Manager**. 
 Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposizione** e **Magazzino**.
  
+ ### Orario
+ 
+ ![Orario](resources/orario.jpg)
+ 
+ L'entità **orario** viene utilizzata per definire l'orario lavorativo dei memebri del personale e l'orario di apertura dei negozi. Ogni orario che viene creato può essere usato da più membri del personale/negozi.
+ 
 ### Alimentari-Ristoro
 
-![Alimentari-Ristoro](resources/alimento.jpeg)
+![Alimentari-Ristoro](resources/alimento.jpg)
 
  Sia nella zona **alimentari** che nella zona **ristoro** vengono venduti degli **alimenti**, nel primo si vendono in confezioni contenenti diverse unità di quell'alimento, nel secondo, essendo una zona bar/bistrot, ogni alimento è venduto singolarmente. 
  
@@ -110,21 +116,21 @@ Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposiz
  
  La zona **esposizioni** di ogni negozio è formata da tante **composizioni** di mobili. Questa zona è pensata per mostrare al cliente, non solo ogni singolo prodotto venduto (in quanto non ci sono prodotti non esposti), ma anche per creare composizioni che siano esteticamente belle e funzionali. Tra le composizioni proposte ci sono infatti diverse proposte di cucina, salotto, bagno, ufficio, camera da letto, ecc ...
  
- ### Prodotto
- 
- ![Prodotto](resources/prodotto.jpeg)
- 
- I **prodotti** venduti in ogni negozio sono divisi in tre categorie (mobili, accessori, elettrodomestici) tramite una gerarchia totale ed esclusiva. 
- Ogni prodotto può avere uno o più **colori** e può essere scontato o meno.
- Il sistema degli **sconti** viene gestito mediante uno **storico sconti** che, per ogni sconto, mantiene il suo periodo di validità annuale.
- Ogni prodotto può avere uno, nessuno o molti sconti; in quanto questi hanno tutti diversi periodi di validità
- 
  ### Prodotto-Magazzino
  
   ![ProdottoMagazzino](resources/prodottoMagazzino.jpg)
   
   In ogni **Negozio** vi è un **Magazzino**; quest'ultimo può contenere o meno tutti i prodotti oppure essere addirittura vuoto.  Ogni **Prodotto** venduto nei negozi della catena infatti, si potrebbe trovare in ogni magazzino, in solo alcuni magazzini (quindi è presente in solo alcuni negozi) o anche in nessuno magazzino se la sua disponibilità è terminata ovunque. 
   In ogni magazzino ci lavorano alcuni tecnici detti magazzinieri.
+ 
+ ### Prodotto
+ 
+ ![Prodotto](resources/prodotto.jpg)
+ 
+ I **prodotti** venduti in ogni negozio sono divisi in tre categorie (mobili, accessori, elettrodomestici) tramite una gerarchia totale ed esclusiva. 
+ Ogni prodotto può avere uno o più **colori** e può essere scontato o meno.
+ Il sistema degli **sconti** viene gestito mediante uno **storico sconti** che, per ogni sconto, mantiene il suo periodo di validità annuale.
+ Ogni prodotto può avere uno, nessuno o molti sconti; in quanto questi hanno tutti diversi periodi di validità
   
    ### Dettaglio Ordine
   
@@ -134,13 +140,7 @@ Ogni **Ordine** è formato da più dettagli ordine. Ci sono due tipi di dettagli
 Ogni dettaglio ordine per prodotto mantiene i dati per un solo prodotto acquistato: quanti pezzi sono stati acquistati di quel prodotto e il costo totale per quel prodotto (ottenuto moltiplicando il prezzo, già scontato se ha uno sconto applicato valido nel periodo di effettuazione dell'ordine, del singolo prodotto per la quantità).
 Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 
-## Raffinamenti proposti
-
-![Orario](resources/raffinamentiOrario.jpg)
-
-Visto che sia nell'entità **Personale** che nell'entità **Negozio** è presente un attributo orario, si è deciso di trasformare quell'attributo in un'entità . In questo modo ogni Personale ha un suo specifico orario lavorativo, identificato dal CodOrario e, allo stesso tempo ogni Orario può essere affidato a 0-N membri del personale. Allo stesso modo funziona per Negozio: ogni Negozio ha un suo orario di apertura e dall'altra parte, ogni orario di apertura può essere affidato a 0-N negozi.
-
 ## Schema concettuale finale
 
-![SchemaConcettuale1](resources/schemaConcettuale1.jpg)
-![SchemaConcettuale2](resources/schemaConcettuale2.jpg)
+![SchemaConcettuale1](resources/concettualept1.jpg)
+![SchemaConcettuale2](resources/concettualept2.jpg)
