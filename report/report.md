@@ -212,3 +212,39 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | Applicato | R | 1,000
 | Storico | R | 10
 
+## Descrizione delle operazioni principali e stima della loro frequenza
+
+| Codice | Operazione | Frequenza |
+| ----------- | ----------- | ----------- |
+| 1 | Aggiungere un nuovo cliente | 1 a settimana
+| 2 | Iscrizione di un cliente per divenire socio | 10 al mese
+| 3 | Aggiungere un nuovo membro del personale | 10 all'anno
+| 4 | Aggiungere un nuovo negozio alla catena | 1 ogni due anni
+| 5 | Effettuazione di un ordine da parte di un cliente | 1 all'anno
+| 6 | Aggiungere un nuovo prodotto | 2 all'anno
+| 7 | Aggiungere un nuovo alimento | 1 all'anno
+| 8 | Aggiungere una nuova composizione |1 all'anno
+| 9 | Aggiungere un nuovo sconto | 1 all'anno
+| 10 | Leggere tutti gli ordini effettuati | 1 al mese
+| 11 | Leggere tutti gli ordini effettuati da un cliente | 1 al mese
+| 12 | Leggere tutti le spedizioni effettuate | 2 all'anno
+| 13 | Leggere tutti i ritiri effettuati | 2 all'anno
+| 14 | Leggere tutti i montaggi effettuati | 2 all'anno
+| 15 | Leggere il prodotto più acquistato | 2 all'anno
+| 16 | Leggere il prodotto meno acquistato | 2 all'anno
+| 17 | Leggere il prodotto più costoso | 1 all'anno
+| 18 | Leggere il prodotto meno costoso | 1 all'anno
+| 19 | Leggere l'alimento più costoso porzionato | 1 all'anno
+| 20 | Leggere l'alimento più costoso  confezionato | 1 all'anno
+| 21 | Leggere la quantità presente(in ogni magazzino) di un determinato prodotto | 1 a settimana
+| 22 | Leggere tutti i prodotti terminati nei vari magazzini | 1 al giorno
+| 23 | Leggere tutti i membri del personale | 1 al mese
+| 24 | Leggere i prodotti con lo sconto maggiore | 2 all'anno
+| 25 | Leggere i membri del personale aggiunti dopo una certa data | 1 all'anno
+| 26 | Leggere i clienti aggiunti dopo una certa data | 1 all'anno
+| 27 | Leggere i clienti divenuti soci dopo una certa data | 1 all'anno
+| 28 | Leggere tutti i clienti | 2 all'anno
+| 29 | Leggere tutti i soci | 2 all'anno
+| 30 | Leggere tutti gli ordini effettuati dopo una certa data | 1 all'anno
+| 31 | Leggere l'ordine più costosto mai effettuato | 1 all'anno
+| 32 | Leggere l'ordine più costoso effettuato da ogni cliente | 1 all'anno
