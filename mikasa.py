@@ -20,7 +20,7 @@ window = default_window()
 while True:
     event, values = window.read()
     if event == 'Visualizza clienti':
-        db_cursor.execute("SELECT * FROM persone WHERE cf = (SELECT cf_cliente FROM clienti)")
+        db_cursor.execute("SELECT * FROM persone WHERE EXISTS (SELECT 1 FROM clienti WHERE clienti.cf_cliente = persone.cf)")
         clienti = db_cursor.fetchall()
         window.close()
         window = clienti_window(clienti)
