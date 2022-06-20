@@ -3,14 +3,7 @@
 import PySimpleGUI as sg
 import mysql.connector
 from credentials import *
-
-def default_window():
-    empty_layout = [
-        [sg.Text('Mikasa')],
-        [sg.Button('Aggiungi cliente'), sg.Button('Rendi socio un cliente'), sg.Button('Rendi non socio un cliente'), sg.Button('Visualizza clienti')],
-    ]
-
-    return sg.Window('Mikasa', empty_layout, margins=(400, 200))
+from windows import *
 
 db = mysql.connector.connect(
     host = HOST,
@@ -30,14 +23,7 @@ while True:
         db_cursor.execute("SELECT * FROM persone WHERE cf = (SELECT cf_cliente FROM clienti)")
         clienti = db_cursor.fetchall()
         window.close()
-        table = sg.Table(values=clienti, headings=['Codice Fiscale', 'Nome', 'Cognome',
-                                                    'Telefono', 'E-mail', 'Via', 'Civico', 'CAP', 'CITTÀ'])
-        layout = [
-            [sg.Text('Clienti')],
-            [table],
-            [sg.Button('Indietro')]
-        ]
-        window = sg.Window('Clienti', layout, margins=(400, 200))
+        window = clienti_window(clienti)
     elif event == 'Indietro':
         window.close()
         window = default_window()
