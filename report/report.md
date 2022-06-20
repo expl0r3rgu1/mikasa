@@ -233,8 +233,8 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | 16     | Leggere il prodotto meno acquistato                                        | 1 al mese       |
 | 17     | Leggere il prodotto più costoso                                            | 1 all'anno      |
 | 18     | Leggere il prodotto meno costoso                                           | 1 all'anno      |
-| 19     | Leggere l'alimento più costoso porzionato                                  | 1 all'anno      |
-| 20     | Leggere l'alimento più costoso  confezionato                               | 1 all'anno      |
+| 19     | Leggere l'alimento porzionato più costoso                                  | 1 all'anno      |
+| 20     | Leggere l'alimento confezionato più costoso                                | 1 all'anno      |
 | 21     | Leggere la quantità presente(in ogni magazzino) di un determinato prodotto | 1 al giorno     |
 | 22     | Leggere tutti i prodotti terminati nei vari magazzini                      | 1 al giorno     |
 | 23     | Leggere tutti i membri del personale                                       | 1 al mese       |
