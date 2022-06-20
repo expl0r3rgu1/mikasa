@@ -241,7 +241,7 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | 24     | Leggere i prodotti con lo sconto maggiore                                  | 2 all'anno      |
 | 25     | Leggere tutti gli ordini effettuati dopo una certa data                    | 1 all'anno      |
 | 26     | Leggere l'ordine più costosto                                              | 1 all'anno      |
-| 27     | Leggere l'ordine più costoso effettuato di un determinato cliente          | 1 all'anno      |
+| 27     | Leggere l'ordine più costoso effettuato da un determinato cliente          | 1 all'anno      |
 | 28     | Leggere tutti i clienti                                                    | 10 al giorno    |
 | 29     | Disiscrizione di un cliente socio                                          | 10 al mese      |
 | 30     | Aggiungere un orario                                                       | 5 all'anno      |
