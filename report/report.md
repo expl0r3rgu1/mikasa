@@ -228,7 +228,7 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | 11     | Leggere tutti gli ordini effettuati da un cliente                          | 1 al mese       |
 | 12     | Leggere tutti le spedizioni effettuate in un determinato mese              | 1 al mese       |
 | 13     | Leggere tutti i ritiri effettuati in un determinato mese                   | 1 al mese       |
-| 14     | Leggere tutti i montaggi effettuati in un determinato                      | 1 al mese       |
+| 14     | Leggere tutti i montaggi effettuati in un determinato mese                 | 1 al mese       |
 | 15     | Leggere il prodotto più acquistato                                         | 2 all'anno      |
 | 16     | Leggere il prodotto meno acquistato                                        | 1 al mese       |
 | 17     | Leggere il prodotto più costoso                                            | 1 all'anno      |
@@ -246,4 +246,4 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | 29     | Leggere l'ordine più costosto effettuato                                   | 1 all'anno      |
 | 30     | Leggere l'ordine più costoso effettuato da ogni cliente                    | 1 all'anno      |
 | 31     | Leggere tutti i clienti                                                    | 10 al giorno    |
-| 32     | Disiscrizione di un cliente socio                                          | 10 al mese      | 
+| 32     | Disiscrizione di un cliente socio                                          | 10 al mese      |
