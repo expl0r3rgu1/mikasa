@@ -16,7 +16,7 @@ db_cursor = db.cursor()
 
 empty_layout = [
     [sg.Text('Mikasa')],
-    [sg.Button('Visualizza clienti')]
+    [sg.Button('Aggiungi cliente'), sg.Button('Rendi socio un cliente'), sg.Button('Rendi non socio un cliente'), sg.Button('Visualizza clienti')],
 ]
 
 window = sg.Window('Mikasa', empty_layout, margins=(400, 200))
