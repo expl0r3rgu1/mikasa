@@ -4,6 +4,14 @@ import PySimpleGUI as sg
 import mysql.connector
 from credentials import *
 
+def default_window():
+    empty_layout = [
+        [sg.Text('Mikasa')],
+        [sg.Button('Aggiungi cliente'), sg.Button('Rendi socio un cliente'), sg.Button('Rendi non socio un cliente'), sg.Button('Visualizza clienti')],
+    ]
+
+    return sg.Window('Mikasa', empty_layout, margins=(400, 200))
+
 db = mysql.connector.connect(
     host = HOST,
     user = USER,
@@ -14,12 +22,7 @@ db = mysql.connector.connect(
 
 db_cursor = db.cursor()
 
-empty_layout = [
-    [sg.Text('Mikasa')],
-    [sg.Button('Aggiungi cliente'), sg.Button('Rendi socio un cliente'), sg.Button('Rendi non socio un cliente'), sg.Button('Visualizza clienti')],
-]
-
-window = sg.Window('Mikasa', empty_layout, margins=(400, 200))
+window = default_window()
 
 while True:
     event, values = window.read()
@@ -37,11 +40,7 @@ while True:
         window = sg.Window('Clienti', layout, margins=(400, 200))
     elif event == 'Indietro':
         window.close()
-        layout = [
-            [sg.Text('Mikasa')],
-            [sg.Button('Visualizza clienti')]
-        ]
-        window = sg.Window('Mikasa', layout, margins=(400, 200))
+        window = default_window()
     elif event == sg.WIN_CLOSED:
         break
 
