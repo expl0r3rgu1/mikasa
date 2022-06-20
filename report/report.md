@@ -246,3 +246,4 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | 29     | Leggere l'ordine più costosto effettuato                                   | 1 all'anno      |
 | 30     | Leggere l'ordine più costoso effettuato da ogni cliente                    | 1 all'anno      |
 | 31     | Mostare tutti i clienti                                                    | 10 al giorno    |
+| 32     | Disiscrizione di un cliente socio                                          | 10 al mese      | 
