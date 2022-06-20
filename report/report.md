@@ -226,7 +226,7 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | 9      | Aggiungere un nuovo sconto                                                 | 1 all'anno      |
 | 10     | Leggere tutti gli ordini effettuati in un determinato mese                 | 1 al mese       |
 | 11     | Leggere tutti gli ordini effettuati da un cliente                          | 1 al mese       |
-| 12     | Leggere tutti le spedizioni effettuate in un determinato mese              | 1 al mese       |
+| 12     | Leggere tutte le spedizioni effettuate in un determinato mese              | 1 al mese       |
 | 13     | Leggere tutti i ritiri effettuati in un determinato mese                   | 1 al mese       |
 | 14     | Leggere tutti i montaggi effettuati in un determinato mese                 | 1 al mese       |
 | 15     | Leggere il prodotto più acquistato                                         | 2 all'anno      |
