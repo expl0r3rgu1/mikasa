@@ -239,12 +239,9 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | 22     | Leggere tutti i prodotti terminati nei vari magazzini                      | 1 al giorno     |
 | 23     | Leggere tutti i membri del personale                                       | 1 al mese       |
 | 24     | Leggere i prodotti con lo sconto maggiore                                  | 2 all'anno      |
-| 25     | Leggere i membri del personale aggiunti dopo una certa data                | 1 all'anno      |
-| 26     | Leggere i clienti aggiunti dopo una certa data                             | 1 all'anno      |
-| 27     | Leggere i clienti divenuti soci dopo una certa data                        | 1 all'anno      |
-| 28     | Leggere tutti gli ordini effettuati dopo una certa data                    | 1 all'anno      |
-| 29     | Leggere l'ordine più costosto effettuato                                   | 1 all'anno      |
-| 30     | Leggere l'ordine più costoso effettuato da ogni cliente                    | 1 all'anno      |
-| 31     | Leggere tutti i clienti                                                    | 10 al giorno    |
-| 32     | Disiscrizione di un cliente socio                                          | 10 al mese      |
-| 33     | Aggiungere un orario                                                       | 5 all'anno      | 
+| 25     | Leggere tutti gli ordini effettuati dopo una certa data                    | 1 all'anno      |
+| 26     | Leggere l'ordine più costosto                                              | 1 all'anno      |
+| 27     | Leggere l'ordine più costoso effettuato di un determinato cliente          | 1 all'anno      |
+| 28     | Leggere tutti i clienti                                                    | 10 al giorno    |
+| 29     | Disiscrizione di un cliente socio                                          | 10 al mese      |
+| 30     | Aggiungere un orario                                                       | 5 all'anno      |
