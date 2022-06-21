@@ -245,3 +245,7 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | 28     | Leggere tutti i clienti                                                    | 10 al giorno    |
 | 29     | Disiscrizione di un cliente socio                                          | 10 al mese      |
 | 30     | Aggiungere un orario                                                       | 5 all'anno      |
+| 31     | Restock di un prodotto nel magazzino di un negozio                         | 100 a settimana |
+| 32     | Aggiungere una nuova confezione                                            | 2 all'anno      |
+| 33     | Aggiungere una nuova porzione                                              | 2 all'anno      |
+| 34     | Aggiungere una composizione alla zona esposizioni di un negozio            | 2 all'anno                |
