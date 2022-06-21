@@ -17,6 +17,7 @@ db_cursor = db.cursor()
 
 window = default_window()
 
+
 while True:
     event, values = window.read()
     if event == 'Visualizza clienti':
@@ -24,6 +25,9 @@ while True:
         clienti = db_cursor.fetchall()
         window.close()
         window = clienti_window(clienti)
+    elif event == 'Aggiungi cliente':
+        window.close()
+        window = aggiungi_cliente_window()
     elif event == 'Indietro':
         window.close()
         window = default_window()

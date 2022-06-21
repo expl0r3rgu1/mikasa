@@ -31,3 +31,20 @@ def clienti_window(clienti):
         [sg.Button('Indietro')]
     ]
     return sg.Window('Clienti', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_cliente_window():
+    layout = [
+        [sg.Text('Aggiungi cliente')],
+        [sg.Text('Codice Fiscale'), sg.InputText()],
+        [sg.Text('Nome'), sg.InputText()],
+        [sg.Text('Cognome'), sg.InputText()],
+        [sg.Text('Telefono'), sg.InputText()],
+        [sg.Text('E-mail'), sg.InputText()],
+        [sg.Text('Via'), sg.InputText()],
+        [sg.Text('Civico'), sg.InputText()],
+        [sg.Text('CAP'), sg.InputText()],
+        [sg.Text('Città'), sg.InputText()],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
