@@ -142,10 +142,17 @@ Ogni **Ordine** è formato da più dettagli ordine. Ci sono due tipi di dettagli
 Ogni dettaglio ordine per prodotto mantiene i dati per un solo prodotto acquistato: quanti pezzi sono stati acquistati di quel prodotto e il costo totale per quel prodotto (ottenuto moltiplicando il prezzo, già scontato se ha uno sconto applicato valido nel periodo di effettuazione dell'ordine, del singolo prodotto per la quantità).
 Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 
+<div style="page-break-after: always;"></div>
+
 ## Schema concettuale finale
 
 ![SchemaConcettuale1](resources/concettualept1.jpg)
+
+<div style="page-break-after: always;"></div>
+
 ![SchemaConcettuale2](resources/concettualept2.jpg)
+
+<div style="page-break-after: always;"></div>
 
 # Capitolo 3 - Progettazione logica
 
@@ -210,6 +217,8 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 | Colorazione                       | R         | 500,000        |
 | Applicato                         | R         | 10,000         |
 | Storico                           | R         | 10             |
+
+<div style="page-break-after: always;"></div>
 
 ## Descrizione delle operazioni principali e stima della loro frequenza
 
