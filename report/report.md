@@ -17,6 +17,15 @@ Valentina Pieri, matricola: 0000974789
 <div style="page-break-after: always;"></div>
 
 # Indice
++ [**Analisi dei requisiti**]()
+  - [Intervista]()
+  - [Estrazione dei concetti principali]()
++ [**Progettazione concettuale**]()
+  - [Schema scheletro ]()
+  - [Schema concettuale finale]()
++ [**Progettazione logica**]()
+  - [Stima del volume dei dati]()
+  - [Descrizione delle operazioni principali e stima della loro frequenza]()
 
 <div style="page-break-after: always;"></div>
 
@@ -222,39 +231,41 @@ Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
 
 ## Descrizione delle operazioni principali e stima della loro frequenza
 
-| Codice | Operazione                                                                 | Frequenza       |
-| ------ | -------------------------------------------------------------------------- | --------------- |
-| 1      | Aggiungere un nuovo cliente                                                | 1 a settimana   |
-| 2      | Iscrizione di un cliente per divenire socio                                | 100 al mese     |
-| 3      | Aggiungere un nuovo membro del personale                                   | 10 all'anno     |
-| 4      | Aggiungere un nuovo negozio alla catena                                    | 1 ogni due anni |
-| 5      | Effettuazione di un ordine da parte di un cliente                          | 1 all'anno      |
-| 6      | Aggiungere un nuovo prodotto                                               | 10 all'anno     |
-| 7      | Aggiungere un nuovo alimento                                               | 10 all'anno     |
-| 8      | Aggiungere una nuova composizione                                          | 10 all'anno     |
-| 9      | Aggiungere un nuovo sconto                                                 | 1 all'anno      |
-| 10     | Leggere tutti gli ordini effettuati in un determinato mese                 | 1 al mese       |
-| 11     | Leggere tutti gli ordini effettuati da un cliente                          | 1 al mese       |
-| 12     | Leggere tutte le spedizioni effettuate in un determinato mese              | 1 al mese       |
-| 13     | Leggere tutti i ritiri effettuati in un determinato mese                   | 1 al mese       |
-| 14     | Leggere tutti i montaggi effettuati in un determinato mese                 | 1 al mese       |
-| 15     | Leggere il prodotto più acquistato                                         | 2 all'anno      |
-| 16     | Leggere il prodotto meno acquistato                                        | 1 al mese       |
-| 17     | Leggere il prodotto più costoso                                            | 1 all'anno      |
-| 18     | Leggere il prodotto meno costoso                                           | 1 all'anno      |
-| 19     | Leggere l'alimento porzionato più costoso                                  | 1 all'anno      |
-| 20     | Leggere l'alimento confezionato più costoso                                | 1 all'anno      |
-| 21     | Leggere la quantità presente(in ogni magazzino) di un determinato prodotto | 1 al giorno     |
-| 22     | Leggere tutti i prodotti terminati nei vari magazzini                      | 1 al giorno     |
-| 23     | Leggere tutti i membri del personale                                       | 1 al mese       |
-| 24     | Leggere i prodotti con lo sconto maggiore                                  | 2 all'anno      |
-| 25     | Leggere tutti gli ordini effettuati dopo una certa data                    | 1 all'anno      |
-| 26     | Leggere l'ordine più costosto                                              | 1 all'anno      |
-| 27     | Leggere l'ordine più costoso effettuato da un determinato cliente          | 1 all'anno      |
-| 28     | Leggere tutti i clienti                                                    | 10 al giorno    |
-| 29     | Disiscrizione di un cliente socio                                          | 10 al mese      |
-| 30     | Aggiungere un orario                                                       | 5 all'anno      |
-| 31     | Restock di un prodotto nel magazzino di un negozio                         | 100 a settimana |
-| 32     | Aggiungere una nuova confezione                                            | 2 all'anno      |
-| 33     | Aggiungere una nuova porzione                                              | 2 all'anno      |
-| 34     | Aggiungere una composizione alla zona esposizioni di un negozio            | 2 all'anno                |
+| Codice | Operazione                                                                 | Frequenza       |     |     |     |
+| ------ | -------------------------------------------------------------------------- | --------------- | 
+| 1      | Aggiungere un nuovo cliente                                                | 1 a settimana   |   
+| 2      | Iscrizione di un cliente per divenire socio                                | 100 al mese     |   
+| 3      | Aggiungere un nuovo membro del personale                                   | 10 all'anno     |   
+| 4      | Aggiungere un nuovo negozio alla catena                                    | 1 ogni due anni |   
+| 5      | Effettuazione di un ordine da parte di un cliente                          | 1 all'anno      |   
+| 6      | Aggiungere un nuovo prodotto                                               | 10 all'anno     |   
+| 7      | Aggiungere un nuovo alimento                                               | 10 all'anno     |   
+| 8      | Aggiungere una nuova composizione                                          | 10 all'anno     |   
+| 9      | Aggiungere un nuovo sconto                                                 | 1 all'anno      |   
+| 10     | Leggere tutti gli ordini effettuati in un determinato mese                 | 1 al mese       |   
+| 11     | Leggere tutti gli ordini effettuati da un cliente                          | 1 al mese       |   
+| 12     | Leggere tutte le spedizioni effettuate in un determinato mese              | 1 al mese       |   
+| 13     | Leggere tutti i ritiri effettuati in un determinato mese                   | 1 al mese       | 
+| 14     | Leggere tutti i montaggi effettuati in un determinato mese                 | 1 al mese       | 
+| 15     | Leggere il prodotto più acquistato                                         | 2 all'anno      | 
+| 16     | Leggere il prodotto meno acquistato                                        | 1 al mese       | 
+| 17     | Leggere il prodotto più costoso                                            | 1 all'anno      | 
+| 18     | Leggere il prodotto meno costoso                                           | 1 all'anno      | 
+| 19     | Leggere l'alimento porzionato più costoso                                  | 1 all'anno      | 
+| 20     | Leggere l'alimento confezionato più costoso                                | 1 all'anno      | 
+| 21     | Leggere la quantità presente(in ogni magazzino) di un determinato prodotto | 1 al giorno     | 
+| 22     | Leggere tutti i prodotti terminati nei vari magazzini                      | 1 al giorno     | 
+| 23     | Leggere tutti i membri del personale                                       | 1 al mese       | 
+| 24     | Leggere i prodotti con lo sconto maggiore                                  | 2 all'anno      | 
+| 25     | Leggere tutti gli ordini effettuati dopo una certa data                    | 1 all'anno      | 
+| 26     | Leggere l'ordine più costosto                                              | 1 all'anno      | 
+| 27     | Leggere l'ordine più costoso effettuato da un determinato cliente          | 1 all'anno      | 
+| 28     | Leggere tutti i clienti                                                    | 10 al giorno    | 
+| 29     | Disiscrizione di un cliente socio                                          | 10 al mese      | 
+| 30     | Aggiungere un orario                                                       | 5 all'anno      | 
+| 31     | Restock di un prodotto nel magazzino di un negozio                         | 100 a settimana | 
+| 32     | Aggiungere una nuova confezione                                            | 2 all'anno      | 
+| 33     | Aggiungere una nuova porzione                                              | 2 all'anno      |  
+| 34     | Aggiungere una composizione alla zona esposizioni di un negozio            | 2 all'anno      |    
+| 35     | Leggere tutti i colori                                                     | 10 all'anno     |    
+| 36     | Aggiungere una nuova colorazione per un determinato prodotto               | 10 all'anno     |     
