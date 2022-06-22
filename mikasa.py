@@ -22,7 +22,7 @@ while True:
     event, values = window.read()
     if event == 'Visualizza clienti':
         db_cursor.execute(
-            "SELECT * FROM persone WHERE EXISTS (SELECT 1 FROM clienti WHERE clienti.cf_cliente = persone.cf)")
+            "SELECT P.*, C.socio FROM clienti C, persone P WHERE C.cf_cliente = P.cf")
         clienti = db_cursor.fetchall()
         window.close()
         window = clienti_window(clienti)
@@ -48,7 +48,7 @@ while True:
                 break
     elif event == 'Rendi socio un cliente':
         db_cursor.execute(
-            "SELECT * FROM persone WHERE EXISTS (SELECT 1 FROM clienti WHERE clienti.cf_cliente = persone.cf)")
+            "SELECT P.*, C.socio FROM clienti C, persone P WHERE C.cf_cliente = P.cf")
         clienti = db_cursor.fetchall()
         window.close()
         window = rendi_socio_cliente_window(clienti)
