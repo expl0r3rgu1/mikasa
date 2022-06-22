@@ -57,3 +57,12 @@ def rendi_socio_cliente_window(clienti):
     ]
 
     return sg.Window('Iscrivi cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def rendi_non_socio_cliente_window(clienti):
+    layout = [
+        [sg.Text('Rendi non socio un cliente')],
+        [sg.Combo(clienti, default_value=clienti[0], key='cliente')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Rendi non socio un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
