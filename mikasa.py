@@ -67,6 +67,27 @@ while True:
                 window.close()
                 window = default_window()
                 break
+    elif event == 'Rendi non socio un cliente':
+        db_cursor.execute(
+            "SELECT P.*, C.socio FROM clienti C, persone P WHERE C.cf_cliente = P.cf")
+        clienti = db_cursor.fetchall()
+        window.close()
+        window = rendi_socio_cliente_window(clienti)
+
+        while True:
+            event, values = window.read()
+            if event == 'Conferma':
+                print(values['cliente'][0])
+                db_cursor.execute(
+                    "UPDATE clienti SET socio = 0 WHERE cf_cliente = %s", (values['cliente'][0],))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
