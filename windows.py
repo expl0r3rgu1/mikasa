@@ -46,5 +46,14 @@ def aggiungi_cliente_window():
         [sg.Text('Città'), sg.InputText()],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
-
+  
     return sg.Window('Aggiungi cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def rendi_socio_cliente_window(clienti):
+    layout = [
+        [sg.Text('Iscrivi cliente')],
+        [sg.Combo(clienti, default_value=clienti[0], key='cliente')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Iscrivi cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
