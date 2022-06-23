@@ -267,10 +267,51 @@ Di seguito vengono riportate le frequenze delle varie operazioni effettuabili.
 | 31     | Restock di un prodotto nel magazzino di un negozio                         | 100 a settimana |
 | 32     | Aggiungere una nuova confezione                                            | 2 all'anno      |
 | 33     | Aggiungere una nuova porzione                                              | 2 all'anno      |
-| 34     | Aggiungere una composizione alla zona esposizioni di un negozio            | 2 all'anno      |
+| 34     | Esporre una composizione nella zona esposizioni di un negozio              | 2 all'anno      |
 | 35     | Leggere tutti i colori                                                     | 10 all'anno     |
 | 36     | Aggiungere una nuova colorazione per un determinato prodotto               | 10 all'anno     |
 | 37     | Aggiungere un nuovo amministratore                                         | 10 all'anno     |
 | 37     | Aggiungere un nuovo tecnico                                                | 10 all'anno     |
 | 38     | Aggiungere un nuovo tecnico commerciale                                    | 10 all'anno     |
 
+<div style="page-break-after: always;"></div>
+
+## Schemi di navigazione e tabelle degli accessi
+Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
+
+### OP1: Aggiungere un nuovo cliente
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Cliente  | E         | 1       | S    |
+| Persona  | E         | 1       | S    | 
+#### Totale: 2L -> 2 a settimana
+
+### OP2: Iscrizione di un cliente per divenire socio
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Persona  | E         | 1       | L    |
+| Cliente  | E         | 1       | L    |
+| Cliente  | E         | 1       | S    | 
+#### Totale: 2L, 1S -> 300 al mese
+
+### OP28: Visualizzare tutti i clienti
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Cliente  | E         | 1       | L    |
+#### Totale: 1L -> 10 al giorno                                                            
+
+### OP29: Disiscrizione di un cliente socio 
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Persona  | E         | 1       | L    |
+| Cliente  | E         | 1       | L    |
+| Cliente  | E         | 1       | S    | 
+#### Totale: 2L, 1S -> 30 al mese
+
+### OP37: Aggiungere un nuovo amministratore
+| Concetto  | Costrutto | Accessi | Tipo |
+| --------- | --------- | ------- | ---- |
+| Persona   | E         | 1       | S    |
+| Personale | E         | 1       | S    |
+| Manager   | E         | 1       | S    | 
+#### Totale: 3S -> 30 all'anno
