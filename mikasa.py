@@ -88,6 +88,30 @@ while True:
                 window.close()
                 window = default_window()
                 break
+    elif event == 'Aggiungi manager':
+        db_cursor.execute("SELECT * FROM negozi")
+        negozi = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_manager_window(negozi)
+
+        while True:
+            event, values = window.read()
+            if event == 'Conferma':
+                db_cursor.execute("INSERT INTO persone (cf, nome, cognome, telefono, email, via, civico, cap, città) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (
+                    values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8]))
+                db.commit()
+                db_cursor.execute(
+                    "INSERT INTO personale (cf_personale, salario, cod_orario) VALUES (%s, %s, 2)", (values[0], values[9]))
+                db.commit()
+                db_cursor.execute("INSERT INTO manager (cf_manager, cod_negozio) VALUES (%s, %s)", (values[0], values['negozio'][0]))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
