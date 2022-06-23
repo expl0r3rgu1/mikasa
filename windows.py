@@ -10,7 +10,7 @@ def default_window():
     empty_layout = [
         [sg.Text('Mikasa')],
         [sg.Button('Aggiungi cliente'), sg.Button('Rendi socio un cliente'), sg.Button('Rendi non socio un cliente'), sg.Button(
-            'Aggiungi personale'), sg.Button('Aggiungi negozio')],
+            'Aggiungi manager'), sg.Button('Aggiungi negozio')],
         [sg.Button('Effettua ordine per cliente'), sg.Button('Aggiungi prodotto'), sg.Button('Aggiungi alimento'), sg.Button(
             'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi orario')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button('Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
@@ -66,3 +66,22 @@ def rendi_non_socio_cliente_window(clienti):
     ]
 
     return sg.Window('Rendi non socio un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_manager_window(negozi):
+    layout = [
+        [sg.Text('Aggiungi manager')],
+        [sg.Text('Codice Fiscale'), sg.InputText()],
+        [sg.Text('Nome'), sg.InputText()],
+        [sg.Text('Cognome'), sg.InputText()],
+        [sg.Text('Telefono'), sg.InputText()],
+        [sg.Text('E-mail'), sg.InputText()],
+        [sg.Text('Via'), sg.InputText()],
+        [sg.Text('Civico'), sg.InputText()],
+        [sg.Text('CAP'), sg.InputText()],
+        [sg.Text('Città'), sg.InputText()],
+        [sg.Text('Salario'), sg.InputText()],
+        [sg.Text('Negozio'), sg.Combo(negozi, default_value=negozi[0], key='negozio')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi manager', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
