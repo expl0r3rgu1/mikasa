@@ -20,5 +20,8 @@ QUERIES = {
     'Aggiungere accessorio' : 'INSERT INTO accessori(cod_prodotto) VALUES (%s)',
     'Aggiungere mobili' : 'INSERT INTO mobili(cod_prodotto) VALUES (%s)',
     'Aggiungere elettrodomestici' : 'INSERT INTO elettrodomestici(cod_prodotto) VALUES (%s)',
-    
+    'Aggiungere alimento' : 'INSERT INTO alimenti(cod_alimento, nome, provenienza, scadenza, ingredienti, allergeni, prezzo_porzionato, prezzo_confezionato) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+    'Aggiungere composizione' : 'INSERT INTO composizioni(cod_composizione, nome, num_prodotti, peso) VALUES (%s, %s, %s, %s)',
+    'Aggiungere composta' : 'INSERT INTO composte(cod_negozio, cod_esposizione, cod_composizione, cod_prodotto) VALUES (%s, %s, %s, %s)',
+
 }
