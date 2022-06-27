@@ -189,6 +189,25 @@ while True:
                 window.close()
                 window = default_window()
                 break
+    elif event == 'Aggiungi negozio':
+        db_cursor.execute("SELECT * FROM acquirenti")
+        acquirenti = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_negozio_window(acquirenti)
+
+        while True:
+            event, values = window.read()
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi negozio'], (values[0], values[1], values[2], values[3], values[4], values['data_inaugurazione'], values['acquirente'][0]))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
