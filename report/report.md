@@ -271,8 +271,9 @@ Di seguito vengono riportate le frequenze delle varie operazioni effettuabili.
 | 35     | Leggere tutti i colori                                                     | 10 all'anno     |
 | 36     | Aggiungere una nuova colorazione per un determinato prodotto               | 10 all'anno     |
 | 37     | Aggiungere un nuovo amministratore                                         | 10 all'anno     |
-| 37     | Aggiungere un nuovo tecnico                                                | 10 all'anno     |
-| 38     | Aggiungere un nuovo tecnico commerciale                                    | 10 all'anno     |
+| 38     | Aggiungere un nuovo tecnico                                                | 10 all'anno     |
+| 39     | Aggiungere un nuovo tecnico commerciale                                    | 10 all'anno     |
+| 40     | Licenziare un membro del personale                                         | 5 all'anno      | 
 
 <div style="page-break-after: always;"></div>
 
@@ -294,6 +295,20 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Cliente  | E         | 1       | S    | 
 #### Totale: 2L, 1S -> 300 al mese
 
+### OP3: Aggiungere un nuovo manager
+| Concetto  | Costrutto | Accessi | Tipo |
+| --------- | --------- | ------- | ---- |
+| Persona   | E         | 1       | S    |
+| Personale | E         | 1       | S    |
+| Manager   | E         | 1       | S    | 
+#### Totale: 3S -> 30 all'anno
+
+### OP4: Aggiungere un nuovo negozio alla catena
+| Concetto   | Costrutto | Accessi | Tipo |
+| ---------- | --------- | ------- | ---- |
+| Negozio    | E         | 1       | S    |
+| Acquirente | E         | 1       | L    | 
+
 ### OP28: Visualizzare tutti i clienti
 | Concetto | Costrutto | Accessi | Tipo |
 | -------- | --------- | ------- | ---- |
@@ -308,10 +323,27 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Cliente  | E         | 1       | S    | 
 #### Totale: 2L, 1S -> 30 al mese
 
-### OP37: Aggiungere un nuovo amministratore
+## OP37 : Aggiungere un nuovo amministratore
+| Concetto       | Costrutto | Accessi | Tipo |
+| -------------- | --------- | ------- | ---- |
+| Persona        | E         | 1       | S    |
+| Personale      | E         | 1       | S    |
+| Amministratore | E         | 1       | S    |
+#### Totale: 3S -> 30 all'anno
+
+### OP38: Aggiungere un nuovo tecnico 
 | Concetto  | Costrutto | Accessi | Tipo |
 | --------- | --------- | ------- | ---- |
 | Persona   | E         | 1       | S    |
 | Personale | E         | 1       | S    |
-| Manager   | E         | 1       | S    | 
+| Tecnico   | E         | 1       | S    |
 #### Totale: 3S -> 30 all'anno
+
+### OP39 : Aggiungere un nuovo tecnico commerciale
+| Concetto            | Costrutto | Accessi | Tipo |
+| ------------------- | --------- | ------- | ---- |
+| Persona             | E         | 1       | S    |
+| Personale           | E         | 1       | S    |
+| Tecnico Commerciale | E         | 1       | S    |
+#### Totale: 3S -> 30 all'anno
+
