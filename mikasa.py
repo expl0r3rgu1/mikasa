@@ -4,6 +4,7 @@ import PySimpleGUI as sg
 import mysql.connector
 from credentials import *
 from windows import *
+from queries import *
 
 db = mysql.connector.connect(
     host=HOST,
@@ -21,8 +22,7 @@ window = default_window()
 while True:
     event, values = window.read()
     if event == 'Visualizza clienti':
-        db_cursor.execute(
-            "SELECT P.*, C.socio FROM clienti C, persone P WHERE C.cf_cliente = P.cf")
+        db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
         window.close()
         window = clienti_window(clienti)
@@ -33,11 +33,11 @@ while True:
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                db_cursor.execute("INSERT INTO persone (cf, nome, cognome, telefono, email, via, civico, cap, città) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (
+                db_cursor.execute(QUERIES['Aggiungi persona'], (
                     values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8]))
                 db.commit()
                 db_cursor.execute(
-                    "INSERT INTO clienti (cf_cliente, socio) VALUES (%s, 0)", (values[0],))
+                    QUERIES['Aggiungi cliente'], (values[0],))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -47,8 +47,7 @@ while True:
                 window = default_window()
                 break
     elif event == 'Rendi socio un cliente':
-        db_cursor.execute(
-            "SELECT P.*, C.socio FROM clienti C, persone P WHERE C.cf_cliente = P.cf")
+        db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
         window.close()
         window = rendi_socio_cliente_window(clienti)
@@ -58,7 +57,7 @@ while True:
             if event == 'Conferma':
                 print(values['cliente'][0])
                 db_cursor.execute(
-                    "UPDATE clienti SET socio = 1 WHERE cf_cliente = %s", (values['cliente'][0],))
+                    QUERIES['Rendi socio un cliente'], (values['cliente'][0],))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -69,7 +68,7 @@ while True:
                 break
     elif event == 'Rendi non socio un cliente':
         db_cursor.execute(
-            "SELECT P.*, C.socio FROM clienti C, persone P WHERE C.cf_cliente = P.cf")
+            QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
         window.close()
         window = rendi_socio_cliente_window(clienti)
@@ -79,7 +78,7 @@ while True:
             if event == 'Conferma':
                 print(values['cliente'][0])
                 db_cursor.execute(
-                    "UPDATE clienti SET socio = 0 WHERE cf_cliente = %s", (values['cliente'][0],))
+                    QUERIES['Rendi non socio un cliente'], (values['cliente'][0],))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -97,11 +96,11 @@ while True:
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                db_cursor.execute("INSERT INTO persone (cf, nome, cognome, telefono, email, via, civico, cap, città) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (
+                db_cursor.execute(QUERIES['Aggiungi persona'], (
                     values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8]))
                 db.commit()
                 db_cursor.execute(
-                    "INSERT INTO personale (cf_personale, salario, cod_orario) VALUES (%s, %s, 2)", (values[0], values[9]))
+                    QUERIES['Aggiungi personale'], (values[0], values[9], 2))
                 db.commit()
                 db_cursor.execute("INSERT INTO manager (cf_manager, cod_negozio) VALUES (%s, %s)", (values[0], values['negozio'][0]))
                 db.commit()
