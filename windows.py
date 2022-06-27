@@ -85,3 +85,23 @@ def aggiungi_personale_window(negozi):
     ]
 
     return sg.Window('Aggiungi manager', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_amministratore_window(negozi, zone):
+    layout = [
+        [sg.Text('Aggiungi manager')],
+        [sg.Text('Codice Fiscale'), sg.InputText()],
+        [sg.Text('Nome'), sg.InputText()],
+        [sg.Text('Cognome'), sg.InputText()],
+        [sg.Text('Telefono'), sg.InputText()],
+        [sg.Text('E-mail'), sg.InputText()],
+        [sg.Text('Via'), sg.InputText()],
+        [sg.Text('Civico'), sg.InputText()],
+        [sg.Text('CAP'), sg.InputText()],
+        [sg.Text('Città'), sg.InputText()],
+        [sg.Text('Salario'), sg.InputText()],
+        [sg.Text('Negozio'), sg.Combo(negozi, default_value=negozi[0], key='negozio')],
+        [sg.Text('Zona'), sg.Combo(zone, default_value=zone[0], key='zona')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi manager', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
