@@ -116,3 +116,17 @@ def aggiungi_amministratore_window(negozi, zone):
     ]
 
     return sg.Window('Aggiungi manager', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_negozio_window(acquirenti):
+    layout = [
+        [sg.Text('Aggiungi negozio')],
+        [sg.Text('Via'), sg.InputText()],
+        [sg.Text('Civico'), sg.InputText()],
+        [sg.Text('CAP'), sg.InputText()],
+        [sg.Text('Città'), sg.InputText()],
+        [sg.CalendarButton('Data inaugurazione', key='data_inaugurazione')],
+        [sg.Text('Acquirente'), sg.Combo(acquirenti, default_value=acquirenti[0], key='acquirente')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi negozio', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
