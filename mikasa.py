@@ -102,7 +102,8 @@ while True:
                 db_cursor.execute(
                     QUERIES['Aggiungi personale'], (values[0], values[9], 2))
                 db.commit()
-                db_cursor.execute("INSERT INTO manager (cf_manager, cod_negozio) VALUES (%s, %s)", (values[0], values['negozio'][0]))
+                db_cursor.execute(
+                    "INSERT INTO manager (cf_manager, cod_negozio) VALUES (%s, %s)", (values[0], values['negozio'][0]))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -126,7 +127,8 @@ while True:
                 db_cursor.execute(
                     QUERIES['Aggiungi personale'], (values[0], values[9], 2))
                 db.commit()
-                db_cursor.execute("INSERT INTO tecnico (cf_tecnico, cod_negozio, cod_magazzino) VALUES (%s, %s, %s)", (values[0], values['negozio'][0], 4))
+                db_cursor.execute(
+                    "INSERT INTO tecnico (cf_tecnico, cod_negozio, cod_magazzino) VALUES (%s, %s, %s)", (values[0], values['negozio'][0], 4))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -150,7 +152,8 @@ while True:
                 db_cursor.execute(
                     QUERIES['Aggiungi personale'], (values[0], values[9], 2))
                 db.commit()
-                db_cursor.execute("INSERT INTO tecnici_commerciali (cf_tecnico_commerciale, cod_negozio, cod_alimentari, cod_ristoro) VALUES (%s, %s, %s, %s)", (values[0], values['negozio'][0], 1,2))
+                db_cursor.execute("INSERT INTO tecnici_commerciali (cf_tecnico_commerciale, cod_negozio, cod_alimentari, cod_ristoro) VALUES (%s, %s, %s, %s)", (
+                    values[0], values['negozio'][0], 1, 2))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -162,7 +165,8 @@ while True:
     elif event == 'Aggiungi amministratore':
         db_cursor.execute("SELECT * FROM negozi")
         negozi = db_cursor.fetchall()
-        zone = [(1, 'Alimentari'), (2, 'Ristoro'), (3, 'Esposizione'), (4, 'Magazzino')]
+        zone = [(1, 'Alimentari'), (2, 'Ristoro'),
+                (3, 'Esposizione'), (4, 'Magazzino')]
         window.close()
         window = aggiungi_amministratore_window(negozi, zone)
 
@@ -175,7 +179,8 @@ while True:
                 db_cursor.execute(
                     QUERIES['Aggiungi personale'], (values[0], values[9], 2))
                 db.commit()
-                db_cursor.execute("INSERT INTO amministratori (cf_amministratore, cod_negozio, cod_zona) VALUES (%s, %s, %s)", (values[0], values['negozio'][0], values['zona'][0]))
+                db_cursor.execute("INSERT INTO amministratori (cf_amministratore, cod_negozio, cod_zona) VALUES (%s, %s, %s)", (
+                    values[0], values['negozio'][0], values['zona'][0]))
                 db.commit()
                 window.close()
                 window = default_window()
