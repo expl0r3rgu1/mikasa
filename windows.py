@@ -124,7 +124,7 @@ def aggiungi_negozio_window(acquirenti):
         [sg.Text('Civico'), sg.InputText()],
         [sg.Text('CAP'), sg.InputText()],
         [sg.Text('Città'), sg.InputText()],
-        [sg.CalendarButton('Data inaugurazione', key='data_inaugurazione')],
+        [sg.In(key='-CAL-', enable_events=True, visible=False), sg.CalendarButton('Data inaugurazione', target='-CAL-')],
         [sg.Text('Acquirente'), sg.Combo(acquirenti, default_value=acquirenti[0], key='acquirente')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
