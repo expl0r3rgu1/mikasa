@@ -11,4 +11,10 @@ QUERIES = {
     'Aggiungi negozio' : 'INSERT INTO negozi (cf_negozio, via, civico, cap, città) VALUES (%s, %s, %s, %s, %s)',
     'Rendi socio un cliente' : 'UPDATE clienti SET socio = 1 WHERE cf_cliente = %s',
     'Rendi non socio un cliente' : 'UPDATE clienti SET socio = 0 WHERE cf_cliente = %s',
+    'Effettuazione ordine' : 'INSERT INTO ordini (cod_ordine, data_effetuazione, costo_totale, peso_totale, sconto_totale, data_arrivo, cod_cliente, cod_tecnico_commerciale) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+    'Effettuazione ordine senza spedizione' : 'INSERT INTO ordini_no_spedizione(cod_ordine, cod_negozio) VALUES (%s, %s)',
+    'Effettuazione ordine con spedizione' : 'INSERT INTO ordini_con_spedizione(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
+    'Effettuazione ordini con montaggio' : 'INSERT INTO ordini_con_montaggio(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
+    'Effettuazione ordini senza montaggio' : 'INSERT INTO ordini_no_montaggio(cod_ordine) VALUES (%s)',
+    
 }
