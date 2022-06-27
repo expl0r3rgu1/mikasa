@@ -67,7 +67,7 @@ def rendi_non_socio_cliente_window(clienti):
 
     return sg.Window('Rendi non socio un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
-def aggiungi_manager_window(negozi):
+def aggiungi_personale_window(negozi):
     layout = [
         [sg.Text('Aggiungi manager')],
         [sg.Text('Codice Fiscale'), sg.InputText()],
