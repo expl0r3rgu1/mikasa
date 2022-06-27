@@ -16,5 +16,9 @@ QUERIES = {
     'Effettuazione ordine con spedizione' : 'INSERT INTO ordini_con_spedizione(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
     'Effettuazione ordini con montaggio' : 'INSERT INTO ordini_con_montaggio(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
     'Effettuazione ordini senza montaggio' : 'INSERT INTO ordini_no_montaggio(cod_ordine) VALUES (%s)',
+    'Aggiungere prodotto' : 'INSERT INTO prodotti(cod_prodotto, nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+    'Aggiungere accessorio' : 'INSERT INTO accessori(cod_prodotto) VALUES (%s)',
+    'Aggiungere mobili' : 'INSERT INTO mobili(cod_prodotto) VALUES (%s)',
+    'Aggiungere elettrodomestici' : 'INSERT INTO elettrodomestici(cod_prodotto) VALUES (%s)',
     
 }
