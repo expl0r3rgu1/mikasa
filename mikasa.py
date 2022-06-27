@@ -135,6 +135,30 @@ while True:
                 window.close()
                 window = default_window()
                 break
+    elif event == 'Aggiungi tecnico commerciale':
+        db_cursor.execute("SELECT * FROM negozi")
+        negozi = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_personale_window(negozi)
+
+        while True:
+            event, values = window.read()
+            if event == 'Conferma':
+                db_cursor.execute(QUERIES['Aggiungi persona'], (
+                    values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8]))
+                db.commit()
+                db_cursor.execute(
+                    QUERIES['Aggiungi personale'], (values[0], values[9], 2))
+                db.commit()
+                db_cursor.execute("INSERT INTO tecnici_commerciali (cf_tecnico_commerciale, cod_negozio, cod_alimentari, cod_ristoro) VALUES (%s, %s, %s, %s)", (values[0], values['negozio'][0], 1,2))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
