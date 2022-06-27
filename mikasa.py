@@ -199,7 +199,7 @@ while True:
             event, values = window.read()
             if event == 'Conferma':
                 db_cursor.execute(
-                    QUERIES['Aggiungi negozio'], (values[0], values[1], values[2], values[3], values[4], values['data_inaugurazione'], values['acquirente'][0]))
+                    QUERIES['Aggiungi negozio'], (values[0], values[1], values[2], values[3], values['-CAL-'], values['acquirente'][0], 1))
                 db.commit()
                 window.close()
                 window = default_window()
