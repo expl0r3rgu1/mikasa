@@ -10,7 +10,7 @@ def default_window():
     empty_layout = [
         [sg.Text('Mikasa')],
         [sg.Button('Aggiungi cliente'), sg.Button('Rendi socio un cliente'), sg.Button('Rendi non socio un cliente'), sg.Button(
-            'Aggiungi manager'), sg.Button('Aggiungi negozio')],
+            'Aggiungi manager'), sg.Button('Aggiungi tecnico'), sg.Button('Aggiungi Tecnico commerciale'), sg.Button('Aggiungi amministratore'), sg.Button('Aggiungi negozio')],
         [sg.Button('Effettua ordine per cliente'), sg.Button('Aggiungi prodotto'), sg.Button('Aggiungi alimento'), sg.Button(
             'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi orario')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button('Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
