@@ -1,5 +1,5 @@
 QUERIES = {
-    'Visualizza clienti': 'SELECT P.*, C.socio FROM clienti C, persone P WHERE C.cf_cliente = P.cf',
+    'Visualizza clienti': 'SELECT p.*, c.socio FROM clienti c, persone p WHERE c.cf_cliente = p.cf',
     'Aggiungi cliente': 'INSERT INTO clienti (cf_cliente, socio) VALUES (%s, 0)',
     'Aggiungi persona': 'INSERT INTO persone (cf, nome, cognome, telefono, email, via, civico, cap, città) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi personale': 'INSERT INTO personale (cf_personale, salario, cod_orario) VALUES (%s, %s, %s)',
@@ -42,5 +42,12 @@ QUERIES = {
     'Visualizza prodotto con sconto maggiore' : 'SELECT p.cod_prodotto, p.nome, s.cod_sconto, s.percentuale FROM sconti s, prodotti p WHERE p.cod_sconto = s.cod_sconto GROUP BY p.cod_sconto ORDER BY s.percentuale DESC LIMIT 1',
     'Visualizza ordini effettuati dopo una certa data' : 'SELECT cod_ordine, cod_cliente, data_effettuazione, costo_totale FROM ordini WHERE data_effettuazione > %s',
     'Visualizza ordine più costoso' : 'SELECT cod_ordine, costo_totale FROM ordini ORDER BY costo_totale DESC LIMIT 1',
-    
+    'Visualizza ordine più costoso di un cliente' : 'SELECT c.cf_cliente, o.cod_ordine, o.costo_totale FROM clienti c, ordini o WHERE c.cf_cliente = %s AND c.cf_cliente = o.cod_cliente ORDER BY costo_totale DESC LIMIT 1',
+    'Aggiungi orario' : 'INSERT INTO orari(cod_orario, giorni, oreinizio, orefine) VALUES (%s, %s, %s, %s)',
+    'Aggiungi colorazione' : 'INSERT INTO colorazione(cod_colore, cod_prodotto) VALUES (%s, %s)',
+    'Ristock prodotto in un negozio' : 'UPDATE quantità SET quantità = %s WHERE cod_prodotto = %s AND cod_zona = %s AND cod_negozio = %s',
+    'Aggiungi confezione' : 'INSERT INTO confezioni(cod_negozio, cod_alimentari, cod_alimento, quantità, prezzo_totale) VALUES (%s, 1, %s, %s, %s)',
+    'Aggiungi porzione' : 'INSERT INTO porzione(cod_negozio, cod_ristoro, cod_alimento)VALUES (%s, 2, %s)',
+    'Aggiungi esposta' : 'INSERT INTO esposte(cod_composizione, cod_negozio, cod_esposizione) VALUES (%s, %s, 3)',
+
 }
