@@ -30,5 +30,9 @@ QUERIES = {
     'Visualizza spedizioni in un mese' : 'SELECT s.cod_ordine, o.data_effettuazione FROM ordini_spedizione s, ordini o WHERE MONTH(o.data_effettuazione) = %s AND o.cod_ordine = s.cod_ordine',
     'Visualizza ritiri in un mese' : 'SELECT n.cod_ordine, n.cod_negozio, o.data_effettuazione FROM ordini_no_spedizione n, ordini o WHERE MONTH(o.data_effettuazione)  = %s AND o.cod_ordine = n.cod_ordine',
     'Visualizza motaggi in un mese' : 'SELECT m.cod_ordine, o.data_effettuazione FROM ordini_montaggio m, ordini o, ordini_spedizione s WHERE MONTH(o.data_effettuazione)  = %s AND o.cod_ordine = s.cod_ordine AND s.cod_ordine = m.cod_ordine',
-
+    'Visualizza prodotto più acquistato' : 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità DESC LIMIT 1',
+    'Visualizza prodotto meno acquistato' : 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità ASC LIMIT 1',
+    'Visualizza prodotto più costoso' : 'SELECT p.* FROM prodotti p ORDER BY prezzo DESC LIMIT 1',
+    'Visualizza prodotto meno costoso' : 'SELECT p.* FROM prodotti p ORDER BY prezzo DESC LIMIT 1',
+    
 }
