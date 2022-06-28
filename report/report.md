@@ -347,3 +347,36 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Tecnico Commerciale | E         | 1       | S    |
 #### Totale: 3S -> 30 all'anno
 
+<div style="page-break-after: always;"></div>
+
+## Raffinamento dello schema
+### Eliminazione degli identificatori esterni
+Nello schema E/R sono eliminate le seguenti relazioni:
+- Effettua: importanto cf_cliente di Cliente in Ordine
+- Consegna: importando cf_tecnico di Tecnico in Ordine con Spedizione
+- Montaggio: reificata, importando codOrdine da Ordine con Montaggio e importando cf_tecnico da Tecnico
+- Ritiro: importando codNegozio di Negozio in Ordine senza Spedizione.
+- DettaglioProdotto: importando codOrdine di Ordine in Dettaglio Ordine per Prodotto
+- DettaglioComposizione: importando codOrdine di Ordine in Dettaglio Ordine per Composizione
+- RiferimentoProdotto: importando codProdotto di Prodotto in Dettaglio Ordine per Prodotto
+- RiferimentoComposizione: importando codComposizione di Composizione in Dettaglio Ordine per Prodotto
+- Gestione: importando cf_tecnico_commerciale di Tecnico Commerciale in Ordine
+- OrarioLavorativo: importando codOrario di Orario in Personale
+- OrarioApertura: importando codOrario di Orario in Negozio
+- Apertura: importando cf_acquirente di Acquirente in Negozio
+- Management: importando codNegozio di Negozio in Manager
+- Amministra: importando codZona e codNegozio di Zona in Amministratore
+- Cassiere: importando codAlimentari di Alimentari in Tecnico Commerciale
+- Ristorazione: importando codRistoro e codNegozio di Ristoro in Tecnico Commerciale
+- Magazziniere: importando codMagazzino e codNegozio di Magazzino in Tecnico
+- Suddivisione: importando codNegozio di Negozio in Zona
+- Confezione: reificata, importando codAlimentari e codNegozio da Alimentari e importando codAlimento da Alimento
+- Porzione: reificata, importando codRistoro e codNegozio da Negozio e importando codAlimento da Alimento
+- Esposta: reificata, importando codNegozio e codEsposizione da Esposizione e importando il codComposizione da Composizione
+- Composta: reificata, importando codNegozio, codEsposizione e codComposizione da Composizione e importando il codProdotto da Prodotto
+- Stockaggio: reificata, importando codNegozio e codMagazzino da Magazzino e importando codProdotto da Prodotto
+- Colorazione: reificata, importando codColore da Colore e importando codProdotto da Prodotto
+- Applicato: importando codSconto di Sconto in Prodotto
+- Storico: importando codStorico di Storico in Sconto
+
+
