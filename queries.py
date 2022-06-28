@@ -34,5 +34,13 @@ QUERIES = {
     'Visualizza prodotto meno acquistato' : 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità ASC LIMIT 1',
     'Visualizza prodotto più costoso' : 'SELECT p.* FROM prodotti p ORDER BY prezzo DESC LIMIT 1',
     'Visualizza prodotto meno costoso' : 'SELECT p.* FROM prodotti p ORDER BY prezzo DESC LIMIT 1',
+    'Visualizza alimento porzionato più costoso' : 'SELECT a.* FROM alimenti a ORDER BY prezzo_porzionato DESC LIMIT 1',
+    'Visualizza alimento confezionato più costoso' : 'SELECT a.* FROM alimenti a ORDER BY prezzo_confezionato DESC LIMIT 1',
+    'Visualizza quantità presente nei magazzini di un prodotto' : 'SELECT cod_negozio, quantità FROM quantità WHERE cod_prodotto = %s',
+    'Visualizza prodotti terminati' : 'SELECT q.cod_negozio, q.cod_prodotto, p.nome FROM quantità q, prodotti p WHERE q.cod_prodotto = p.cod_prodotto AND q.quantità = 0',
+    'Visualizza personale' : 'SELECT p.* FROM personale e, persone p WHERE e.cf_personale = p.cf',
+    'Visualizza prodotto con sconto maggiore' : 'SELECT p.cod_prodotto, p.nome, s.cod_sconto, s.percentuale FROM sconti s, prodotti p WHERE p.cod_sconto = s.cod_sconto GROUP BY p.cod_sconto ORDER BY s.percentuale DESC LIMIT 1',
+    'Visualizza ordini effettuati dopo una certa data' : 'SELECT cod_ordine, cod_cliente, data_effettuazione, costo_totale FROM ordini WHERE data_effettuazione > %s',
+    'Visualizza ordine più costoso' : 'SELECT cod_ordine, costo_totale FROM ordini ORDER BY costo_totale DESC LIMIT 1',
     
 }
