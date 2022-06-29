@@ -130,3 +130,19 @@ def aggiungi_negozio_window(acquirenti):
     ]
 
     return sg.Window('Aggiungi negozio', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def effettua_ordine_cliente_window(clienti, prodotti, composizioni, negozi):
+    layout = [
+        [sg.Text('Effettua ordine')],
+        [sg.Combo(clienti, default_value=clienti[0], key='cliente')],
+        [sg.Text('Prodotti'), sg.Text('Composizioni')],
+        [sg.Listbox(values=prodotti, select_mode='extended', key='prodotti', size=(0, 10)), sg.Listbox(values=composizioni, select_mode='extended', key='composizioni', size=(0, 10))],
+        [sg.Text('Quantità prodotti (10,4,...):'), sg.InputText(key='quantità_prodotti'), sg.Text('Quantità composizioni (10,4,...):'), sg.InputText(key='quantità_composizioni')],
+        [sg.Combo(['Con spedizione', 'senza spedizione'], default_value='Con spedizione', key='spedizione', enable_events=True)],
+        [sg.Combo(['Con montaggio', 'senza montaggio'], default_value='Con montaggio', key='montaggio')],
+        [sg.Text('Indirizzo di consegna'), sg.InputText(key='indirizzo')],
+        [sg.Combo(negozi, default_value=negozi[0], key='negozio')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Effettua ordine', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
