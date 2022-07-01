@@ -26,17 +26,6 @@ def default_window():
     return sg.Window('Mikasa', empty_layout, margins=MARGINS, size=SIZE, element_justification='c', resizable=False, finalize=True)
 
 
-def clienti_window(clienti):
-    table = sg.Table(values=clienti, headings=['Codice Fiscale', 'Nome', 'Cognome',
-                                               'Telefono', 'E-mail', 'Via', 'Civico', 'CAP', 'CITTÀ'])
-    layout = [
-        [sg.Text('Clienti')],
-        [table],
-        [sg.Button('Indietro')]
-    ]
-    return sg.Window('Clienti', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
-
-
 def aggiungi_cliente_window():
     layout = [
         [sg.Text('Aggiungi cliente')],
@@ -117,6 +106,7 @@ def aggiungi_amministratore_window(negozi, zone):
 
     return sg.Window('Aggiungi manager', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def aggiungi_negozio_window(acquirenti):
     layout = [
         [sg.Text('Aggiungi negozio')],
@@ -124,22 +114,29 @@ def aggiungi_negozio_window(acquirenti):
         [sg.Text('Civico'), sg.InputText()],
         [sg.Text('CAP'), sg.InputText()],
         [sg.Text('Città'), sg.InputText()],
-        [sg.In(key='-CAL-', enable_events=True, visible=False), sg.CalendarButton('Data inaugurazione', target='-CAL-')],
-        [sg.Text('Acquirente'), sg.Combo(acquirenti, default_value=acquirenti[0], key='acquirente')],
+        [sg.In(key='-CAL-', enable_events=True, visible=False),
+         sg.CalendarButton('Data inaugurazione', target='-CAL-')],
+        [sg.Text('Acquirente'), sg.Combo(
+            acquirenti, default_value=acquirenti[0], key='acquirente')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
     return sg.Window('Aggiungi negozio', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
 
 def effettua_ordine_cliente_window(clienti, prodotti, composizioni, negozi):
     layout = [
         [sg.Text('Effettua ordine')],
         [sg.Combo(clienti, default_value=clienti[0], key='cliente')],
         [sg.Text('Prodotti'), sg.Text('Composizioni')],
-        [sg.Listbox(values=prodotti, select_mode='extended', key='prodotti', size=(0, 10)), sg.Listbox(values=composizioni, select_mode='extended', key='composizioni', size=(0, 10))],
-        [sg.Text('Quantità prodotti (10,4,...):'), sg.InputText(key='quantità_prodotti'), sg.Text('Quantità composizioni (10,4,...):'), sg.InputText(key='quantità_composizioni')],
-        [sg.Combo(['Con spedizione', 'senza spedizione'], default_value='Con spedizione', key='spedizione', enable_events=True)],
-        [sg.Combo(['Con montaggio', 'senza montaggio'], default_value='Con montaggio', key='montaggio')],
+        [sg.Listbox(values=prodotti, select_mode='extended', key='prodotti', size=(0, 10)), sg.Listbox(
+            values=composizioni, select_mode='extended', key='composizioni', size=(0, 10))],
+        [sg.Text('Quantità prodotti (10,4,...):'), sg.InputText(key='quantità_prodotti'), sg.Text(
+            'Quantità composizioni (10,4,...):'), sg.InputText(key='quantità_composizioni')],
+        [sg.Combo(['Con spedizione', 'senza spedizione'],
+                  default_value='Con spedizione', key='spedizione', enable_events=True)],
+        [sg.Combo(['Con montaggio', 'senza montaggio'],
+                  default_value='Con montaggio', key='montaggio')],
         [sg.Text('Indirizzo di consegna'), sg.InputText(key='indirizzo')],
         [sg.Combo(negozi, default_value=negozi[0], key='negozio')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
@@ -147,19 +144,35 @@ def effettua_ordine_cliente_window(clienti, prodotti, composizioni, negozi):
 
     return sg.Window('Effettua ordine', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def aggiungi_prodotto_window(sconti):
     categories = ['Accessori', 'Mobili', 'Elettrodomestici']
     layout = [
         [sg.Text('Aggiungi prodotto')],
-        [sg.Text('Categoria'), sg.Combo(categories, default_value=categories[0], key='categoria')],
+        [sg.Text('Categoria'), sg.Combo(
+            categories, default_value=categories[0], key='categoria')],
         [sg.Text('Nome'), sg.InputText()],
         [sg.Text('Prezzo'), sg.InputText()],
         [sg.Text('Altezza'), sg.InputText()],
         [sg.Text('Larghezza'), sg.InputText()],
         [sg.Text('Profondità'), sg.InputText()],
         [sg.Text('Peso'), sg.InputText()],
-        [sg.Text('Sconto'), sg.Combo(sconti, default_value='NONE', key='sconto')],
+        [sg.Text('Sconto'), sg.Combo(
+            sconti, default_value='NONE', key='sconto')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
     return sg.Window('Aggiungi prodotto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+# VISUALIZZAZIONE
+
+
+def clienti_window(clienti):
+    table = sg.Table(values=clienti, headings=['Codice Fiscale', 'Nome', 'Cognome',
+                                               'Telefono', 'E-mail', 'Via', 'Civico', 'CAP', 'CITTÀ'])
+    layout = [
+        [sg.Text('Clienti')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+    return sg.Window('Clienti', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
