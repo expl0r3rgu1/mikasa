@@ -146,3 +146,20 @@ def effettua_ordine_cliente_window(clienti, prodotti, composizioni, negozi):
     ]
 
     return sg.Window('Effettua ordine', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_prodotto_window(sconti):
+    categories = ['Accessori', 'Mobili', 'Elettrodomestici']
+    layout = [
+        [sg.Text('Aggiungi prodotto')],
+        [sg.Text('Categoria'), sg.Combo(categories, default_value=categories[0], key='categoria')],
+        [sg.Text('Nome'), sg.InputText()],
+        [sg.Text('Prezzo'), sg.InputText()],
+        [sg.Text('Altezza'), sg.InputText()],
+        [sg.Text('Larghezza'), sg.InputText()],
+        [sg.Text('Profondità'), sg.InputText()],
+        [sg.Text('Peso'), sg.InputText()],
+        [sg.Text('Sconto'), sg.Combo(sconti, default_value='NONE', key='sconto')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi prodotto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
