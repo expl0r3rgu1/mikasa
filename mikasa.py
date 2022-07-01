@@ -310,12 +310,12 @@ while True:
                             cod_ordine, values['indirizzo'], tecnico[0]))
                         db.commit()
                     else:
-                        db_cursor.execute('INSERT INTO ordini_no_montaggio(cod_ordine) VALUES (%s)', (
-                            cod_ordine,))
+                        db_cursor.execute(
+                            QUERIES['Effettua ordine senza montaggio'], (cod_ordine,))
                         db.commit()
                 else:
                     db_cursor.execute(
-                        'INSERT INTO ordini_no_spedizione(cod_ordine, cod_negozio) VALUES (%s, %s)', (cod_ordine, values['negozio'][0]))
+                        QUERIES['Effettua ordine senza spedizione'], (cod_ordine, values['negozio'][0]))
                     db.commit()
 
                 window.close()
