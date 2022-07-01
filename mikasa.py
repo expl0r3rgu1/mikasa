@@ -325,6 +325,42 @@ while True:
                 window.close()
                 window = default_window()
                 break
+    elif event == 'Aggiungi prodotto':
+        window.close()
+        db_cursor.execute('SELECT * FROM sconti')
+        sconti = db_cursor.fetchall()
+        window = aggiungi_prodotto_window(sconti)
+
+        while True:
+            event, values = window.read()
+            if event == 'Conferma':
+                sconto = None
+                if values['sconto'] != 'NONE':
+                    sconto = values['sconto'][0]
+                db_cursor.execute('INSERT INTO prodotti(nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto) VALUES (%s, %s, %s, %s, %s, %s, %s)', (
+                    values[0], values[1], values[2], values[3], values[4], values[5], sconto))
+                db.commit()
+
+                if values['categoria'] == 'Accessori':
+                    db_cursor.execute(
+                        QUERIES['Aggiungi accessorio'], (db_cursor.lastrowid,))
+                    db.commit()
+                elif values['categoria'] == 'Mobili':
+                    db_cursor.execute(
+                        QUERIES['Aggiungi mobile'], (db_cursor.lastrowid,))
+                    db.commit()
+                elif values['categoria'] == 'Elettrodomestici':
+                    db_cursor.execute(
+                        QUERIES['Aggiungi elettrodomestico'], (db_cursor.lastrowid,))
+                    db.commit()
+
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
