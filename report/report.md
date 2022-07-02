@@ -309,6 +309,61 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Negozio    | E         | 1       | S    |
 | Acquirente | E         | 1       | L    | 
 
+### OP5: Effettuazione di un ordine da parte di un cliente
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+|          |           |         |      |
+
+### OP6: Aggiungere un nuovo prodotto
+| Concetto                           | Costrutto | Accessi | Tipo |
+| ---------------------------------- | --------- | ------- | ---- |
+| Sconto                             | E         | 1       | L    |
+| Prodotto                           | E         | 1       | S    |
+| Accessorio/Mobile/Elettrodomestico | E         | 1       | S    |
+#### Totale: 1L, 2S -> 30 all'anno
+
+### OP10: Leggere tutti gli ordini effettuati in un determinato mese 
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Ordine   | E         | 1       | L    |
+#### Totale: 1L -> 1 al mese
+
+### OP11: Leggere tutti gli ordini effettuati da un cliente
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Ordine   | E         | 1       | L    |
+| Cliente  | E         | 1       | L    | 
+#### Totale: 2L -> 2 al mese
+
+### OP12: Leggere tutte le spedizioni effettuate in un determinato mese 
+| Concetto              | Costrutto | Accessi | Tipo |
+| --------------------- | --------- | ------- | ---- |
+| Ordine con Spedizione | E         | 1       | L    |
+| Ordine                | E         | 1       | L    | 
+#### Totale: 2L -> 2 al mese
+
+### OP13: Leggere tutti i ritiri effettuati in un determinato mese 
+| Concetto                | Costrutto | Accessi | Tipo |
+| ----------------------- | --------- | ------- | ---- |
+| Ordine senza Spedizione | E         | 1       | L    |
+| Ordine                  | E         | 1       | L    | 
+#### Totale: 2L -> 2 al mese
+
+### OP14: Leggere tutti i montaggi effettuati in un determinato mese 
+| Concetto              | Costrutto | Accessi | Tipo |
+| --------------------- | --------- | ------- | ---- |
+| Ordine con Montaggio  | E         | 1       | L    |
+| Ordine con Spedizione | E         | 1       | L    |
+| Ordine                | E         | 1       | L    | 
+#### Totale: 3L -> 3 al mese
+
+### OP15: Leggere il prodotto più acquistato
+| Concetto                      | Costrutto | Accessi | Tipo |
+| ----------------------------- | --------- | ------- | ---- |
+| Prodotto                      | E         | 1       | L    |
+| Dettaglio Ordine per Prodotto | E         | 1       | L    | 
+#### Totale: 2L -> 4 all'anno
+
 ### OP28: Visualizzare tutti i clienti
 | Concetto | Costrutto | Accessi | Tipo |
 | -------- | --------- | ------- | ---- |
@@ -380,3 +435,317 @@ Nello schema E/R sono eliminate le seguenti relazioni:
 - Storico: importando codStorico di Storico in Sconto
 
 
+<div style="page-break-after: always;"></div>
+
+## Traduzione delle operazioni in query SQL
+
+### OP1: Aggiungere un nuovo cliente
+Per un nuovo cliente viene creata una entry in persone e una entry in clienti, dividendo le sue informazioni.
+
+```
+INSERT INTO persone (cf, nome, cognome, telefono, email, via, civico, cap, città) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+```
+
+```
+INSERT INTO clienti (cf_cliente, socio) 
+VALUES (?, 0)
+```
+
+### OP2: Iscrizione di un cliente per divenire socio
+Viene ricercato il cliente usando le tabelle clienti e persone, dopo di chè si imposta il campo "socio" del cliente a 1.
+```
+SELECT p.*, c.socio FROM clienti c, persone p WHERE c.cf_cliente = p.cf
+```
+
+```
+UPDATE clienti SET socio = 1 WHERE cf_cliente = ?
+```
+
+### OP3: Aggiungere un nuovo manager
+Si visualizzano i negozi per scegliere il cod_negozio di quello nel quale lavorerà il nuovo manager.
+```
+SELECT * FROM negozi
+```
+
+Le informazioni relative al manager vengono divese in tre entry: una per persone, una per personale e infine una per manager
+
+```
+INSERT INTO persone (cf, nome, cognome, telefono, email, via, civico, cap, città) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+```
+
+```
+INSERT INTO personale (cf_personale, salario, cod_orario) 
+VALUES (?, ?, ?)
+```
+
+```
+INSERT INTO manager(cf_manager, cod_negozio) 
+VALUES (?, ?)
+```
+
+### OP4: Aggiungere un nuovo negozio alla catena
+Si visualizzano gli acquirenti per scegliere il cf_acquirente di colui che ha deciso di acquistare ed aprire il nuovo negozio della catena.
+```
+SELECT * FROM acquirenti
+```
+
+```
+INSERT INTO negozi (via, civico, cap, città, data_inaugurazione, cf_acquirente, cod_orario) 
+VALUES (?, ?, ?, ?, ?, ?, ?)
+```
+
+### OP5: Effettuazione di un ordine da parte di un cliente
+Si visualizzano i clienti per poter selezionare il cf_cliente di colui che effettuerà l'ordine
+```
+SELECT p.*, c.socio FROM clienti c, persone p WHERE c.cf_cliente = p.cf
+```
+
+```
+SELECT * FROM prodotti
+```
+
+```
+SELECT * FROM composizioni
+```
+
+```
+SELECT * FROM negozi
+```
+
+Per ognuno dei prodotti acquistati si ricerca il suo eventuale sconto: per ogni prodotto acquistato il ? della query corrisponderà al cod_sconto salvato in prodotto
+```
+SELECT s.percentuale FROM sconti s WHERE s.cod_sconto = ?
+```
+
+Per ogni composizione acquistata vengono selezionati i prodotti che la compongono
+```
+SELECT * FROM prodotti WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = ?)
+```
+
+Per ognuno di questi prodotti, che formano le composizioni acquistatate, si ricerca il suo eventuale sconto
+```
+SELECT s.percentuale FROM sconti s WHERE s.cod_sconto = ?
+```
+
+Ad ogni ordine effettuato corrisponde un tecnico commerciale che se ne occupa, la query che segue serve a visualizzare tutti i tecnici commerciali pe rpoterne scegliere uno a cui affidare l'ordine.
+```
+SELECT * FROM tecnici_commerciali
+```
+
+Al prezzo totale dell'ordine viene applicato un 5% di sconto in caso il cliente sia socio
+```
+SELECT c.socio FROM clienti c WHERE c.cf_cliente = ?
+```
+
+L'ordine viene inserito nella tabella degli ordini
+```
+INSERT INTO ordini (data_effettuazione, costo_totale, peso_totale, data_arrivo, cf_cliente, cf_tecnico_commerciale) 
+VALUES (?, ?, ?, ?, ?, ?)
+```
+
+Per ogni prodotto acquistato viene creato un dettaglio ordine per prodotto
+```
+INSERT INTO dettagli_prodotto (cod_ordine, cod_prodotto, quantità, prezzo_totale, peso_totale) 
+VALUES (?, ?, ?, ?, ?)
+```
+
+```
+SELECT * FROM prodotti WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = ?
+```
+
+Per ogni composizione acquistata viene creato un dettaglio ordine per prodotto
+```
+INSERT INTO dettagli_composizione (cod_ordine, cod_composizione, quantità, prezzo_totale, peso_totale) 
+VALUES (?, ?, ?, ?, ?)
+```
+
+Se l'ordine è un ordine con spedizione si seleziona un tecnico che se ne occuperà e viene registrato l'ordine creando una entry nella tabella degli ordini con spedizioni
+``` 
+SELECT * FROM tecnici
+```
+
+```
+INSERT INTO ordini_spedizione(cod_ordine, indirizzo, cf_tecnico) 
+VALUES (?, ?, ?)
+```
+
+Se oltre alla spedizione, è stato scelto anche il montaggio, viene creata una entry nella tabella degli ordini con montaggio
+```
+INSERT INTO ordini_montaggio(cod_ordine, indirizzo, cf_tecnico) 
+VALUES (?, ?, ?)
+```
+
+Se l'ordine ha la spedizione ma non il montaggio viene creata una entry nella tabella degli ordini senza montaggio
+```
+INSERT INTO ordini_no_montaggio(cod_ordine) 
+VALUES (?)
+```
+
+Se l'ordine non ha la spedizione viene creata una entry nella tabella degli ordini senza spedizione
+```
+INSERT INTO ordini_no_spedizione(cod_ordine, cod_negozio) 
+VALUES (?, ?)
+```
+
+### OP6: Aggiungere un nuovo prodotto
+Per creare un prodotto si seleziona uno o nessuno degli sconti già presenti nella tabella Sconti
+```
+SELECT * FROM sconti
+```
+
+```
+INSERT INTO prodotti(nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto) 
+VALUES (?, ?, ?, ?, ?, ?, ?)
+```
+
+Ogni prodotto viene anche registrato sotto una delle seguenti categorie: accessori, mobili, elettrodomestici. In base alla categoria scelta viene creata la entry nella tabella corrispondente.
+
+```
+INSERT INTO accessori(cod_prodotto) 
+VALUES (?)
+```
+
+```
+INSERT INTO mobili(cod_prodotto) 
+VALUES (?)
+```
+
+```
+INSERT INTO elettrodomestici(cod_prodotto) 
+VALUES (?)
+```
+
+### OP10: Leggere tutti gli ordini effettuati in un determinato mese 
+```
+SELECT * FROM ordini WHERE YEAR(data_effettuazione) = ? AND MONTH(data_effettuazione) = ?
+```
+
+### OP11: Leggere tutti gli ordini effettuati da un cliente
+```
+SELECT p.*, c.socio FROM clienti c, persone p WHERE c.cf_cliente = p.cf
+```
+
+```
+SELECT * FROM ordini WHERE cf_cliente = ?
+```
+
+### OP12: Leggere tutte le spedizioni effettuate in un determinato mese 
+```
+SELECT s.cod_ordine, s.indirizzo, s.cf_tecnico, o.data_effettuazione, o.data_arrivo FROM ordini_spedizione s, ordini o 
+WHERE YEAR(data_effettuazione) = ? 
+AND MONTH(o.data_effettuazione) = ?
+AND o.cod_ordine = s.cod_ordine
+```
+
+### OP13: Leggere tutti i ritiri effettuati in un determinato mese 
+```
+SELECT n.cod_ordine, n.cod_negozio, o.data_effettuazione, o.data_arrivo FROM ordini_no_spedizione n, ordini o 
+WHERE YEAR(o.data_effettuazione) = ? 
+AND MONTH(o.data_effettuazione) = ?
+AND o.cod_ordine = n.cod_ordine
+```
+
+### OP14: Leggere tutti i montaggi effettuati in un determinato mese 
+ ```
+SELECT m.cod_ordine, o.data_arrivo FROM ordini_montaggio m, ordini o, ordini_spedizione s 
+WHERE YEAR(o.data_arrivo) = %s 
+AND MONTH(o.data_arrivo) = %s 
+AND o.cod_ordine = s.cod_ordine 
+AND s.cod_ordine = m.cod_ordine
+ ```
+
+### OP15: Leggere il prodotto più acquistato
+```
+SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) 
+AS quantità 
+FROM prodotti p, dettagli_prodotto d 
+WHERE p.cod_prodotto = d.cod_prodotto 
+GROUP BY p.cod_prodotto 
+ORDER BY quantità DESC LIMIT 10
+```
+
+### OP28: Visualizzare tutti i clienti
+```
+SELECT p.*, c.socio FROM clienti c, persone p WHERE c.cf_cliente = p.cf
+```
+
+### OP29: Disiscrizione di un cliente socio 
+Viene ricercato il cliente usando le tabelle clienti e persone, dopo di chè si imposta il campo "socio" del cliente a 0.
+ ```
+SELECT p.*, c.socio FROM clienti c, persone p WHERE c.cf_cliente = p.cf
+ ```
+
+```
+UPDATE clienti SET socio = 0 WHERE cf_cliente = ?
+```
+
+## OP37 : Aggiungere un nuovo amministratore
+Si visualizzano i negozi per scegliere il cod_negozio di quello nel quale lavorerà il nuovo amministartore.
+```
+SELECT * FROM negozi
+```
+
+Le informazioni relative all'amministratore vengono divese in tre entry: una per persone, una per personale e infine una per amministratori
+
+```
+INSERT INTO persone (cf, nome, cognome, telefono, email, via, civico, cap, città) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+```
+
+```
+INSERT INTO personale (cf_personale, salario, cod_orario) 
+VALUES (?, ?, ?)
+```
+
+```
+INSERT INTO amministratori(cf_amministratore, cod_zona, cod_negozio) 
+VALUES (?, ?, ?)
+```
+
+### OP38: Aggiungere un nuovo tecnico 
+Si visualizzano i negozi per scegliere il cod_negozio di quello nel quale lavorerà il nuovo tecnico.
+```
+SELECT * FROM negozi
+```
+
+Le informazioni relative al tecnico vengono divese in tre entry: una per persone, una per personale e infine una per tecnici
+
+```
+INSERT INTO persone (cf, nome, cognome, telefono, email, via, civico, cap, città) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+```
+
+```
+INSERT INTO personale (cf_personale, salario, cod_orario) 
+VALUES (?, ?, ?)
+```
+
+```
+INSERT INTO tecnici(cf_tecnico, cod_negozio, cod_magazzino) 
+VALUES (?, ?, ?)
+```
+
+### OP39 : Aggiungere un nuovo tecnico commerciale
+Si visualizzano i negozi per scegliere il cod_negozio di quello nel quale lavorerà il nuovo tecnico commerciale.
+```
+SELECT * FROM negozi
+```
+
+Le informazioni relative al tecnico commerciale vengono divese in tre entry: una per persone, una per personale e infine una per tecnici commerciali
+
+```
+INSERT INTO persone (cf, nome, cognome, telefono, email, via, civico, cap, città) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+```
+
+```
+INSERT INTO personale (cf_personale, salario, cod_orario) 
+VALUES (?, ?, ?)
+```
+
+```
+INSERT INTO tecnici_commerciali(cf_tecnico_commerciale, cod_negozio, cod_alimentari, cod_ristoro) 
+VALUES (?, ?, ?, ?)
+```
