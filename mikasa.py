@@ -473,6 +473,12 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Visualizza 10 prodotti più acquistati':
+        db_cursor.execute('SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità DESC LIMIT 10')
+        prodotti = db_cursor.fetchall()
+
+        window.close()
+        window = prodotti_piu_acquistato_window(prodotti)
     elif event == 'Indietro':
         window.close()
         window = default_window()
