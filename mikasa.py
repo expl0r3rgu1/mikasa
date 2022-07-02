@@ -361,6 +361,22 @@ while True:
                 window.close()
                 window = default_window()
                 break
+    elif event == 'Visualizza ordini in un mese':
+        window.close()
+        window = ordini_mese_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == '-CAL-':
+                db_cursor.execute('SELECT * FROM ordini WHERE YEAR(data_effettuazione) = %s AND MONTH(data_effettuazione) = %s',
+                                  (values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
+                ordini = db_cursor.fetchall()
+                window['ordini'].update(values=ordini)
+            elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
