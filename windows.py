@@ -207,3 +207,18 @@ def ordini_cliente_window(clienti):
     ]
 
     return sg.Window('Ordini di un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+
+def spedizioni_mese_window():
+    table = sg.Table(key='spedizioni', values=[], headings=[
+                     'Codice Ordine', 'Indirizzo', 'Codice Fiscale tecnico', 'Data effettuazione', 'Data arrivo'])
+
+    layout = [
+        [sg.Text('Spedizioni in un mese')],
+        [sg.In(key='-CAL-', enable_events=True, visible=False),
+         sg.CalendarButton('Mese', target='-CAL-', format='%Y-%m')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Spedizioni in un mese', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
