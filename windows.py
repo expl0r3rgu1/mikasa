@@ -222,6 +222,7 @@ def spedizioni_mese_window():
 
     return sg.Window('Spedizioni in un mese', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def ritiri_mese_window():
     table = sg.Table(key='ritiri', values=[], headings=[
                      'Codice Ordine', 'Codice Negozio', 'Data effettuazione', 'Data arrivo'])
@@ -235,3 +236,18 @@ def ritiri_mese_window():
     ]
 
     return sg.Window('Ritiri in un mese', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+
+def montaggi_mese_window():
+    table = sg.Table(key='montaggi', values=[], headings=[
+                     'Codice Ordine', 'Data arrivo', 'Codice Fiscale tecnico'])
+
+    layout = [
+        [sg.Text('Montaggi in un mese')],
+        [sg.In(key='-CAL-', enable_events=True, visible=False),
+         sg.CalendarButton('Mese', target='-CAL-', format='%Y-%m')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Montaggi in un mese', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
