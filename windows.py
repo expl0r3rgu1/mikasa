@@ -192,3 +192,18 @@ def ordini_mese_window():
     ]
 
     return sg.Window('Ordini in un mese', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+
+def ordini_cliente_window(clienti):
+    table = sg.Table(key='ordini', values=[], headings=['Codice Ordine', 'Data effettuazione', 'Costo totale',
+                     'Peso totale', 'Data arrivo', 'Codice Fiscale Cliente', 'Codice Fiscale tecnico commerciale'])
+
+    layout = [
+        [sg.Text('Ordini di un cliente')],
+        [sg.Combo(clienti, default_value=clienti[0],
+                  key='cliente', enable_events=True)],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Ordini di un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
