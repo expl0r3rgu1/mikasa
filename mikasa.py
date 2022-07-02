@@ -395,6 +395,22 @@ while True:
                 window.close()
                 window = default_window()
                 break
+    elif event == 'Visualizza spedizioni in un mese':
+        window.close()
+        window = spedizioni_mese_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == '-CAL-':
+                db_cursor.execute('SELECT s.cod_ordine, s.indirizzo, s.cf_tecnico, o.data_effettuazione, o.data_arrivo FROM ordini_spedizione s, ordini o WHERE YEAR(data_effettuazione) = %s AND MONTH(o.data_effettuazione) = %s AND o.cod_ordine = s.cod_ordine',
+                                  (values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
+                spedizioni = db_cursor.fetchall()
+                window['spedizioni'].update(values=spedizioni)
+            elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
