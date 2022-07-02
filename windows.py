@@ -65,7 +65,7 @@ def rendi_non_socio_cliente_window(clienti):
 
 def aggiungi_personale_window(negozi):
     layout = [
-        [sg.Text('Aggiungi manager')],
+        [sg.Text('Aggiungi manager o tecnico o tecnico commerciale')],
         [sg.Text('Codice Fiscale'), sg.InputText()],
         [sg.Text('Nome'), sg.InputText()],
         [sg.Text('Cognome'), sg.InputText()],
@@ -81,7 +81,7 @@ def aggiungi_personale_window(negozi):
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
-    return sg.Window('Aggiungi manager', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+    return sg.Window('Aggiungi manager o tecnico o tecnico commerciale', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
 
 def aggiungi_amministratore_window(negozi, zone):
