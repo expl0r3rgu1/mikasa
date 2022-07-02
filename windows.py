@@ -14,7 +14,7 @@ def default_window():
             'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi orario')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
-        [sg.Button('Visualizza prodotto più acquistato'), sg.Button('Visualizza prodotto meno acquistato'), sg.Button(
+        [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza prodotto meno acquistato'), sg.Button(
             'Visualizza prodotto più costoso'), sg.Button('Visualizza prodotto meno costoso'), sg.Button('Visualizza alimento porzionato più costoso')],
         [sg.Button('Visualizza alimento confezionato più costoso'), sg.Button('Visualizza quantità prodotto nei magazzini'), sg.Button(
             'Visualizza prodotti terminati nei magazzini'), sg.Button('Visualizza personale'), sg.Button('Visualizza prodotti con sconto maggiore')],
@@ -251,3 +251,16 @@ def montaggi_mese_window():
     ]
 
     return sg.Window('Montaggi in un mese', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+
+def prodotti_piu_acquistato_window(prodotti):
+    table = sg.Table(values=prodotti, headings=[
+                     'Codice', 'Nome', 'Prezzo', 'Altezza', 'Larghezza', 'Profondità', 'Peso', 'Codice Sconto'])
+
+    layout = [
+        [sg.Text('Top 10 prodotti più acquistati')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Top 10 prodotti più acquistati', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
