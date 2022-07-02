@@ -411,6 +411,22 @@ while True:
                 window.close()
                 window = default_window()
                 break
+    elif event == 'Visualizza ritiri in un mese':
+        window.close()
+        window = ritiri_mese_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == '-CAL-':
+                db_cursor.execute('SELECT n.cod_ordine, n.cod_negozio, o.data_effettuazione, o.data_arrivo FROM ordini_no_spedizione n, ordini o WHERE YEAR(o.data_effettuazione) = %s AND MONTH(o.data_effettuazione)  = %s AND o.cod_ordine = n.cod_ordine', (
+                    values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
+                ritiri = db_cursor.fetchall()
+                window['ritiri'].update(values=ritiri)
+            elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
