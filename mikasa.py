@@ -455,6 +455,24 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Visualizza montaggi in un mese':
+        window.close()
+        window = montaggi_mese_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == '-CAL-':
+                db_cursor.execute('SELECT m.cod_ordine, o.data_arrivo FROM ordini_montaggio m, ordini o, ordini_spedizione s WHERE YEAR(o.data_arrivo) = %s AND MONTH(o.data_arrivo)  = %s AND o.cod_ordine = s.cod_ordine AND s.cod_ordine = m.cod_ordine', (
+                    values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
+                montaggi = db_cursor.fetchall()
+                window['montaggi'].update(values=montaggi)
+            elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
