@@ -3,7 +3,6 @@
 import PySimpleGUI as sg
 
 MARGINS = (100, 30)
-SIZE = (1700, 860)
 
 
 def default_window():
@@ -23,7 +22,7 @@ def default_window():
             'Visualizza ordine più costoso'), sg.Button('Visualizza ordine più costoso di un cliente')]
     ]
 
-    return sg.Window('Mikasa', empty_layout, margins=MARGINS, size=SIZE, element_justification='c', resizable=False, finalize=True)
+    return sg.Window('Mikasa', empty_layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
 
 def aggiungi_cliente_window():
