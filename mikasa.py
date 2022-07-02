@@ -47,6 +47,8 @@ while True:
                 window.close()
                 window = default_window()
                 break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Rendi socio un cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
@@ -67,6 +69,8 @@ while True:
                 window.close()
                 window = default_window()
                 break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Rendi non socio un cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
@@ -86,6 +90,8 @@ while True:
             elif event == 'Annulla':
                 window.close()
                 window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Aggiungi manager':
         db_cursor.execute("SELECT * FROM negozi")
@@ -112,6 +118,8 @@ while True:
                 window.close()
                 window = default_window()
                 break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Aggiungi tecnico':
         db_cursor.execute("SELECT * FROM negozi")
         negozi = db_cursor.fetchall()
@@ -137,6 +145,8 @@ while True:
                 window.close()
                 window = default_window()
                 break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Aggiungi tecnico commerciale':
         db_cursor.execute("SELECT * FROM negozi")
         negozi = db_cursor.fetchall()
@@ -161,6 +171,8 @@ while True:
             elif event == 'Annulla':
                 window.close()
                 window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Aggiungi amministratore':
         db_cursor.execute("SELECT * FROM negozi")
@@ -189,6 +201,8 @@ while True:
                 window.close()
                 window = default_window()
                 break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Aggiungi negozio':
         db_cursor.execute("SELECT * FROM acquirenti")
         acquirenti = db_cursor.fetchall()
@@ -207,6 +221,8 @@ while True:
             elif event == 'Annulla':
                 window.close()
                 window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Effettua ordine per cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
@@ -325,6 +341,8 @@ while True:
                 window.close()
                 window = default_window()
                 break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Aggiungi prodotto':
         window.close()
         db_cursor.execute('SELECT * FROM sconti')
@@ -361,6 +379,8 @@ while True:
                 window.close()
                 window = default_window()
                 break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Visualizza ordini in un mese':
         window.close()
         window = ordini_mese_window()
@@ -376,6 +396,8 @@ while True:
             elif event == 'Indietro':
                 window.close()
                 window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Visualizza ordini cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
@@ -395,6 +417,8 @@ while True:
                 window.close()
                 window = default_window()
                 break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Visualizza spedizioni in un mese':
         window.close()
         window = spedizioni_mese_window()
@@ -411,6 +435,8 @@ while True:
                 window.close()
                 window = default_window()
                 break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Visualizza ritiri in un mese':
         window.close()
         window = ritiri_mese_window()
@@ -426,6 +452,8 @@ while True:
             elif event == 'Indietro':
                 window.close()
                 window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Indietro':
         window.close()
