@@ -48,6 +48,7 @@ QUERIES = {
     'Visualizza ordine più costoso di un cliente': 'SELECT c.cf_cliente, o.cod_ordine, o.costo_totale FROM clienti c, ordini o WHERE c.cf_cliente = %s AND c.cf_cliente = o.cf_cliente ORDER BY costo_totale DESC LIMIT 1',
     'Visualizza sconti' : 'SELECT * FROM sconti',
     'Visualizza tecnici' : 'SELECT * FROM tecnici',
+    'Visualizza tecnici commerciali' : 'SELECT * FROM tecnici_commerciali',
     'Aggiungi orario': 'INSERT INTO orari(cod_orario, giorni, oreinizio, orefine) VALUES (%s, %s, %s, %s)',
     'Aggiungi colorazione': 'INSERT INTO colorazione(cod_colore, cod_prodotto) VALUES (%s, %s)',
     'Ristock prodotto in un negozio': 'UPDATE quantità SET quantità = %s WHERE cod_prodotto = %s AND cod_zona = %s AND cod_negozio = %s',
