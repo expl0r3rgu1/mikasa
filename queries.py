@@ -27,6 +27,7 @@ QUERIES = {
     'Aggiungi composta': 'INSERT INTO composte(cod_negozio, cod_esposizione, cod_composizione, cod_prodotto) VALUES (%s, %s, %s, %s)',
     'Aggiungi sconto': 'INSERT INTO sconti(cod_sconto, percentuale, cod_storico) VALUES (%s, %s, %s)',
     'Aggiungi storico sconti': 'INSERT INTO storico_sconti(cod_storico, inizio, fine) VALUES (%s, %s)',
+    'Visualizza se cliente è socio' : 'SELECT c.socio FROM clienti c WHERE c.cf_cliente = %s',
     'Visualizza ordini in un mese': 'SELECT * FROM ordini WHERE YEAR(data_effettuazione) = %s AND MONTH(data_effettuazione) = %s',
     'Visualizza ordini di un cliente': 'SELECT * FROM ordini WHERE cf_cliente = %s',
     'Visualizza spedizioni in un mese': 'SELECT s.cod_ordine, s.indirizzo, s.cf_tecnico, o.data_effettuazione, o.data_arrivo FROM ordini_spedizione s, ordini o WHERE YEAR(data_effettuazione) = %s AND MONTH(o.data_effettuazione) = %s AND o.cod_ordine = s.cod_ordine',
