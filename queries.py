@@ -50,6 +50,7 @@ QUERIES = {
     'Visualizza tecnici' : 'SELECT * FROM tecnici',
     'Visualizza tecnici commerciali' : 'SELECT * FROM tecnici_commerciali',
     'Visualizza percentuale sconto di uno sconto' : 'SELECT s.percentuale FROM sconti s WHERE s.cod_sconto = %s',
+    'Visualizza prodotti contenuti in una composizione' : 'SELECT * FROM prodotti WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s)',
     'Aggiungi orario': 'INSERT INTO orari(cod_orario, giorni, oreinizio, orefine) VALUES (%s, %s, %s, %s)',
     'Aggiungi colorazione': 'INSERT INTO colorazione(cod_colore, cod_prodotto) VALUES (%s, %s)',
     'Ristock prodotto in un negozio': 'UPDATE quantità SET quantità = %s WHERE cod_prodotto = %s AND cod_zona = %s AND cod_negozio = %s',
