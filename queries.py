@@ -47,6 +47,7 @@ QUERIES = {
     'Visualizza ordine più costoso': 'SELECT cod_ordine, costo_totale FROM ordini ORDER BY costo_totale DESC LIMIT 1',
     'Visualizza ordine più costoso di un cliente': 'SELECT c.cf_cliente, o.cod_ordine, o.costo_totale FROM clienti c, ordini o WHERE c.cf_cliente = %s AND c.cf_cliente = o.cf_cliente ORDER BY costo_totale DESC LIMIT 1',
     'Visualizza sconti' : 'SELECT * FROM sconti',
+    'Visualizza negozi' : 'SELECT * FROM negozi',
     'Visualizza acquirenti' : 'SELECT * FROM acquirenti',
     'Visualizza tecnici' : 'SELECT * FROM tecnici',
     'Visualizza tecnici commerciali' : 'SELECT * FROM tecnici_commerciali',
