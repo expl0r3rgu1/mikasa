@@ -1,6 +1,6 @@
 QUERIES = {
     'Visualizza clienti': 'SELECT p.*, c.socio FROM clienti c, persone p WHERE c.cf_cliente = p.cf',
-    'Aggiungi cliente': 'INSERT INTO clienti (cf_cliente, socio) VALUES (%s, 0)',
+    'Aggiungi cliente': 'INSERT INTO clienti (cf_cliente, nome, cognome, telefono, email, via, civico, cap, città, socio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 0)',
     'Aggiungi personale': 'INSERT INTO personale (cf_personale, salario, cod_orario) VALUES (%s, %s, %s)',
     'Aggiungi manager': 'INSERT INTO manager(cf_manager, cod_negozio) VALUES (%s, %s)',
     'Aggiungi impiegato': 'INSERT INTO impiegati(cf_impiegato) VALUES (%s)',
