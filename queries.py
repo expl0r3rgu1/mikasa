@@ -50,6 +50,7 @@ QUERIES = {
     'Visualizza 10 prodotti con sconto maggiore': 'SELECT p.cod_prodotto, p.nome, s.cod_sconto, s.percentuale FROM sconti s, prodotti p WHERE p.cod_sconto = s.cod_sconto GROUP BY p.cod_sconto ORDER BY s.percentuale DESC LIMIT 10',
     'Visualizza ordini dopo data': 'SELECT cod_ordine, cf_cliente, data_effettuazione, costo_totale FROM ordini WHERE data_effettuazione > %s',
     'Visualizza ordine più costoso': 'SELECT cod_ordine, costo_totale FROM ordini ORDER BY costo_totale DESC LIMIT 1',
+    'Visualizza 10 ordini più costosi': 'SELECT cod_ordine, costo_totale FROM ordini ORDER BY costo_totale DESC LIMIT 10',
     'Visualizza ordine più costoso di un cliente': 'SELECT c.cf_cliente, o.cod_ordine, o.costo_totale FROM clienti c, ordini o WHERE c.cf_cliente = %s AND c.cf_cliente = o.cf_cliente ORDER BY costo_totale DESC LIMIT 1',
     'Visualizza sconti' : 'SELECT * FROM sconti',
     'Visualizza negozi' : 'SELECT * FROM negozi',
