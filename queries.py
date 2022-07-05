@@ -12,7 +12,7 @@ QUERIES = {
     'Rendi socio un cliente': 'UPDATE clienti SET socio = 1 WHERE cf_cliente = %s',
     'Rendi non socio un cliente': 'UPDATE clienti SET socio = 0 WHERE cf_cliente = %s',
     'Effettua ordine': 'INSERT INTO ordini (data_effettuazione, costo_totale, peso_totale, data_arrivo, cf_cliente, cf_tecnico_commerciale) VALUES (%s, %s, %s, %s, %s, %s)',
-    'Effettua ordine con spedizione': 'INSERT INTO ordini_spedizione(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
+    'Aggiungi spedizione': 'INSERT INTO spedizioni(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
     'Effettua ordine con montaggio': 'INSERT INTO ordini_montaggio(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
     'Aggiungi dettaglio prodotto' : 'INSERT INTO dettagli_prodotto (cod_ordine, cod_prodotto, quantità, prezzo_totale, peso_totale) VALUES (%s, %s, %s, %s, %s)',
     'Aggiungi dettaglio composizione' : 'INSERT INTO dettagli_composizione (cod_ordine, cod_composizione, quantità, prezzo_totale, peso_totale) VALUES (%s, %s, %s, %s, %s)',
