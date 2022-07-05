@@ -40,6 +40,7 @@ QUERIES = {
     'Visualizza prodotto meno costoso': 'SELECT p.* FROM prodotti p ORDER BY prezzo ASC LIMIT 1',
     'Visualizza 10 prodotti meno costosi' : 'SELECT p.* FROM prodotti p ORDER BY prezzo ASC LIMIT 10',
     'Visualizza alimento porzionato più costoso': 'SELECT a.* FROM alimenti a ORDER BY prezzo_porzionato DESC LIMIT 1',
+    'Visualizza 10 alimenti porzionati più costosi' : 'SELECT a.* FROM alimenti a ORDER BY prezzo_porzionato DESC LIMIT 10',
     'Visualizza alimento confezionato più costoso': 'SELECT a.* FROM alimenti a ORDER BY prezzo_confezionato DESC LIMIT 1',
     'Visualizza quantità presente nei magazzini di un prodotto': 'SELECT cod_negozio, quantità FROM quantità WHERE cod_prodotto = %s',
     'Visualizza prodotti terminati': 'SELECT q.cod_negozio, q.cod_prodotto, p.nome FROM quantità q, prodotti p WHERE q.cod_prodotto = p.cod_prodotto AND q.quantità = 0',
