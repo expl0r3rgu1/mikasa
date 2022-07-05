@@ -54,6 +54,7 @@ QUERIES = {
     'Visualizza percentuale sconto di uno sconto' : 'SELECT s.percentuale FROM sconti s WHERE s.cod_sconto = %s',
     'Visualizza prodotti contenuti in una composizione' : 'SELECT * FROM prodotti WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s)',
     'Visualizza prodotti' : 'SELECT * FROM prodotti',
+    'Visualizza composizioni' : 'SELECT * FROM composizioni',
     'Visualizza colori': 'SELECT * FROM colori',
     'Aggiungi orario': 'INSERT INTO orari(cod_orario, giorni, oreinizio, orefine) VALUES (%s, %s, %s, %s)',
     'Aggiungi colorazione': 'INSERT INTO colorazione(cod_colore, cod_prodotto) VALUES (%s, %s)',
