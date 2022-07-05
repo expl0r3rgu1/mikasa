@@ -12,7 +12,6 @@ QUERIES = {
     'Rendi socio un cliente': 'UPDATE clienti SET socio = 1 WHERE cf_cliente = %s',
     'Rendi non socio un cliente': 'UPDATE clienti SET socio = 0 WHERE cf_cliente = %s',
     'Effettua ordine': 'INSERT INTO ordini (data_effettuazione, costo_totale, peso_totale, data_arrivo, cf_cliente, cf_tecnico_commerciale) VALUES (%s, %s, %s, %s, %s, %s)',
-    'Effettua ordine senza spedizione': 'INSERT INTO ordini_no_spedizione(cod_ordine, cod_negozio) VALUES (%s, %s)',
     'Effettua ordine con spedizione': 'INSERT INTO ordini_spedizione(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
     'Effettua ordine con montaggio': 'INSERT INTO ordini_montaggio(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
     'Effettua ordine senza montaggio': 'INSERT INTO ordini_no_montaggio(cod_ordine) VALUES (%s)',
