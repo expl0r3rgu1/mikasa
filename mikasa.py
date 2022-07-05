@@ -94,7 +94,7 @@ while True:
             elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Aggiungi manager':
-        db_cursor.execute("SELECT * FROM negozi")
+        db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
         window.close()
         window = aggiungi_personale_window(negozi)
@@ -121,7 +121,7 @@ while True:
             elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Aggiungi tecnico':
-        db_cursor.execute("SELECT * FROM negozi")
+        db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
         window.close()
         window = aggiungi_personale_window(negozi)
@@ -148,7 +148,7 @@ while True:
             elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Aggiungi tecnico commerciale':
-        db_cursor.execute("SELECT * FROM negozi")
+        db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
         window.close()
         window = aggiungi_personale_window(negozi)
@@ -175,7 +175,7 @@ while True:
             elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Aggiungi amministratore':
-        db_cursor.execute("SELECT * FROM negozi")
+        db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
         zone = [(1, 'Alimentari'), (2, 'Ristoro'),
                 (3, 'Esposizione'), (4, 'Magazzino')]
@@ -204,7 +204,7 @@ while True:
             elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Aggiungi negozio':
-        db_cursor.execute("SELECT * FROM acquirenti")
+        db_cursor.execute(QUERIES['Visualizza acquirenti'])
         acquirenti = db_cursor.fetchall()
         window.close()
         window = aggiungi_negozio_window(acquirenti)
@@ -227,11 +227,11 @@ while True:
     elif event == 'Effettua ordine per cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
-        db_cursor.execute("SELECT * FROM prodotti")
+        db_cursor.execute(QUERIES['Visualizza prodotti'])
         prodotti = db_cursor.fetchall()
-        db_cursor.execute("SELECT * FROM composizioni")
+        db_cursor.execute(QUERIES['Visualizza composizioni'])
         composizioni = db_cursor.fetchall()
-        db_cursor.execute("SELECT * FROM negozi")
+        db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
         window.close()
         window = effettua_ordine_cliente_window(
@@ -259,7 +259,7 @@ while True:
                 peso_totale = 0
                 for prodotto in prodotti_acquistati:
                     db_cursor.execute(
-                        'SELECT s.percentuale FROM sconti s WHERE s.cod_sconto = %s', (prodotto[7],))
+                        QUERIES['Visualizza percentuale sconto di uno sconto'], (prodotto[7],))
                     sconto = db_cursor.fetchone()
                     if sconto is None:
                         costo_totale += prodotto[2]
@@ -269,11 +269,11 @@ while True:
 
                 for composizione in composizioni_acquistate:
                     db_cursor.execute(
-                        'SELECT * FROM prodotti WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s)', (composizione[0],))
+                        QUERIES['Visualizza prodotti contenuti in una composizione'], (composizione[0],))
                     prodotti_composizione = db_cursor.fetchall()
                     for prodotto in prodotti_composizione:
                         db_cursor.execute(
-                            'SELECT s.percentuale FROM sconti s WHERE s.cod_sconto = %s', (prodotto[7],))
+                            QUERIES['Visualizza percentuale sconto di uno sconto'], (prodotto[7],))
                         sconto = db_cursor.fetchone()
                         if sconto is None:
                             costo_totale += prodotto[2]
@@ -281,29 +281,29 @@ while True:
                             costo_totale += prodotto[2] * (1 - sconto[0] / 100)
                         peso_totale += prodotto[6]
 
-                db_cursor.execute('SELECT * FROM tecnici_commerciali')
+                db_cursor.execute(QUERIES['Visualizza tecnici commerciali'])
                 tecnici_commerciali = db_cursor.fetchall()
 
                 db_cursor.execute(
-                    'SELECT c.socio FROM clienti c WHERE c.cf_cliente = %s', (values['cliente'][0],))
+                    QUERIES['Visualizza se cliente è socio'], (values['cliente'][0],))
                 is_socio = db_cursor.fetchone()[0]
                 if(is_socio):
                     costo_totale *= 0.95
 
-                db_cursor.execute('INSERT INTO ordini (data_effettuazione, costo_totale, peso_totale, data_arrivo, cf_cliente, cf_tecnico_commerciale) VALUES (%s, %s, %s, %s, %s, %s)', (
-                    date.today(), costo_totale, peso_totale, date.today() + timedelta(days=5), values['cliente'][0], random.choice(tecnici_commerciali)[0]))
+                db_cursor.execute(QUERIES['Effettua ordine'], (date.today(), costo_totale, peso_totale, date.today(
+                ) + timedelta(days=5), values['cliente'][0], random.choice(tecnici_commerciali)[0]))
                 db.commit()
 
                 cod_ordine = db_cursor.lastrowid
 
                 for i, prodotto in enumerate(prodotti_acquistati):
-                    db_cursor.execute('INSERT INTO dettagli_prodotto (cod_ordine, cod_prodotto, quantità, prezzo_totale, peso_totale) VALUES (%s, %s, %s, %s, %s)', (cod_ordine, prodotto[0], int(values['quantità_prodotti'].split(
+                    db_cursor.execute(QUERIES['Aggiungi dettaglio prodotto'], (cod_ordine, prodotto[0], int(values['quantità_prodotti'].split(
                         ',')[i]), prodotto[2] * int(values['quantità_prodotti'].split(',')[i]), prodotto[6] * int(values['quantità_prodotti'].split(',')[i])))
                     db.commit()
 
                 for i, composizione in enumerate(composizioni_acquistate):
                     db_cursor.execute(
-                        'SELECT * FROM prodotti WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s)', (composizione[0],))
+                        QUERIES['Visualizza prodotti contenuti in una composizione'], (composizione[0],))
                     prodotti_composizione = db_cursor.fetchall()
                     costo_composizione = 0
                     peso_composizione = 0
@@ -311,18 +311,18 @@ while True:
                         costo_composizione += prodotto[2]
                         peso_composizione += prodotto[6]
 
-                    db_cursor.execute('INSERT INTO dettagli_composizione (cod_ordine, cod_composizione, quantità, prezzo_totale, peso_totale) VALUES (%s, %s, %s, %s, %s)', (
+                    db_cursor.execute(QUERIES['Aggiungi dettaglio composizione'], (
                         cod_ordine, composizione[0], int(values['quantità_composizioni'].split(',')[i]), costo_composizione, peso_composizione))
 
                 if(values['spedizione'] == 'Con spedizione'):
-                    db_cursor.execute('SELECT * FROM tecnici')
+                    db_cursor.execute(QUERIES['Visualizza tecnici'])
                     tecnici = db_cursor.fetchall()
                     tecnico = random.choice(tecnici)
-                    db_cursor.execute('INSERT INTO ordini_spedizione(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)', (
+                    db_cursor.execute(QUERIES[''], (
                         cod_ordine, values['indirizzo'], tecnico[0]))
                     db.commit()
                     if(values['montaggio'] == 'Con montaggio'):
-                        db_cursor.execute('INSERT INTO ordini_montaggio(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)', (
+                        db_cursor.execute(QUERIES['Effettua ordine con montaggio'], (
                             cod_ordine, values['indirizzo'], tecnico[0]))
                         db.commit()
                     else:
@@ -345,7 +345,7 @@ while True:
                 break
     elif event == 'Aggiungi prodotto':
         window.close()
-        db_cursor.execute('SELECT * FROM sconti')
+        db_cursor.execute(QUERIES['Visualizza sconti'])
         sconti = db_cursor.fetchall()
         window = aggiungi_prodotto_window(sconti)
 
@@ -355,7 +355,7 @@ while True:
                 sconto = None
                 if values['sconto'] != 'NONE':
                     sconto = values['sconto'][0]
-                db_cursor.execute('INSERT INTO prodotti(nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto) VALUES (%s, %s, %s, %s, %s, %s, %s)', (
+                db_cursor.execute(QUERIES['Aggiungi prodotto'], (
                     values[0], values[1], values[2], values[3], values[4], values[5], sconto))
                 db.commit()
 
@@ -389,8 +389,8 @@ while True:
             event, values = window.read()
 
             if event == '-CAL-':
-                db_cursor.execute('SELECT * FROM ordini WHERE YEAR(data_effettuazione) = %s AND MONTH(data_effettuazione) = %s',
-                                  (values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
+                db_cursor.execute(QUERIES['Visualizza ordini in un mese'], (
+                    values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
                 ordini = db_cursor.fetchall()
                 window['ordini'].update(values=ordini)
             elif event == 'Indietro':
@@ -427,8 +427,8 @@ while True:
             event, values = window.read()
 
             if event == '-CAL-':
-                db_cursor.execute('SELECT s.cod_ordine, s.indirizzo, s.cf_tecnico, o.data_effettuazione, o.data_arrivo FROM ordini_spedizione s, ordini o WHERE YEAR(data_effettuazione) = %s AND MONTH(o.data_effettuazione) = %s AND o.cod_ordine = s.cod_ordine',
-                                  (values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
+                db_cursor.execute(QUERIES['Visualizza spedizioni in un mese'], (
+                    values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
                 spedizioni = db_cursor.fetchall()
                 window['spedizioni'].update(values=spedizioni)
             elif event == 'Indietro':
@@ -445,7 +445,7 @@ while True:
             event, values = window.read()
 
             if event == '-CAL-':
-                db_cursor.execute('SELECT n.cod_ordine, n.cod_negozio, o.data_effettuazione, o.data_arrivo FROM ordini_no_spedizione n, ordini o WHERE YEAR(o.data_effettuazione) = %s AND MONTH(o.data_effettuazione)  = %s AND o.cod_ordine = n.cod_ordine', (
+                db_cursor.execute(QUERIES['Visualizza ritiri in un mese'], (
                     values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
                 ritiri = db_cursor.fetchall()
                 window['ritiri'].update(values=ritiri)
@@ -463,7 +463,7 @@ while True:
             event, values = window.read()
 
             if event == '-CAL-':
-                db_cursor.execute('SELECT m.cod_ordine, o.data_arrivo FROM ordini_montaggio m, ordini o, ordini_spedizione s WHERE YEAR(o.data_arrivo) = %s AND MONTH(o.data_arrivo)  = %s AND o.cod_ordine = s.cod_ordine AND s.cod_ordine = m.cod_ordine', (
+                db_cursor.execute(QUERIES['Visualizza montaggi in un mese'], (
                     values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
                 montaggi = db_cursor.fetchall()
                 window['montaggi'].update(values=montaggi)
@@ -474,7 +474,7 @@ while True:
             elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Visualizza 10 prodotti più acquistati':
-        db_cursor.execute('SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità DESC LIMIT 10')
+        db_cursor.execute(QUERIES['Visualizza 10 prodotti più acquistati'])
         prodotti = db_cursor.fetchall()
 
         window.close()
