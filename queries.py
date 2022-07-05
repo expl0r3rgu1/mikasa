@@ -36,6 +36,7 @@ QUERIES = {
     'Visualizza 10 prodotti meno acquistati' : 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità ASC LIMIT 10',
     'Visualizza prodotto meno acquistato': 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità ASC LIMIT 1',
     'Visualizza prodotto più costoso': 'SELECT p.* FROM prodotti p ORDER BY prezzo DESC LIMIT 1',
+    'Visualizza 10 prodotti più costosi' : 'SELECT p.* FROM prodotti p ORDER BY prezzo DESC LIMIT 10',
     'Visualizza prodotto meno costoso': 'SELECT p.* FROM prodotti p ORDER BY prezzo DESC LIMIT 1',
     'Visualizza alimento porzionato più costoso': 'SELECT a.* FROM alimenti a ORDER BY prezzo_porzionato DESC LIMIT 1',
     'Visualizza alimento confezionato più costoso': 'SELECT a.* FROM alimenti a ORDER BY prezzo_confezionato DESC LIMIT 1',
