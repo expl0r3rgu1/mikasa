@@ -24,7 +24,7 @@ QUERIES = {
     'Visualizza ordini in un mese': 'SELECT * FROM ordini WHERE YEAR(data_effettuazione) = %s AND MONTH(data_effettuazione) = %s',
     'Visualizza ordini di un cliente': 'SELECT * FROM ordini WHERE cf_cliente = %s',
     'Visualizza spedizioni in un mese': 'SELECT s.cod_ordine, s.indirizzo, s.cf_tecnico, o.data_effettuazione, o.data_arrivo FROM spedizioni s, ordini o WHERE YEAR(o.data_effettuazione) = %s AND MONTH(o.data_effettuazione) = %s AND o.cod_ordine = s.cod_ordine',
-    'Visualizza montaggi in un mese': 'SELECT m.cod_ordine, o.data_arrivo FROM montaggi m, ordini o, spedizioni s WHERE YEAR(o.data_arrivo) = %s AND MONTH(o.data_arrivo)  = %s AND o.cod_ordine = s.cod_ordine AND s.cod_ordine = m.cod_ordine',
+    'Visualizza montaggi in un mese': 'SELECT m.cod_ordine, o.data_arrivo FROM montaggi m, ordini o, spedizioni s WHERE YEAR(o.data_arrivo) = %s AND MONTH(o.data_arrivo) = %s AND o.cod_ordine = s.cod_ordine AND s.cod_ordine = m.cod_ordine',
     'Visualizza prodotto più acquistato': 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità DESC LIMIT 1',
     'Visualizza 10 prodotti più acquistati' : 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità DESC LIMIT 10',
     'Visualizza 10 prodotti meno acquistati' : 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità ASC LIMIT 10',
@@ -38,6 +38,7 @@ QUERIES = {
     'Visualizza alimento confezionato più costoso': 'SELECT a.* FROM alimenti a ORDER BY prezzo_confezionato DESC LIMIT 1',
     'Visualizza 10 alimenti confezionati più costosi' : 'SELECT a.* FROM alimenti a ORDER BY prezzo_confezionato DESC LIMIT 10',
     'Visualizza quantità presente nei magazzini di un prodotto': 'SELECT cod_negozio, quantità FROM quantità WHERE cod_prodotto = %s',
+    
     'Visualizza prodotti terminati': 'SELECT q.cod_negozio, q.cod_prodotto, p.nome FROM quantità q, prodotti p WHERE q.cod_prodotto = p.cod_prodotto AND q.quantità = 0',
     'Visualizza personale': 'SELECT p.* FROM personale e, persone p WHERE e.cf_personale = p.cf',
     'Visualizza prodotto con sconto maggiore': 'SELECT p.cod_prodotto, p.nome, s.cod_sconto, s.percentuale FROM sconti s, prodotti p WHERE p.cod_sconto = s.cod_sconto GROUP BY p.cod_sconto ORDER BY s.percentuale DESC LIMIT 1',
