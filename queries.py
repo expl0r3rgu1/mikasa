@@ -12,7 +12,7 @@ QUERIES = {
     'Aggiungi spedizione': 'INSERT INTO spedizioni(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
     'Aggiungi montaggio': 'INSERT INTO montaggi(cod_ordine) VALUES (%s)',
     'Aggiungi dettaglio montaggio' : 'INSERT INTO dettagli_montaggio(cf_tecnico, cod_ordine) VALUES (%s, %s)',
-    'Aggiungi dettaglio prodotto' : 'INSERT INTO dettagli_prodotto (cod_ordine, cod_prodotto, quantità, prezzo_totale, peso_totale) VALUES (%s, %s, %s, %s, %s)',
+    'Aggiungi dettaglio prodotto' : 'INSERT INTO dettagli_prodotto (cod_ordine, cod_prodotto, quantità, prezzo_totale, peso_totale) VALUES ',
     'Aggiungi dettaglio composizione' : 'INSERT INTO dettagli_composizione (cod_ordine, cod_composizione, quantità, prezzo_totale, peso_totale) VALUES (%s, %s, %s, %s, %s)',
     'Aggiungi prodotto': 'INSERT INTO prodotti(cod_prodotto, nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto, tipo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi accessorio': 'INSERT INTO accessori(cod_prodotto) VALUES (%s)',
