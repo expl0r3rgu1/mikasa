@@ -1,5 +1,5 @@
 QUERIES = {
-    'Visualizza clienti': 'SELECT p.*, c.socio FROM clienti c, persone p WHERE c.cf_cliente = p.cf',
+    'Visualizza clienti': 'SELECT * FROM clienti',
     'Aggiungi cliente': 'INSERT INTO clienti (cf_cliente, nome, cognome, telefono, email, via, civico, cap, città, socio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 0)',
     'Aggiungi manager': 'INSERT INTO manager(cf_manager, cod_negozio) VALUES (%s, %s)',
     'Aggiungi impiegato': 'INSERT INTO impiegati(cf_impiegato) VALUES (%s)',
