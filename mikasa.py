@@ -323,22 +323,19 @@ while True:
                 sconto = None
                 if values['sconto'] != 'NONE':
                     sconto = values['sconto'][0]
-                db_cursor.execute(QUERIES['Aggiungi prodotto'], (
-                    values[0], values[1], values[2], values[3], values[4], values[5], sconto))
-                db.commit()
 
-                if values['categoria'] == 'Accessori':
-                    db_cursor.execute(
-                        QUERIES['Aggiungi accessorio'], (db_cursor.lastrowid,))
-                    db.commit()
-                elif values['categoria'] == 'Mobili':
-                    db_cursor.execute(
-                        QUERIES['Aggiungi mobile'], (db_cursor.lastrowid,))
-                    db.commit()
+                tipo = 0
+
+                if values['categoria'] == 'Mobili':
+                    tipo = 1
+                elif values['categoria'] == 'Accessori':
+                    tipo = 2
                 elif values['categoria'] == 'Elettrodomestici':
-                    db_cursor.execute(
-                        QUERIES['Aggiungi elettrodomestico'], (db_cursor.lastrowid,))
-                    db.commit()
+                    tipo = 3
+
+                db_cursor.execute(QUERIES['Aggiungi prodotto'], (
+                    values[0], values[1], values[2], values[3], values[4], values[5], sconto, tipo))
+                db.commit()
 
                 window.close()
                 window = default_window()
