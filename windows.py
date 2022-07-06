@@ -117,6 +117,8 @@ def aggiungi_negozio_window(acquirenti):
          sg.CalendarButton('Data inaugurazione', target='-CAL-')],
         [sg.Text('Acquirente'), sg.Combo(
             acquirenti, default_value=acquirenti[0], key='acquirente')],
+        [sg.Text('Numero posti ristoro'), sg.InputText()],
+        [sg.Text('Numero composizioni'), sg.InputText()],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
