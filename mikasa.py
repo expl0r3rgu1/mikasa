@@ -35,10 +35,8 @@ while True:
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                db_cursor.execute(QUERIES['Aggiungi persona'], (values[0], values[1], values[2],
+                db_cursor.execute(QUERIES['Aggiungi cliente'], (values[0], values[1], values[2],
                                   values[3], values[4], values[5], values[6], values[7], values[8]))
-                db.commit()
-                db_cursor.execute(QUERIES['Aggiungi cliente'], (values[0],))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -102,14 +100,8 @@ while True:
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                db_cursor.execute(QUERIES['Aggiungi persona'], (values[0], values[1], values[2],
-                                  values[3], values[4], values[5], values[6], values[7], values[8]))
-                db.commit()
-                db_cursor.execute(
-                    QUERIES['Aggiungi personale'], (values[0], values[9], 2))
-                db.commit()
-                db_cursor.execute(
-                    QUERIES['Aggiungi manager'], (values[0], values['negozio'][0]))
+                db_cursor.execute(QUERIES['Aggiungi manager'], (values[0], values[1], values[2], values[3],
+                                  values[4], values[5], values[6], values[7], values[8], values[9], 2, values['negozio'][0]))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -129,14 +121,9 @@ while True:
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                db_cursor.execute(QUERIES['Aggiungi persona'], (values[0], values[1], values[2],
-                                  values[3], values[4], values[5], values[6], values[7], values[8]))
-                db.commit()
                 db_cursor.execute(
-                    QUERIES['Aggiungi personale'], (values[0], values[9], 2))
-                db.commit()
-                db_cursor.execute(
-                    QUERIES['Aggiungi tecnico'], (values[0], values['negozio'][0], 4))
+                    QUERIES['Aggiungi tecnico'], (values[0], values[1], values[2], values[3],
+                                                  values[4], values[5], values[6], values[7], values[8], values[9], 4, values['negozio'][0]))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -156,14 +143,9 @@ while True:
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                db_cursor.execute(QUERIES['Aggiungi persona'], (values[0], values[1], values[2],
-                                  values[3], values[4], values[5], values[6], values[7], values[8]))
-                db.commit()
                 db_cursor.execute(
-                    QUERIES['Aggiungi personale'], (values[0], values[9], 2))
-                db.commit()
-                db_cursor.execute(
-                    QUERIES['Aggiungi tecnico commerciale'], (values[0], values['negozio'][0], 1, 2))
+                    QUERIES['Aggiungi tecnico commerciale'], (values[0], values[1], values[2], values[3],
+                                                              values[4], values[5], values[6], values[7], values[8], values[9], 4, values['negozio'][0]))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -185,14 +167,8 @@ while True:
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                db_cursor.execute(QUERIES['Aggiungi persona'], (values[0], values[1], values[2],
-                                  values[3], values[4], values[5], values[6], values[7], values[8]))
-                db.commit()
-                db_cursor.execute(
-                    QUERIES['Aggiungi personale'], (values[0], values[9], 2))
-                db.commit()
-                db_cursor.execute(QUERIES['Aggiungi amministratore'],
-                                  (values[0], values['negozio'][0], values['zona'][0]))
+                db_cursor.execute(QUERIES['Aggiungi amministratore'], (values[0], values[1], values[2], values[3], values[4],
+                                  values[5], values[6], values[7], values[8], values[9], 4, values['negozio'][0], values['zona'][0]))
                 db.commit()
                 window.close()
                 window = default_window()
