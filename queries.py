@@ -17,7 +17,7 @@ QUERIES = {
     'Aggiungi prodotto': 'INSERT INTO prodotti(cod_prodotto, nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto, tipo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi alimento': 'INSERT INTO alimenti(cod_alimento, nome, provenienza, scadenza, ingredienti, allergeni, prezzo_porzionato, prezzo_confezionato) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi composizione': 'INSERT INTO composizioni(cod_composizione, nome, num_prodotti, peso) VALUES (%s, %s, %s, %s)',
-    'Aggiungi composta': 'INSERT INTO composte(cod_negozio, cod_esposizione, cod_composizione, cod_prodotto) VALUES (%s, %s, %s, %s)',
+    'Aggiungi composta': 'INSERT INTO composte(cod_composizione, cod_prodotto) VALUES (%s, %s)',
     'Aggiungi sconto': 'INSERT INTO sconti(cod_sconto, percentuale, cod_storico) VALUES (%s, %s, %s)',
     'Aggiungi storico sconti': 'INSERT INTO storico_sconti(cod_storico, inizio, fine) VALUES (%s, %s)',
     'Visualizza se cliente è socio' : 'SELECT c.socio FROM clienti c WHERE c.cf_cliente = %s',
