@@ -8,7 +8,7 @@ QUERIES = {
     'Aggiungi negozio': 'INSERT INTO negozi(cod_negozio, via, civico, cap, città, data_inaugurazione, cf_acquirente, cod_orario, num_posti_ristoro, num_composizioni) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Rendi socio un cliente': 'UPDATE clienti SET socio = 1 WHERE cf_cliente = %s',
     'Rendi non socio un cliente': 'UPDATE clienti SET socio = 0 WHERE cf_cliente = %s',
-    'Effettua ordine': 'INSERT INTO ordini (data_effettuazione, costo_totale, peso_totale, data_arrivo, cf_cliente, cf_tecnico_commerciale) VALUES (%s, %s, %s, %s, %s, %s)',
+    'Effettua ordine' : 'INSERT INTO ordini (cod_ordine, data_effettuazione, costo_totale, peso_totale, data_arrivo, cf_cliente, cf_tecnico_commerciale) VALUES (%s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi spedizione': 'INSERT INTO spedizioni(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
     'Aggiungi montaggio': 'INSERT INTO montaggi(cod_ordine, indirizzo, cf_tecnico) VALUES (%s, %s, %s)',
     'Aggiungi dettaglio montaggio' : 'INSERT INTO dettagli_montaggio(cf_tecnico, cod_ordine) VALUES (%s, %s)',
