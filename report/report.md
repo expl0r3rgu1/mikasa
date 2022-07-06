@@ -405,11 +405,22 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 <div style="page-break-after: always;"></div>
 
 ## Raffinamento dello schema
+### Eliminazione delle gerarchie
+- Gerarchia Persona-Cliente-Personale-Acquirente: è stato utilizzato il collasso verso il basso, portando gli attributi di Persona in Cliente, in Personale e in Acquirente. In questa maniera la tabella Persona viene eliminata.
+- Gerarchia Personale-Impiegato-Manager: è stato utilizzato il collasso verso il basso, portando gli attributi di Personale in Impiegato e in Manager. In questa maniera la tabella Personale viene eliminata.
+- Gerarchia Impiegato-Tecnico-TecnicoCommerciale-Amministratore: è stato utilizzato il collasso verso il basso, portando gli attributi di Impiegato in Tecnico, in Tecnico Commerciale e in Amministartore. In questa maniera la tabella Impiegato viene eliminata.
+- Gerarchia Prodotto-Mobile-Accessorio-Elettrodomestico: è stato utilizzato il collasso verso l'alto, aggiungendo il campo "tipo" alla tabella Prodotto. Per ogni prodotto aggiunto, il suo attributo "tipo" sarà uguale a 1 se si tratta di un mobile, uguale a 2 se si tratta di un accessorio e uguale a 3 se si tratta di un elettrodomestico. 
+- Gerarchia Zona-Alimentari-Ristoro-Esposizione-Magazzino: è stato utilizzato il collasso verso l'alto portando i vari attributi di Alimentari, Ristoro, Esposizione e Magazzino in Zona; dopo di chè è stato fatto un accorpamento di entità da Zona verso Negozio. In questo modo i vari attributi di Alimentari, Ristoro, Esposizione e Magazzino vengono salvati in Negozio
+- Gerarchia Ordine-OrdineNoSpedizione-OrdineSpedizione-OrdineNoMontaggio-OrdineMontaggio: nello schema logico sono state eliminate le tabelle Ordine senza Spedizione e Ordine Senza Montaggio, mentre le tabelle Ordine con Montaggio e Ordine con Spedizione vengono rispettivamente rinominate in Montaggio e Spedizione. Per evitare ambiguità la precedente relazione Montaggio che lega Ordine con Montaggio e Tecnico viene rinominata in Dettaglio Montaggio. 
+
+### Eliminazione degli attributi compositi
+Ogni attributo composto presente è stato suddiviso nelle sue sotto-componenti. Gli attributi composti in questione sono: Indirizzo di Persona, Luogo di Negozio, Giorno di Orario, Etichetta di Alimento, Dimensioni di Prodotto e PeriodoSconto di Storico Sconti.
+
 ### Eliminazione degli identificatori esterni
 Nello schema E/R sono eliminate le seguenti relazioni:
 - Effettua: importanto cf_cliente di Cliente in Ordine
-- Consegna: importando cf_tecnico di Tecnico in Ordine con Spedizione
-- Montaggio: reificata, importando codOrdine da Ordine con Montaggio e importando cf_tecnico da Tecnico
+- Consegna: importando cf_tecnico di Tecnico Spedizione
+- Montaggio: reificata, importando codOrdine da Ordine con Montaggio e importando cf_tecnico da Tecnico; creando una nuova entità Dettaglio Montaggio
 - Ritiro: importando codNegozio di Negozio in Ordine senza Spedizione.
 - DettaglioProdotto: importando codOrdine di Ordine in Dettaglio Ordine per Prodotto
 - DettaglioComposizione: importando codOrdine di Ordine in Dettaglio Ordine per Composizione
@@ -420,20 +431,69 @@ Nello schema E/R sono eliminate le seguenti relazioni:
 - OrarioApertura: importando codOrario di Orario in Negozio
 - Apertura: importando cf_acquirente di Acquirente in Negozio
 - Management: importando codNegozio di Negozio in Manager
-- Amministra: importando codZona e codNegozio di Zona in Amministratore
-- Cassiere: importando codAlimentari di Alimentari in Tecnico Commerciale
-- Ristorazione: importando codRistoro e codNegozio di Ristoro in Tecnico Commerciale
-- Magazziniere: importando codMagazzino e codNegozio di Magazzino in Tecnico
-- Suddivisione: importando codNegozio di Negozio in Zona
-- Confezione: reificata, importando codAlimentari e codNegozio da Alimentari e importando codAlimento da Alimento
-- Porzione: reificata, importando codRistoro e codNegozio da Negozio e importando codAlimento da Alimento
-- Esposta: reificata, importando codNegozio e codEsposizione da Esposizione e importando il codComposizione da Composizione
-- Composta: reificata, importando codNegozio, codEsposizione e codComposizione da Composizione e importando il codProdotto da Prodotto
-- Stockaggio: reificata, importando codNegozio e codMagazzino da Magazzino e importando codProdotto da Prodotto
-- Colorazione: reificata, importando codColore da Colore e importando codProdotto da Prodotto
+- Amministra: importando codNegozio di Negozio in Amministratore
+- Cassiere: importando codNegozio di Negozio in Tecnico Commerciale
+- Ristorazione: importando codNegozio di Negozio in Tecnico Commerciale
+- Magazziniere: importando codNegozio di Negozio in Tecnico
+- Suddivisione: collega negozio e zona nello schema concettuale, nello schema logico è stata eliminata facendo l'accorpamento da Zona verso Negozio quindi l'associazione 
+- Confezione: reificata, importando codNegozio da Negozio e importando codAlimento da Alimento; creando una nuova entità Confezione
+- Porzione: reificata, importando codNegozio da Negozio e importando codAlimento da Alimento; creando una nuova entità Porzione
+- Esposta: reificata, importando codNegozio e Negozio e importando il codComposizione da Composizione; creando una nuova entità Esposta
+- Composta: reificata, importando codNegozio e codComposizione da Composizione e importando il codProdotto da Prodotto; creando una nuova entità Composta
+- Stockaggio: reificata, importando codNegozio da Negozio e importando codProdotto da Prodotto; creando una nuova entità Quantità
+- Colorazione: reificata, importando codColore da Colore e importando codProdotto da Prodotto; creando una nuova entità Colorazione
 - Applicato: importando codSconto di Sconto in Prodotto
 - Storico: importando codStorico di Storico in Sconto
 
+### Scelta delle chiavi primarie
+Di seguito si elenca la chiave primaria di ogni tabella:
+- Acquirente: cf_acquirente
+- Alimento: cod_alimento
+- Amministratore: cf_amministratore
+- Cliente: cf_cliente
+- Colorazione: unione tra cod_colore, dato dall'associazione con Colore e cod_prodotto, dato dall'associazione con Prodotto
+- Colore: cod_colore
+- Composizione: cod_composizione
+- Composta: unione cod_composizione, dato dall'associazione con Composizione e cod_prodotto, dato dall'associazione con Prodotto
+- Confezione: unione tra cod_negozio dato dall'associazione con Negozio e cod_alimento dato dall'associazione con Alimento
+- Dettaglio Composizione: unione tra cod_ordine, dato dall'associazione con Ordine e cod_composizione, dato dall'associazione con Composizione
+- Dettaglio Montaggio: unione tra cod_ordine, dato dall'associazione con Montaggio e cf_tecnico, dato dall'associazione con Tecnico
+- Dettaglio Prodotto: unione tra cod_ordine, dato dall'associazione con Ordine e cod_prodotto, dato dall'associazione con Prodotto
+- Esposte: unione tra cod_negozio, dato dall'associazione con Negozio e cod_composizione, dato dall'associazione con Composizione
+- Manager: cf_manager
+- Montaggio: cod_ordine, dato dall'associazione con Ordine
+- Negozio: cod_negozio
+- Orario: cod_orario
+- Ordine: cod_ordine
+- Porzione: unione tra cod_negozio, dato dall'associazione con Negozio e cod_prodotto, dato dall'associazione con Prodotto
+- Prodotto: cod_prodotto
+- Quantità: unione tra cod_negozio, dato dall'associazione con Negozio e cod_prodotto, dato dall'associazione con Prodotto
+- Sconto: cod_sconto
+- Spedizione: cod_ordine, dato dall'associazione con Ordine
+- Storico Sconti: cod_storico
+- Tecnico: cf_tecnico
+- Tecnico Commerciale: cf_tecnico_commerciale
+
+<div style="page-break-after: always;"></div>
+
+## Analisi delle ridondanze
+
+<div style="page-break-after: always;"></div>
+
+## Traduzione di entità e associazioni in relazioni
+- **ORDINE** (<u>cod_ordine</u>, data_effettuazione, costo_totale, peso_totale, data_arrivo, cf_cliente: Cliente, cf_tecnico_commerciale: Tecnico Commerciale)
+- **DETTAGLIO PRODOTTO** (<u>cod_ordine</u>: Ordine, <u>cod_prodotto</u>: Prodotto, quantità, prezzo_totale, peso_totale)
+- **DETTAGLIO COMPOSIZIONE** (<u>cod_ordine</u>: Ordine, <u>cod_composizione</u>: Composizione, quantità, prezzo_totale, peso_totale)
+- **SPEDIZIONE** (<u>cod_ordine</u>: Ordine, indirizzo, cf_tecnico: Tecnico)
+- **MONTAGGIO** (<u>cod_ordine</u>: Ordine)
+- **CLIENTE** (<u>cf_cliente</u>, nome, cognome, telefono, email, via, civico, cap, città, socio)
+- **ACQUIRENTE** (<u>cf_acquirente</u>, nome, cognome, telefono, email, via, civico, cap, città)
+- **MANAGER** (<u>cf_manager</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
+- **TECNICO** (<u>cf_tecnico</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
+- **TECNICO COMMERCIALE** (<u>cf_tecnico_commerciale</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
+- **ORARIO** (<u>cod_orario</u>, giorni, oreinizio, orefine)
+- **NEGOZIO** (<u>cod_negozio</u>, via, civico, cap, città, data_inaugurazione, cf_acquirente: Acquirente, cod_orario: Orario, num_posti_ristoro, num_composizioni)
+- 
 
 <div style="page-break-after: always;"></div>
 
