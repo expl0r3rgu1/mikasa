@@ -1,11 +1,11 @@
 QUERIES = {
     'Visualizza clienti': 'SELECT * FROM clienti',
-    'Aggiungi cliente': 'INSERT INTO clienti (cf_cliente, nome, cognome, telefono, email, via, civico, cap, città, socio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 0)',
+    'Aggiungi cliente': 'INSERT INTO clienti(cf_cliente, nome, cognome, telefono, email, via, civico, cap, città, socio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 0)',
     'Aggiungi manager': 'INSERT INTO manager(cf_manager, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio, cod_orario) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi amministratore': 'INSERT INTO amministratori(cf_amministratore, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_orario, cod_negozio, cod_zona) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi tecnico': 'INSERT INTO tecnici(cf_tecnico, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_orario, cod_negozio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi tecnico commerciale': 'INSERT INTO tecnici_commerciali(cf_tecnico_commerciale, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_orario, cod_negozio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-    'Aggiungi negozio': 'INSERT INTO negozi (via, civico, cap, città, data_inaugurazione, cf_acquirente, cod_orario) VALUES (%s, %s, %s, %s, %s, %s, %s)',
+    'Aggiungi negozio': 'INSERT INTO negozi(cod_negozio, via, civico, cap, città, data_inaugurazione, cf_acquirente, cod_orario, num_posti_ristoro, num_composizioni) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Rendi socio un cliente': 'UPDATE clienti SET socio = 1 WHERE cf_cliente = %s',
     'Rendi non socio un cliente': 'UPDATE clienti SET socio = 0 WHERE cf_cliente = %s',
     'Effettua ordine': 'INSERT INTO ordini (data_effettuazione, costo_totale, peso_totale, data_arrivo, cf_cliente, cf_tecnico_commerciale) VALUES (%s, %s, %s, %s, %s, %s)',
