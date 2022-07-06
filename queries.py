@@ -15,7 +15,6 @@ QUERIES = {
     'Aggiungi dettaglio prodotto' : 'INSERT INTO dettagli_prodotto (cod_ordine, cod_prodotto, quantità, prezzo_totale, peso_totale) VALUES ',
     'Aggiungi dettaglio composizione' : 'INSERT INTO dettagli_composizione (cod_ordine, cod_composizione, quantità, prezzo_totale, peso_totale) VALUES ',
     'Aggiungi prodotto': 'INSERT INTO prodotti(cod_prodotto, nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto, tipo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)',
-    'Aggiungi mobile': 'INSERT INTO mobili(cod_prodotto) VALUES (%s)',
     'Aggiungi elettrodomestico': 'INSERT INTO elettrodomestici(cod_prodotto) VALUES (%s)',
     'Aggiungi alimento': 'INSERT INTO alimenti(cod_alimento, nome, provenienza, scadenza, ingredienti, allergeni, prezzo_porzionato, prezzo_confezionato) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi composizione': 'INSERT INTO composizioni(cod_composizione, nome, num_prodotti, peso) VALUES (%s, %s, %s, %s)',
