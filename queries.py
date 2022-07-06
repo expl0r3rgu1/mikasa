@@ -1,7 +1,7 @@
 QUERIES = {
     'Visualizza clienti': 'SELECT * FROM clienti',
     'Aggiungi cliente': 'INSERT INTO clienti (cf_cliente, nome, cognome, telefono, email, via, civico, cap, città, socio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 0)',
-    'Aggiungi manager': 'INSERT INTO manager(cf_manager, cod_negozio) VALUES (%s, %s)',
+    'Aggiungi manager': 'INSERT INTO manager(cf_manager, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio, cod_orario) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi impiegato': 'INSERT INTO impiegati(cf_impiegato) VALUES (%s)',
     'Aggiungi amministratore': 'INSERT INTO amministratori(cf_amministratore, cod_zona, cod_negozio) VALUES (%s, %s, %s)',
     'Aggiungi tecnico': 'INSERT INTO tecnici(cf_tecnico, cod_negozio, cod_magazzino) VALUES (%s, %s,%s)',
