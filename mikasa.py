@@ -294,21 +294,13 @@ while True:
                     db_cursor.execute(QUERIES['Visualizza tecnici'])
                     tecnici = db_cursor.fetchall()
                     tecnico = random.choice(tecnici)
-                    db_cursor.execute(QUERIES[''], (
-                        cod_ordine, values['indirizzo'], tecnico[0]))
+                    db_cursor.execute(
+                        QUERIES['Aggiungi spedizione'], (cod_ordine, values['indirizzo'], tecnico[0]))
                     db.commit()
                     if(values['montaggio'] == 'Con montaggio'):
-                        db_cursor.execute(QUERIES['Effettua ordine con montaggio'], (
-                            cod_ordine, values['indirizzo'], tecnico[0]))
-                        db.commit()
-                    else:
                         db_cursor.execute(
-                            QUERIES['Effettua ordine senza montaggio'], (cod_ordine,))
+                            QUERIES['Aggiungi montaggio'], (cod_ordine, values['indirizzo'], tecnico[0]))
                         db.commit()
-                else:
-                    db_cursor.execute(
-                        QUERIES['Effettua ordine senza spedizione'], (cod_ordine, values['negozio'][0]))
-                    db.commit()
 
                 window.close()
                 window = default_window()
