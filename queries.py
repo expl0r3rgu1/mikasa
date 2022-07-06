@@ -23,7 +23,7 @@ QUERIES = {
     'Visualizza se cliente è socio' : 'SELECT c.socio FROM clienti c WHERE c.cf_cliente = %s',
     'Visualizza ordini in un mese': 'SELECT * FROM ordini WHERE YEAR(data_effettuazione) = %s AND MONTH(data_effettuazione) = %s',
     'Visualizza ordini di un cliente': 'SELECT * FROM ordini WHERE cf_cliente = %s',
-    'Visualizza spedizioni in un mese': 'SELECT s.cod_ordine, s.indirizzo, s.cf_tecnico, o.data_effettuazione, o.data_arrivo FROM spedizioni s, ordini o WHERE YEAR(data_effettuazione) = %s AND MONTH(o.data_effettuazione) = %s AND o.cod_ordine = s.cod_ordine',
+    'Visualizza spedizioni in un mese': 'SELECT s.cod_ordine, s.indirizzo, s.cf_tecnico, o.data_effettuazione, o.data_arrivo FROM spedizioni s, ordini o WHERE YEAR(o.data_effettuazione) = %s AND MONTH(o.data_effettuazione) = %s AND o.cod_ordine = s.cod_ordine',
     'Visualizza montaggi in un mese': 'SELECT m.cod_ordine, o.data_arrivo FROM montaggi m, ordini o, spedizioni s WHERE YEAR(o.data_arrivo) = %s AND MONTH(o.data_arrivo)  = %s AND o.cod_ordine = s.cod_ordine AND s.cod_ordine = m.cod_ordine',
     'Visualizza prodotto più acquistato': 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità DESC LIMIT 1',
     'Visualizza 10 prodotti più acquistati' : 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità DESC LIMIT 10',
