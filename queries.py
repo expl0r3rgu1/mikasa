@@ -4,7 +4,7 @@ QUERIES = {
     'Aggiungi manager': 'INSERT INTO manager(cf_manager, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio, cod_orario) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi amministratore': 'INSERT INTO amministratori(cf_amministratore, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_orario, cod_negozio, cod_zona) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi tecnico': 'INSERT INTO tecnici(cf_tecnico, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_orario, cod_negozio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-    'Aggiungi tecnico commerciale': 'INSERT INTO tecnici_commerciali(cf_tecnico_commerciale, cod_negozio, cod_alimentari, cod_ristoro) VALUES (%s, %s, %s, %s)',
+    'Aggiungi tecnico commerciale': 'INSERT INTO tecnici_commerciali(cf_tecnico_commerciale, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_orario, cod_negozio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
     'Aggiungi negozio': 'INSERT INTO negozi (via, civico, cap, città, data_inaugurazione, cf_acquirente, cod_orario) VALUES (%s, %s, %s, %s, %s, %s, %s)',
     'Rendi socio un cliente': 'UPDATE clienti SET socio = 1 WHERE cf_cliente = %s',
     'Rendi non socio un cliente': 'UPDATE clienti SET socio = 0 WHERE cf_cliente = %s',
