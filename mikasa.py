@@ -5,7 +5,7 @@ import mysql.connector
 from credentials import *
 from windows import *
 from queries import *
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import random
 
 db = mysql.connector.connect(
@@ -240,12 +240,24 @@ while True:
                     if sconto is None:
                         costo_totale += prodotto[2]
                     else:
-                        costo_totale += (prodotto[2] * (1 - sconto[0] / 100))
+                        db_cursor.execute(
+                            'SELECT s.inizio, s.fine FROM storico_sconti s WHERE cod_storico = (SELECT sc.cod_storico FROM sconti sc WHERE cod_sconto = %s LIMIT 1)', (prodotto[7],))
+                        storico = db_cursor.fetchone()
+                        data_inizio = storico[0]
+                        data_fine = storico[1]
+                        data_inizio.replace(year=date.today().year)
+                        data_fine.replace(year=date.today().year)
+
+                        if date.today() > data_inizio and date.today() < data_fine:
+                            costo_totale += (prodotto[2]
+                                             * (1 - sconto[0] / 100))
+                        else:
+                            costo_totale += prodotto[2]
                     peso_totale += prodotto[6]
 
                 for composizione in composizioni_acquistate:
                     db_cursor.execute(
-                        QUERIES['Visualizza prodotti contenuti in una composizione'], (composizione[0],))
+                        'SELECT p.* FROM prodotti p WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s AND p.cod_prodotto = cod_prodotto)', (composizione[0],))
                     prodotti_composizione = db_cursor.fetchall()
                     for prodotto in prodotti_composizione:
                         db_cursor.execute(
@@ -254,7 +266,19 @@ while True:
                         if sconto is None:
                             costo_totale += prodotto[2]
                         else:
-                            costo_totale += prodotto[2] * (1 - sconto[0] / 100)
+                            db_cursor.execute(
+                                'SELECT s.inizio, s.fine FROM storico_sconti s WHERE cod_storico = (SELECT sc.cod_storico FROM sconti sc WHERE cod_sconto = %s LIMIT 1)', (prodotto[7],))
+                            storico = db_cursor.fetchone()
+                            data_inizio = storico[0]
+                            data_fine = storico[1]
+                            data_inizio.replace(year=date.today().year)
+                            data_fine.replace(year=date.today().year)
+
+                            if date.today() > data_inizio and date.today() < data_fine:
+                                costo_totale += prodotto[2] * \
+                                    (1 - sconto[0] / 100)
+                            else:
+                                costo_totale += prodotto[2]
                         peso_totale += prodotto[6]
 
                 db_cursor.execute(QUERIES['Visualizza tecnici commerciali'])
@@ -272,14 +296,24 @@ while True:
 
                 cod_ordine = db_cursor.lastrowid
 
+                parameters = "(%s, %s, %s, %s, %s),"
+                insert_dettaglio_prodotto = QUERIES['Aggiungi dettaglio prodotto'] + len(
+                    prodotti_acquistati) * parameters
+                insert_dettaglio_prodotto = insert_dettaglio_prodotto[:(
+                    len(insert_dettaglio_prodotto) - 1)] + ';'
+                data_prodotti = ()
                 for i, prodotto in enumerate(prodotti_acquistati):
-                    db_cursor.execute(QUERIES['Aggiungi dettaglio prodotto'], (cod_ordine, prodotto[0], int(values['quantità_prodotti'].split(
-                        ',')[i]), prodotto[2] * int(values['quantità_prodotti'].split(',')[i]), prodotto[6] * int(values['quantità_prodotti'].split(',')[i])))
-                    db.commit()
+                    data_prodotti += (cod_ordine, prodotto[0], int(values['quantità_prodotti'].split(',')[i]), prodotto[2] * int(
+                        values['quantità_prodotti'].split(',')[i]), prodotto[6] * int(values['quantità_prodotti'].split(',')[i]))
 
+                insert_dettaglio_composizione = QUERIES['Aggiungi dettaglio composizione'] + len(
+                    composizioni_acquistate) * parameters
+                insert_dettaglio_composizione = insert_dettaglio_composizione[:(
+                    len(insert_dettaglio_composizione) - 1)] + ';'
+                data_composizioni = ()
                 for i, composizione in enumerate(composizioni_acquistate):
                     db_cursor.execute(
-                        QUERIES['Visualizza prodotti contenuti in una composizione'], (composizione[0],))
+                        'SELECT p.* FROM prodotti p WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s AND p.cod_prodotto = cod_prodotto)', (composizione[0],))
                     prodotti_composizione = db_cursor.fetchall()
                     costo_composizione = 0
                     peso_composizione = 0
@@ -287,10 +321,19 @@ while True:
                         costo_composizione += prodotto[2]
                         peso_composizione += prodotto[6]
 
-                    db_cursor.execute(QUERIES['Aggiungi dettaglio composizione'], (
-                        cod_ordine, composizione[0], int(values['quantità_composizioni'].split(',')[i]), costo_composizione, peso_composizione))
+                    data_composizioni += (cod_ordine, composizione[0], int(values['quantità_composizioni'].split(
+                        ',')[i]), costo_composizione, peso_composizione)
 
-                if(values['spedizione'] == 'Con spedizione'):
+                if data_prodotti != ():
+                    db_cursor.execute(insert_dettaglio_prodotto, data_prodotti)
+                    db.commit()
+
+                if data_composizioni != ():
+                    db_cursor.execute(
+                        insert_dettaglio_composizione, data_composizioni)
+                    db.commit()
+
+                if(values['spedizione'] == 'Con spedizione' and (data_prodotti != () or data_composizioni != ())):
                     db_cursor.execute(QUERIES['Visualizza tecnici'])
                     tecnici = db_cursor.fetchall()
                     tecnico = random.choice(tecnici)
