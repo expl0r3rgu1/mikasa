@@ -41,7 +41,6 @@ QUERIES = {
     'Visualizza quantità presente nei magazzini di un prodotto': 'SELECT cod_negozio, quantità FROM quantità WHERE cod_prodotto = %s',
     'Visualizza prodotti terminati': 'SELECT q.cod_negozio, q.cod_prodotto, p.nome FROM quantità q, prodotti p WHERE q.cod_prodotto = p.cod_prodotto AND q.quantità = 0',
     'Visualizza personale': 'SELECT a.*, t.*, c.* FROM amministratori a, tecnici t, tecnici_commerciali c',
-    
     'Visualizza prodotto con sconto maggiore': 'SELECT p.cod_prodotto, p.nome, s.cod_sconto, s.percentuale FROM sconti s, prodotti p WHERE p.cod_sconto = s.cod_sconto GROUP BY p.cod_sconto ORDER BY s.percentuale DESC LIMIT 1',
     'Visualizza 10 prodotti con sconto maggiore': 'SELECT p.cod_prodotto, p.nome, s.cod_sconto, s.percentuale FROM sconti s, prodotti p WHERE p.cod_sconto = s.cod_sconto GROUP BY p.cod_sconto ORDER BY s.percentuale DESC LIMIT 10',
     'Visualizza ordini dopo data': 'SELECT cod_ordine, cf_cliente, data_effettuazione, costo_totale FROM ordini WHERE data_effettuazione > %s',
@@ -61,7 +60,7 @@ QUERIES = {
     'Visualizza colori': 'SELECT * FROM colori',
     'Aggiungi orario': 'INSERT INTO orari(giorni, oreinizio, orefine) VALUES (%s, %s, %s)',
     'Aggiungi colorazione': 'INSERT INTO colorazione(cod_colore, cod_prodotto) VALUES (%s, %s)',
-    'Ristock prodotto in un negozio': 'UPDATE quantità SET quantità = %s WHERE cod_prodotto = %s AND cod_zona = %s AND cod_negozio = %s',
+    'Ristock prodotto negozio': 'UPDATE quantità SET quantità = %s WHERE cod_prodotto = %s AND cod_negozio = %s',
     'Aggiungi confezione': 'INSERT INTO confezioni(cod_negozio, cod_alimento, quantità, prezzo_totale) VALUES (%s, %s, %s, %s)',
     'Aggiungi porzione': 'INSERT INTO porzione(cod_negozio, cod_alimento)VALUES (%s, %s)',
     'Aggiungi esposta': 'INSERT INTO esposte(cod_composizione, cod_negozio) VALUES (%s, %s)',
