@@ -520,6 +520,12 @@ while True:
 
         window.close()
         window = alimenti_porzionati_piu_costosi_window(prodotti)
+    elif event == 'Visualizza 10 alimenti porzionati meno costosi':
+        db_cursor.execute(QUERIES['Visualizza 10 alimenti porzionati meno costosi'])
+        prodotti = db_cursor.fetchall()
+
+        window.close()
+        window = alimenti_porzionati_meno_costosi_window(prodotti)
     elif event == 'Indietro':
         window.close()
         window = default_window()
