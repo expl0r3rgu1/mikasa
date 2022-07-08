@@ -28,7 +28,6 @@ QUERIES = {
     'Visualizza montaggi in un mese': 'SELECT m.cod_ordine, o.data_arrivo FROM montaggi m, ordini o, spedizioni s WHERE YEAR(o.data_arrivo) = %s AND MONTH(o.data_arrivo) = %s AND o.cod_ordine = s.cod_ordine AND s.cod_ordine = m.cod_ordine',
     'Visualizza 10 prodotti più acquistati' : 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità DESC LIMIT 10',
     'Visualizza 10 prodotti meno acquistati' : 'SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) AS quantità FROM prodotti p, dettagli_prodotto d WHERE p.cod_prodotto = d.cod_prodotto GROUP BY p.cod_prodotto ORDER BY quantità ASC LIMIT 10',
-    'Visualizza prodotto più costoso': 'SELECT p.* FROM prodotti p ORDER BY prezzo DESC LIMIT 1',
     'Visualizza 10 prodotti più costosi' : 'SELECT p.* FROM prodotti p ORDER BY prezzo DESC LIMIT 10',
     'Visualizza prodotto meno costoso': 'SELECT p.* FROM prodotti p ORDER BY prezzo ASC LIMIT 1',
     'Visualizza 10 prodotti meno costosi' : 'SELECT p.* FROM prodotti p ORDER BY prezzo ASC LIMIT 10',
