@@ -54,7 +54,7 @@ QUERIES = {
     'Visualizza tecnici' : 'SELECT * FROM tecnici',
     'Visualizza tecnici commerciali' : 'SELECT * FROM tecnici_commerciali',
     'Visualizza percentuale sconto di uno sconto' : 'SELECT s.percentuale FROM sconti s WHERE s.cod_sconto = %s',
-    'Visualizza prodotti contenuti in una composizione' : 'SELECT * FROM prodotti WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s)',
+    'Visualizza prodotti in composizione' : 'SELECT p.* FROM prodotti p WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s AND p.cod_prodotto = cod_prodotto)',
     'Visualizza prodotti' : 'SELECT * FROM prodotti',
     'Visualizza composizioni' : 'SELECT * FROM composizioni',
     'Visualizza colori': 'SELECT * FROM colori',
