@@ -134,10 +134,9 @@ def effettua_ordine_cliente_window(clienti, prodotti, composizioni, negozi):
             values=composizioni, select_mode='extended', key='composizioni', size=(0, 10))],
         [sg.Text('Quantità prodotti (10,4,...):'), sg.InputText(key='quantità_prodotti'), sg.Text(
             'Quantità composizioni (10,4,...):'), sg.InputText(key='quantità_composizioni')],
-        [sg.Combo(['Con spedizione', 'senza spedizione'],
-                  default_value='Con spedizione', key='spedizione', enable_events=True)],
+        [sg.Combo(['Con spedizione', 'senza spedizione'], key='spedizione', enable_events=True)],
         [sg.Combo(['Con montaggio', 'senza montaggio'],
-                  default_value='Con montaggio', key='montaggio')],
+                  default_value='senza montaggio', key='montaggio')],
         [sg.Text('Indirizzo di consegna'), sg.InputText(key='indirizzo')],
         [sg.Combo(negozi, default_value=negozi[0], key='negozio')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
@@ -201,8 +200,7 @@ def ordini_cliente_window(clienti):
 
     layout = [
         [sg.Text('Ordini di un cliente')],
-        [sg.Combo(clienti, default_value=clienti[0],
-                  key='cliente', enable_events=True)],
+        [sg.Combo(clienti, key='cliente', enable_events=True)],
         [table],
         [sg.Button('Indietro')]
     ]
@@ -319,6 +317,7 @@ def alimenti_porzionati_piu_costosi_window(alimenti):
 
     return sg.Window('Top 10 alimenti porzionati più costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def alimenti_porzionati_meno_costosi_window(alimenti):
     table = sg.Table(values=alimenti, headings=[
                      'Codice', 'Nome', 'Provenienza', 'Scadenza', 'Ingredienti', 'Allergeni', 'Prezzo Porzionato', 'Prezzo confezionato'])
@@ -330,6 +329,7 @@ def alimenti_porzionati_meno_costosi_window(alimenti):
     ]
 
     return sg.Window('Top 10 alimenti porzionati meno costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
 
 def alimenti_confezionati_piu_costosi_window(alimenti):
     table = sg.Table(values=alimenti, headings=[
@@ -343,6 +343,7 @@ def alimenti_confezionati_piu_costosi_window(alimenti):
 
     return sg.Window('Top 10 alimenti confezionati più costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def alimenti_confezionati_meno_costosi_window(alimenti):
     table = sg.Table(values=alimenti, headings=[
                      'Codice', 'Nome', 'Provenienza', 'Scadenza', 'Ingredienti', 'Allergeni', 'Prezzo Porzionato', 'Prezzo confezionato'])
@@ -355,14 +356,14 @@ def alimenti_confezionati_meno_costosi_window(alimenti):
 
     return sg.Window('Top 10 alimenti confezionati meno costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
-def quantita_prodotto_magazzini_window(prodotti):
-    table = sg.Table(key='quantita', values=[], headings=['Codice Negozio', 'Quantità'])
 
+def quantita_prodotto_magazzini_window(prodotti):
+    table = sg.Table(key='quantita', values=[], headings=[
+                     'Codice Negozio', 'Quantità'])
 
     layout = [
         [sg.Text('Quantità prodotto nei magazzini')],
-        [sg.Combo(prodotti, default_value=prodotti[0],
-                  key='prodotto', enable_events=True)],
+        [sg.Combo(prodotti, key='prodotto', enable_events=True)],
         [table],
         [sg.Button('Indietro')]
     ]
