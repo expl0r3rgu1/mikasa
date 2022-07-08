@@ -538,6 +538,26 @@ while True:
 
         window.close()
         window = alimenti_confezionati_meno_costosi_window(prodotti)
+    elif event == 'Visualizza quantità prodotto nei magazzini':
+        db_cursor.execute(QUERIES['Visualizza prodotti'])
+        prodotti = db_cursor.fetchall()
+        window.close()
+        window = quantita_prodotto_magazzini_window(prodotti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'prodotto':
+                db_cursor.execute(
+                    QUERIES['Visualizza quantità magazzini prodotto'], (values['prodotto'][0],))
+                quantita = db_cursor.fetchall()
+                window['quantita'].update(values=quantita)
+            elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
