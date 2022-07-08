@@ -59,4 +59,5 @@ QUERIES = {
     'Aggiungi esposta': 'INSERT INTO esposte(cod_composizione, cod_negozio) VALUES (%s, %s)',
     'Licenzia manager': 'DELETE FROM manager WHERE cf_manager = %s',
     'Licenzia tecnico': 'DELETE FROM tecnici WHERE cf_tecnico = %s',
+    'Licenzia tecnico commerciale': 'DELETE FROM tecnici_commerciali WHERE cf_tecnico_commerciale = %s',
 }
