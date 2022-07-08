@@ -15,8 +15,8 @@ def default_window():
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button(
-            'Visualizza 10 prodotti più costosi'), sg.Button('Visualizza 10 prodotti meno costosi'), sg.Button('Visualizza 10 alimenti porzionati più costosi')],
-        [sg.Button('Visualizza 10 alimenti confezionati più costosi'), sg.Button('Visualizza quantità prodotto nei magazzini'), sg.Button(
+            'Visualizza 10 prodotti più costosi'), sg.Button('Visualizza 10 prodotti meno costosi'), sg.Button('Visualizza 10 alimenti porzionati più costosi'), sg.Button('Visualizza 10 alimenti porzionati mwno costosi')],
+        [sg.Button('Visualizza 10 alimenti confezionati più costosi'), sg.Button('Visualizza 10 alimenti confezionati meno costosi'), sg.Button('Visualizza quantità prodotto nei magazzini'), sg.Button(
             'Visualizza prodotti terminati nei magazzini'), sg.Button('Visualizza personale'), sg.Button('Visualizza 10 prodotti con sconto maggiore')],
         [sg.Button('Visualizza clienti'), sg.Button('Visualizza ordini da una data'), sg.Button(
             'Visualizza ordine più costoso'), sg.Button('Visualizza ordine più costoso di un cliente')]
@@ -354,3 +354,17 @@ def alimenti_confezionati_meno_costosi_window(alimenti):
     ]
 
     return sg.Window('Top 10 alimenti confezionati meno costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def quantita_prodotto_magazzini_window(prodotti):
+    table = sg.Table(key='quantita', values=[], headings=['Codice Negozio', 'Quantità'])
+
+
+    layout = [
+        [sg.Text('Quantità prodotto nei magazzini')],
+        [sg.Combo(prodotti, default_value=prodotti[0],
+                  key='prodotto', enable_events=True)],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Quantità prodotto nei magazzini', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
