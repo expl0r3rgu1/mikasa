@@ -266,3 +266,15 @@ def prodotti_piu_acquistato_window(prodotti):
     ]
 
     return sg.Window('Top 10 prodotti più acquistati', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def prodotti_meno_acquistati_window(prodotti):
+    table = sg.Table(values=prodotti, headings=[
+                     'Codice', 'Nome', 'Prezzo', 'Altezza', 'Larghezza', 'Profondità', 'Peso', 'Codice Sconto', 'Tipologia'])
+
+    layout = [
+        [sg.Text('Top 10 prodotti meno acquistati')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Top 10 prodotti meno acquistati', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
