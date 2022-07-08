@@ -551,9 +551,22 @@ Di seguito si elenca la chiave primaria di ogni tabella:
 - **ACQUIRENTE** (<u>cf_acquirente</u>, nome, cognome, telefono, email, via, civico, cap, città)
 - **MANAGER** (<u>cf_manager</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
 - **TECNICO** (<u>cf_tecnico</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
-- **TECNICO COMMERCIALE** (<u>cf_tecnico_commerciale</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
+- **TECNICO COMMERCIALE**(<u>cf_tecnico_commerciale</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
+- **AMMINISTRATORE** (<u>cf_amministratore</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario, cod_zona)
 - **ORARIO** (<u>cod_orario</u>, giorni, oreinizio, orefine)
 - **NEGOZIO** (<u>cod_negozio</u>, via, civico, cap, città, data_inaugurazione, cf_acquirente: Acquirente, cod_orario: Orario, num_posti_ristoro, num_composizioni)
+- **ALIMENTO** (<u>cod_alimento</u>, nome, provenienza, scadenza, ingredienti, allergeni, prezzo_porzionato, prezzo_confezionato)
+- **CONFEZIONE** (<u>cod_negozio</u>: Negozio, <u>cod_alimento</u>: Alimento, quantità, prezzo_totale)
+- **PORZIONE** (<u>cod_negozio</u>: Negozio, <u>cod_alimento</u>: Alimento)
+- **COMPOSIZIONE** (<u>cod_composizione</u>, nome, num_prodotti, peso)
+- **ESPOSTA** (<u>cod_composizione</u>: Composizione, <u>cod_negozio</u>: Negozio)
+- **COMPOSTA** (<u>cod_composizione</u>: Composizione, <u>cod_prodotto</u>: Prodotto)
+- **PRODOTTO** (<u>cod_prodotto</u>, nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto: Sconto, tipo)
+- **QUANTITÀ**
+- **SCONTO**
+- **STORICO SCONTI**
+- **COLORE**
+- **COLORAZIONE**
 
 <div style="page-break-after: always;"></div>
 
