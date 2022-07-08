@@ -342,8 +342,17 @@ while True:
                     db.commit()
                     if(values['montaggio'] == 'Con montaggio'):
                         db_cursor.execute(
-                            QUERIES['Aggiungi montaggio'], (cod_ordine, values['indirizzo'], tecnico[0]))
+                            QUERIES['Aggiungi montaggio'], (cod_ordine,))
                         db.commit()
+                        weights = [1] * len(tecnici)
+                        weights[tecnici.index(tecnico)] = 0
+                        tecnici_montaggio = random.choices(tecnici, weights, k = 1)
+                        weights[tecnici.index(tecnici_montaggio[0])] = 0
+                        tecnici_montaggio += random.choices(tecnici, weights, k = 1)
+                        print((tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
+                        db_cursor.execute(QUERIES['Aggiungi dettaglio montaggio'] + ",(%s,%s)", (tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
+                        db.commit()
+                        
 
                 window.close()
                 window = default_window()
