@@ -330,3 +330,15 @@ def alimenti_porzionati_meno_costosi_window(alimenti):
     ]
 
     return sg.Window('Top 10 alimenti porzionati meno costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def alimenti_confezionati_piu_costosi_window(alimenti):
+    table = sg.Table(values=alimenti, headings=[
+                     'Codice', 'Nome', 'Provenienza', 'Scadenza', 'Ingredienti', 'Allergeni', 'Prezzo Porzionato', 'Prezzo confezionato'])
+
+    layout = [
+        [sg.Text('Top 10 alimenti confezionati più costosi')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Top 10 alimenti confezionati più costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
