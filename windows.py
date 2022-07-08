@@ -290,3 +290,15 @@ def prodotti_piu_costosi_window(prodotti):
     ]
 
     return sg.Window('Top 10 prodotti più costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def prodotti_meno_costosi_window(prodotti):
+    table = sg.Table(values=prodotti, headings=[
+                     'Codice', 'Nome', 'Prezzo', 'Altezza', 'Larghezza', 'Profondità', 'Peso', 'Codice Sconto', 'Tipologia'])
+
+    layout = [
+        [sg.Text('Top 10 prodotti meno costosi')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Top 10 prodotti meno costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
