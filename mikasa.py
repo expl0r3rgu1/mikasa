@@ -502,6 +502,12 @@ while True:
 
         window.close()
         window = prodotti_meno_acquistati_window(prodotti)
+    elif event == 'Visualizza 10 prodotti più costosi':
+        db_cursor.execute(QUERIES['Visualizza 10 prodotti più costosi'])
+        prodotti = db_cursor.fetchall()
+
+        window.close()
+        window = prodotti_piu_costosi_window(prodotti)
     elif event == 'Indietro':
         window.close()
         window = default_window()
