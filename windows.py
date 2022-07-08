@@ -14,10 +14,10 @@ def default_window():
             'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi orario')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
-        [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza prodotto meno acquistato'), sg.Button(
-            'Visualizza prodotto più costoso'), sg.Button('Visualizza prodotto meno costoso'), sg.Button('Visualizza alimento porzionato più costoso')],
-        [sg.Button('Visualizza alimento confezionato più costoso'), sg.Button('Visualizza quantità prodotto nei magazzini'), sg.Button(
-            'Visualizza prodotti terminati nei magazzini'), sg.Button('Visualizza personale'), sg.Button('Visualizza prodotti con sconto maggiore')],
+        [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button(
+            'Visualizza 10 prodotti più costosi'), sg.Button('Visualizza 10 prodotti meno costosi'), sg.Button('Visualizza 10 alimenti porzionati più costosi')],
+        [sg.Button('Visualizza 10 alimenti confezionati più costosi'), sg.Button('Visualizza quantità prodotto nei magazzini'), sg.Button(
+            'Visualizza prodotti terminati nei magazzini'), sg.Button('Visualizza personale'), sg.Button('Visualizza 10 prodotti con sconto maggiore')],
         [sg.Button('Visualizza clienti'), sg.Button('Visualizza ordini da una data'), sg.Button(
             'Visualizza ordine più costoso'), sg.Button('Visualizza ordine più costoso di un cliente')]
     ]
