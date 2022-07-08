@@ -532,6 +532,12 @@ while True:
 
         window.close()
         window = alimenti_confezionati_piu_costosi_window(prodotti)
+    elif event == 'Visualizza 10 alimenti confezionati meno costosi':
+        db_cursor.execute(QUERIES['Visualizza 10 alimenti confezionati meno costosi'])
+        prodotti = db_cursor.fetchall()
+
+        window.close()
+        window = alimenti_confezionati_meno_costosi_window(prodotti)
     elif event == 'Indietro':
         window.close()
         window = default_window()
