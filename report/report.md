@@ -562,11 +562,11 @@ Di seguito si elenca la chiave primaria di ogni tabella:
 - **ESPOSTA** (<u>cod_composizione</u>: Composizione, <u>cod_negozio</u>: Negozio)
 - **COMPOSTA** (<u>cod_composizione</u>: Composizione, <u>cod_prodotto</u>: Prodotto)
 - **PRODOTTO** (<u>cod_prodotto</u>, nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto: Sconto, tipo)
-- **QUANTITÀ**
-- **SCONTO**
-- **STORICO SCONTI**
-- **COLORE**
-- **COLORAZIONE**
+- **QUANTITÀ** (<u>cod_negozio</u>: Negozio, <u>cod_prodotto</u>: Prodotto, quantità)
+- **SCONTO** (<u>cod_sconto</u>, percentuale, cod_storico: Storico Sconti)
+- **STORICO SCONTI** (<u>cod_storico</u>, inizio, fine)
+- **COLORE** (<u>cod_colore</u>, nome)
+- **COLORAZIONE** (<u>cod_colore</u>: Colore, <u>cod_prodotto</u>: Prodotto)
 
 <div style="page-break-after: always;"></div>
 
