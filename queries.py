@@ -35,7 +35,7 @@ QUERIES = {
     'Visualizza 10 alimenti porzionati meno costosi' : 'SELECT a.* FROM alimenti a ORDER BY prezzo_porzionato ASC LIMIT 10',
     'Visualizza 10 alimenti confezionati meno costosi' : 'SELECT a.* FROM alimenti a ORDER BY prezzo_confezionato ASC LIMIT 10',
     'Visualizza quantità magazzini prodotto': 'SELECT q.cod_negozio, p.cod_prodotto, p.tipo, q.quantità FROM quantità q, prodotti p WHERE q.cod_prodotto = %s AND q.cod_prodotto = p.cod_prodotto',
-    'Visualizza prodotti terminati': 'SELECT q.cod_negozio, q.cod_prodotto, p.nome FROM quantità q, prodotti p WHERE q.cod_prodotto = p.cod_prodotto AND q.quantità = 0',
+    'Visualizza prodotti terminati': 'SELECT q.cod_negozio, q.cod_prodotto, p.nome, p.tipo FROM quantità q, prodotti p WHERE q.cod_prodotto = p.cod_prodotto AND q.quantità = 0',
     'Visualizza personale': 'SELECT a.*, t.*, c.* FROM amministratori a, tecnici t, tecnici_commerciali c',
     'Visualizza 10 prodotti con sconto maggiore': 'SELECT p.cod_prodotto, p.nome, s.cod_sconto, s.percentuale FROM sconti s, prodotti p WHERE p.cod_sconto = s.cod_sconto GROUP BY p.cod_sconto ORDER BY s.percentuale DESC LIMIT 10',
     'Visualizza ordini dopo data': 'SELECT cod_ordine, cf_cliente, data_effettuazione, costo_totale FROM ordini WHERE data_effettuazione > %s',
