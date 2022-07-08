@@ -53,24 +53,24 @@ Per un ordine con spedizione si può richiedere il montaggio. L'assemblaggio vie
 
 ## Estrazione dei concetti principali
 
-| Termine             | Descrizione                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |               |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Negozio             | Un negozio della catena                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |               |
-| Zona                | Ogni negozio viene diviso in zone                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |               |
-| Acquirente          | Colui che acquista e apre un negozio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |               |
-| Cliente             | Colui che effettua acquisti in un negozio creando ordini                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |               |
-| Manager             | Colui che gestisce un negozio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |               |
-| Amministratore      | Colui che si occupa di una zona di un negozio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |               |
-| Tecnico commerciale | Colui che gestisce o la zona ristoro o lo shop alimentari (di un determinato negozio) o gli ordini                                                                                                                                                                                                                                                                                                                                                                                                                                             |               |
-| Tecnico             | Colui che si occupa o del magazzino di un negozio o delle spedizioni o degli assemblaggi                                                                                                                                                                                                                                                                                                                                                                                                                                                       |               |
-| Shop alimentari     | La zona di un negozio dove vengono venduti gli alimenti all'ingrosso                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |               |
-| Ristoro             | La zona di un negozio dove vengono venduti gli alimenti al dettaglio                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Punto ristoro |
-| Alimento            | Venduto in ogni shop alimentari e in ogni punto ristoro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |               |
-| Magazzino           | La zona di un negozio dove vengono stoccati i prodotti                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |               |
-| Esposizione         | La zona di un negozio in cui vi sono le varie composizione                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |               |
-| Composizione        | Una composizione è formata da tanti prodotti. Ogni composizione mostra in modo visivamente gradevole un insieme di prodotti relativi ad una determinata zona della casa (bagno, camera da letto, cucina, ...). Ogni composizione può essere interamente acquistata da un cliente                                                                                                                                                                                                                                                               |               |
-| Prodotto            | Venduto da ogni negozio, può essere acquistato dal cliente. Ogni prodotto può essere diversamente scontato in base al periodo dell'anno                                                                                                                                                                                                                                                                                                                                                                                                        |               |
-| Ordine              | Ogni ordine viene effettuato da un cliente. L'ordine è formato da tanti dettagli ordine, specifici o per un prodotto o per una composizione. In caso il cliente che effettua l'ordine, sia socio, viene applicato uno sconto totale sull'ordine. Ogni ordine può essere richiesto con o senza spedizione: un ordine senza spedizione verrà spedito ad un negozio scelto dal cliente mentre, un ordine con spedizione viene spedito all'indirizzo del cliente. Inoltre, per ogni ordine con spedizione può essere richiesto o meno il montaggio |               |
+| Termine             | Descrizione                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Eventuali Sinonimi | 
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| Negozio             | Un negozio della catena                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                    |
+| Zona                | Ogni negozio viene diviso in zone                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                    |
+| Acquirente          | Colui che acquista e apre un negozio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                    |
+| Cliente             | Colui che effettua acquisti in un negozio creando ordini                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |                    |
+| Manager             | Colui che gestisce un negozio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                    |
+| Amministratore      | Colui che si occupa di una zona di un negozio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                    |
+| Tecnico commerciale | Colui che gestisce o la zona ristoro o lo shop alimentari (di un determinato negozio) o gli ordini                                                                                                                                                                                                                                                                                                                                                                                                                                             |                    |
+| Tecnico             | Colui che si occupa o del magazzino di un negozio o delle spedizioni o degli assemblaggi                                                                                                                                                                                                                                                                                                                                                                                                                                                       |                    |
+| Shop alimentari     | La zona di un negozio dove vengono venduti gli alimenti all'ingrosso                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                    |
+| Ristoro             | La zona di un negozio dove vengono venduti gli alimenti al dettaglio                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Punto ristoro      |
+| Alimento            | Venduto in ogni shop alimentari e in ogni punto ristoro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                    |
+| Magazzino           | La zona di un negozio dove vengono stoccati i prodotti                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |                    |
+| Esposizione         | La zona di un negozio in cui vi sono le varie composizione                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                    |
+| Composizione        | Una composizione è formata da tanti prodotti. Ogni composizione mostra in modo visivamente gradevole un insieme di prodotti relativi ad una determinata zona della casa (bagno, camera da letto, cucina, ...). Ogni composizione può essere interamente acquistata da un cliente                                                                                                                                                                                                                                                               |                    |
+| Prodotto            | Venduto da ogni negozio, può essere acquistato dal cliente. Ogni prodotto può essere diversamente scontato in base al periodo dell'anno                                                                                                                                                                                                                                                                                                                                                                                                        |                    |
+| Ordine              | Ogni ordine viene effettuato da un cliente. L'ordine è formato da tanti dettagli ordine, specifici o per un prodotto o per una composizione. In caso il cliente che effettua l'ordine, sia socio, viene applicato uno sconto totale sull'ordine. Ogni ordine può essere richiesto con o senza spedizione: un ordine senza spedizione verrà spedito ad un negozio scelto dal cliente mentre, un ordine con spedizione viene spedito all'indirizzo del cliente. Inoltre, per ogni ordine con spedizione può essere richiesto o meno il montaggio |                    |
 
 Non sono stati individuati sinonimi.
 
@@ -82,74 +82,74 @@ Per lo sviluppo dello schema ER generale si procede suddividendolo in  schemi ER
 
 ### Persona
 
-![Persona](resources/persona.jpg)
-
 Per modellare i vari ruoli presenti nel database si parte da un'entità padre: **Persona**. Persona racchiude tutti i campi necessari al modellamento di **Cliente**, **Acquirente** e **Personale**. L'entità Personale modella un generico membro del corpo lavorativo di MiKasa e si divide in **Impiegato** e **Manager**. Infine, l'entità Impiegato è stata divisa nelle tre categorie; **Tecnico**, **Tecnico Commerciale** e **Amministratore**.
 La gerarchia Persona-Cliente-Personale-Acquirente è totale ma non esclusiva; è infatti possibile, ad esempio, che una stessa persona possa sia essere un cliente che un membro del personale. Entrambi le gerarchie Personale-Impiegato-Manager e Impiegato-Tecnico-Tecnico Commerciale-Amministratore sono sia totale che esclusive.
 
-### Cliente-Ordine
+![Persona](resources/persona.jpg)
 
-![Cliente-Ordine](resources/clienteOrdine.jpg)
+### Cliente-Ordine
 
 Una relazione fontamentale è quella del **Cliente** che effettua un **Ordine**. 
 Ogni cliente può effettuare tutti gli ordini che vuole. Per ogni ordine è fondamentale calcolare il suo peso e costo totale, ottenuti dai dati dei singoli prodotti acquistati. Per il prezzo totale è importante controllare che il cliente sia socio o meno, da socio infatti si ha diritto ha uno sconto sul prezzo totale dell'ordine.
 Il cliente può anche scegliere se far spedire l'ordine al suo indirizzo o ad un negozio MiKasa dove si recherà il cliente stesso per ritirarlo. In caso di ordine con spedizione si hanno due ulteriori scelte: ordine senza montaggio e ordine con montaggio, in quest'ultimo l'assemblaggio dei mobili viene eseguito da un tecnico del personale.
 
-### Personale-Ordine
+![Cliente-Ordine](resources/clienteOrdine.jpg)
 
-![Personale-Ordine](resources/personaleOrdine.jpg)
+### Personale-Ordine
 
 L'altra importante relazione in cui c'è **Ordine** è quella tra gli ordini e il **Personale**.  
 I tecnici commerciali gestiscono gli ordini: mettono insieme i vari articoli ordinati, stabiliscono la data di arrivo, gestiscono i soldi in entrata. Invece, di spedizione e montaggio se ne occupano i tecnici. 
 
-### Negozio-Zona
+![Personale-Ordine](resources/personaleOrdine.jpg)
 
-![Personale-Ordine](resources/negozioZona.jpg)
+### Negozio-Zona
 
 Ogni **Negozio** della catena viene aperto da un **Acquirente** e gestito da un **Manager**. 
 Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposizione** e **Magazzino**.
  
- ### Orario
+ ![Personale-Ordine](resources/negozioZona.jpg)
  
- ![Orario](resources/orario.jpg)
+ ### Orario
  
  L'entità **orario** viene utilizzata per definire l'orario lavorativo dei memebri del personale e l'orario di apertura dei negozi. Ogni orario che viene creato può essere usato da più membri del personale/negozi.
  
+  ![Orario](resources/orario.jpg)
+ 
 ### Alimentari-Ristoro
-
-![Alimentari-Ristoro](resources/alimento.jpg)
 
  Sia nella zona **alimentari** che nella zona **ristoro** vengono venduti degli **alimenti**, nel primo si vendono in confezioni contenenti diverse unità di quell'alimento, nel secondo, essendo una zona bar/bistrot, ogni alimento è venduto singolarmente. 
  
- ###  Prodotto-Composizione
+ ![Alimentari-Ristoro](resources/alimento.jpg)
  
- ![Prodotto-Composizione](resources/prodottoComposizione.jpg)
+ ###  Prodotto-Composizione
  
  La zona **esposizioni** di ogni negozio è formata da tante **composizioni** di mobili. Questa zona è pensata per mostrare al cliente, non solo ogni singolo prodotto venduto (in quanto non ci sono prodotti non esposti), ma anche per creare composizioni che siano esteticamente belle e funzionali. Tra le composizioni proposte ci sono infatti diverse proposte di cucina, salotto, bagno, ufficio, camera da letto, ecc ...
  
- ### Prodotto-Magazzino
+  ![Prodotto-Composizione](resources/prodottoComposizione.jpg)
  
-  ![ProdottoMagazzino](resources/prodottoMagazzino.jpg)
+ ### Prodotto-Magazzino
   
   In ogni **Negozio** vi è un **Magazzino**; quest'ultimo può contenere o meno tutti i prodotti oppure essere addirittura vuoto.  Ogni **Prodotto** venduto nei negozi della catena infatti, si potrebbe trovare in ogni magazzino, in solo alcuni magazzini (quindi è presente in solo alcuni negozi) o anche in nessuno magazzino se la sua disponibilità è terminata ovunque. 
   In ogni magazzino ci lavorano alcuni tecnici detti magazzinieri.
+  
+   ![ProdottoMagazzino](resources/prodottoMagazzino.jpg)
  
  ### Prodotto
- 
- ![Prodotto](resources/prodotto.jpg)
  
  I **prodotti** venduti in ogni negozio sono divisi in tre categorie (mobili, accessori, elettrodomestici) tramite una gerarchia totale ed esclusiva. 
  Ogni prodotto può avere uno o più **colori** e può essere scontato o meno.
  Il sistema degli **sconti** viene gestito mediante uno **storico sconti** che, per ogni sconto, mantiene il suo periodo di validità annuale.
  Ogni prodotto può avere uno, nessuno o molti sconti; in quanto questi hanno tutti diversi periodi di validità
   
-   ### Dettaglio Ordine
+   ![Prodotto](resources/prodotto.jpg)
   
-![DettaglioOrdine](resources/dettaglioOrdine.jpg)
+   ### Dettaglio Ordine
 
 Ogni **Ordine** è formato da più dettagli ordine. Ci sono due tipi di dettaglio ordine: **Dettaglio Ordine per Prodotto** e **Dettaglio Ordine per Composizione**.  
 Ogni dettaglio ordine per prodotto mantiene i dati per un solo prodotto acquistato: quanti pezzi sono stati acquistati di quel prodotto e il costo totale per quel prodotto (ottenuto moltiplicando il prezzo, già scontato se ha uno sconto applicato valido nel periodo di effettuazione dell'ordine, del singolo prodotto per la quantità).
 Lo stesso meccanismo vale per il dettaglio prodotto per composizione.
+
+![DettaglioOrdine](resources/dettaglioOrdine.jpg)
 
 <div style="page-break-after: always;"></div>
 
@@ -248,19 +248,19 @@ Di seguito vengono riportate le frequenze delle varie operazioni effettuabili.
 | 12     | Leggere tutte le spedizioni effettuate in un determinato mese              | 1 al mese       |
 | 13     | Leggere tutti i ritiri effettuati in un determinato mese                   | 1 al mese       |
 | 14     | Leggere tutti i montaggi effettuati in un determinato mese                 | 1 al mese       |
-| 15     | Leggere il prodotto più acquistato                                         | 2 all'anno      |
-| 16     | Leggere il prodotto meno acquistato                                        | 1 al mese       |
-| 17     | Leggere il prodotto più costoso                                            | 1 all'anno      |
-| 18     | Leggere il prodotto meno costoso                                           | 1 all'anno      |
-| 19     | Leggere l'alimento porzionato più costoso                                  | 1 all'anno      |
-| 20     | Leggere l'alimento confezionato più costoso                                | 1 all'anno      |
+| 15     | Leggere i prodotti più acquistati                                          | 2 all'anno      |
+| 16     | Leggere i prodotti meno acquistati                                         | 2 all'anno      |
+| 17     | Leggere i prodotti più costosi                                             | 1 all'anno      |
+| 18     | Leggere i prodotti meno costosi                                            | 1 all'anno      |
+| 19     | Leggere gli alimenti porzionati più costosi                                | 1 all'anno      |
+| 20     | Leggere gli alimenti confezionati più costosi                              | 1 all'anno      |
 | 21     | Leggere la quantità presente(in ogni magazzino) di un determinato prodotto | 1 al giorno     |
 | 22     | Leggere tutti i prodotti terminati nei vari magazzini                      | 1 al giorno     |
 | 23     | Leggere tutti i membri del personale                                       | 1 al mese       |
 | 24     | Leggere i prodotti con lo sconto maggiore                                  | 2 all'anno      |
 | 25     | Leggere tutti gli ordini effettuati dopo una certa data                    | 1 all'anno      |
-| 26     | Leggere l'ordine più costosto                                              | 1 all'anno      |
-| 27     | Leggere l'ordine più costoso effettuato da un determinato cliente          | 1 all'anno      |
+| 26     | Leggere gli ordini più costosti                                            | 1 all'anno      |
+| 27     | Leggere gli ordine più costosi effettuati da un determinato cliente        | 1 all'anno      |
 | 28     | Leggere tutti i clienti                                                    | 10 al giorno    |
 | 29     | Disiscrizione di un cliente socio                                          | 10 al mese      |
 | 30     | Aggiungere un orario                                                       | 5 all'anno      |
@@ -273,7 +273,9 @@ Di seguito vengono riportate le frequenze delle varie operazioni effettuabili.
 | 37     | Aggiungere un nuovo amministratore                                         | 10 all'anno     |
 | 38     | Aggiungere un nuovo tecnico                                                | 10 all'anno     |
 | 39     | Aggiungere un nuovo tecnico commerciale                                    | 10 all'anno     |
-| 40     | Licenziare un membro del personale                                         | 5 all'anno      | 
+| 40     | Licenziare un membro del personale                                         | 5 all'anno      |
+| 41     | Leggere gli alimenti porzionati meno costosi                               | 1 all'anno      |
+| 42     | Leggere gli alimenti confezionati meno costosi                             | 1 all'anno      |
 
 <div style="page-break-after: always;"></div>
 
@@ -308,9 +310,24 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
  #### Totale: 1L, 1S -> 2 ogni due anni
 
 ### OP5: Effettuazione di un ordine da parte di un cliente
-| Concetto | Costrutto | Accessi | Tipo |
-| -------- | --------- | ------- | ---- |
-|          |           |         |      |
+| Concetto                          | Costrutto | Accessi                                                                                | Tipo |
+| --------------------------------- | --------- | -------------------------------------------------------------------------------------- | ---- |
+| Cliente                           | E         | 2                                                                                      | L    |
+| Prodotto                          | E         | 1 + 2\*numero di composizioni acquistate                                               | L    |
+| Composizione                      | E         | 1                                                                                      | L    |
+| Negozio                           | E         | 1                                                                                      | L    |
+| Sconto                            | E         | 2\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate | L    |
+| Storico Sconto                    | E         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate       | L    |
+| Composta                          | E         | 2\*numero di composizioni acquistate                                                   | L    |
+| Tecnici Commerciali               | E         | 1                                                                                      | L    |
+| Ordine                            | E         | 1                                                                                      | S    |
+| Dettaglio Ordine per Prodotto     | E         | numero di prodotti acquistati                                                          | S    |
+| Dettaglio Ordine per Composizione | E         | numero di composizioni acquistate                                                      | S    |
+| Tecnico                           | E         | 1                                                                                      | L    |
+| Spedizione                        | E         | 1                                                                                      | S    |
+| Montaggio                         | E         | 1                                                                                      | S    |
+| Dettaglio montaggio               | E         | 1                                                                                      | S    | 
+#### Totale: (6 + 4\*numero di composizioni acquistate + 3\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)L, (4 + numero di prodotti acquistati + numero di composizioni acquistate)S -> (10 + 5\*numero di composizioni acquistate + 4\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)*all'anno
 
 ### OP6: Aggiungere un nuovo prodotto
 | Concetto                           | Costrutto | Accessi | Tipo |
@@ -354,12 +371,50 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Ordine     | E         | 1       | L    |
 #### Totale: 3L -> 3 al mese
 
-### OP15: Leggere il prodotto più acquistato
+### OP15: Leggere i prodotti più acquistati
 | Concetto                      | Costrutto | Accessi | Tipo |
 | ----------------------------- | --------- | ------- | ---- |
 | Prodotto                      | E         | 1       | L    |
 | Dettaglio Ordine per Prodotto | E         | 1       | L    | 
 #### Totale: 2L -> 4 all'anno
+
+### OP16: Leggere i prodotti meno acquistati
+| Concetto                      | Costrutto | Accessi | Tipo |
+| ----------------------------- | --------- | ------- | ---- |
+| Prodotto                      | E         | 1       | L    |
+| Dettaglio Ordine per Prodotto | E         | 1       | L    | 
+#### Totale: 2L -> 4 all'anno
+
+### OP17: Leggere i prodotti più costosi 
+| Concetto                      | Costrutto | Accessi | Tipo |
+| ----------------------------- | --------- | ------- | ---- |
+| Prodotto                      | E         | 1       | L    |
+#### Totale: 1L -> 1 all'anno
+
+### OP18: Leggere i prodotti meno costosi
+| Concetto                      | Costrutto | Accessi | Tipo |
+| ----------------------------- | --------- | ------- | ---- |
+| Prodotto                      | E         | 1       | L    |
+#### Totale: 1L -> 1 all'anno
+
+### OP19: Leggere gli alimenti porzionati più costosi
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Alimento | E         | 1       | L    |
+#### Totale: 1L -> 1 all'anno
+
+### OP20: Leggere gli alimenti confezionati più costosi
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Alimento | E         | 1       | L    |
+#### Totale: 1L -> 1 all'anno
+
+### OP21: Leggere la quantità presente(in ogni magazzino) di un determinato prodotto
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Prodotto | E         | 2       | L    |
+| Quantità | E         | 1       | L    | 
+#### Totale: 3L -> 3 al giorno
 
 ### OP28: Visualizzare tutti i clienti
 | Concetto | Costrutto | Accessi | Tipo |
@@ -389,12 +444,24 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Tecnico  | E         | 1       | S    |
 #### Totale: 1L, 1S -> 20 all'anno
 
-### OP39 : Aggiungere un nuovo tecnico commerciale
+### OP39: Aggiungere un nuovo tecnico commerciale
 | Concetto            | Costrutto | Accessi | Tipo |
 | ------------------- | --------- | ------- | ---- |
 | Negozio             | E         | 1       | L    |
 | Tecnico Commerciale | E         | 1       | S    |
 #### Totale: 1L, 1S -> 20 all'anno
+
+### OP41: Leggere gli alimenti porzionati meno costosi
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Alimento | E         | 1       | L    |
+#### Totale: 1L -> 1 all'anno
+
+### OP42: Leggere gli alimenti confezionati meno costosi
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Alimento | E         | 1       | L    |
+#### Totale: 1L -> 1 all'anno
 
 <div style="page-break-after: always;"></div>
 
@@ -487,7 +554,14 @@ Di seguito si elenca la chiave primaria di ogni tabella:
 - **TECNICO COMMERCIALE** (<u>cf_tecnico_commerciale</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
 - **ORARIO** (<u>cod_orario</u>, giorni, oreinizio, orefine)
 - **NEGOZIO** (<u>cod_negozio</u>, via, civico, cap, città, data_inaugurazione, cf_acquirente: Acquirente, cod_orario: Orario, num_posti_ristoro, num_composizioni)
-- 
+
+<div style="page-break-after: always;"></div>
+
+## Schema relazionale finale
+
+ ![LogicoPt1](resources/logicopt1.jpg)
+
+![LogicoPt2](resources/logicopt2.jpg)
 
 <div style="page-break-after: always;"></div>
 
@@ -626,6 +700,11 @@ INSERT INTO montaggi(cod_ordine)
 VALUES (?)
 ```
 
+```
+INSERT INTO dettagli_montaggio(cf_tecnico, cod_ordine)
+VALUES (?, ?)
+```
+
 ### OP6: Aggiungere un nuovo prodotto
 Per creare un prodotto si seleziona uno o nessuno degli sconti già presenti nella tabella Sconti
 ```
@@ -694,7 +773,7 @@ AND o.cod_ordine = s.cod_ordine
 AND s.cod_ordine = m.cod_ordine
  ```
 
-### OP15: Leggere il prodotto più acquistato
+### OP15: Leggere i prodotti più acquistati
 ```
 SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) 
 AS quantità 
@@ -702,6 +781,53 @@ FROM prodotti p, dettagli_prodotto d
 WHERE p.cod_prodotto = d.cod_prodotto 
 GROUP BY p.cod_prodotto 
 ORDER BY quantità DESC LIMIT 10
+```
+
+### OP16: Leggere i prodotti meno acquistati
+```
+SELECT p.*, SUM(CASE WHEN p.cod_prodotto = d.cod_prodotto THEN d.quantità ELSE 0 END) 
+AS quantità 
+FROM prodotti p, dettagli_prodotto d 
+WHERE p.cod_prodotto = d.cod_prodotto 
+GROUP BY p.cod_prodotto 
+ORDER BY quantità ASC LIMIT 10
+```
+
+### OP17: Leggere i prodotti più costosi 
+```
+SELECT p.* FROM prodotti p 
+ORDER BY prezzo DESC LIMIT 10
+```
+
+### OP18: Leggere i prodotti meno costosi
+```
+SELECT p.* FROM prodotti p 
+ORDER BY prezzo ASC LIMIT 10
+```
+
+### OP19: Leggere gli alimenti porzionati più costosi
+```
+SELECT a.* FROM alimenti a 
+ORDER BY prezzo_porzionato DESC LIMIT 10
+```
+
+### OP20: Leggere gli alimenti confezionati più costosi
+```
+SELECT a.* FROM alimenti a 
+ORDER BY prezzo_confezionato DESC LIMIT 10
+```
+
+### OP21: Leggere la quantità presente(in ogni magazzino) di un determinato prodotto
+Vengono visualizzati tutti i prodotti così da poter scegliere quello di cui visualizzare la quantità presente in ogni magazzino
+```
+SELECT * FROM prodotti
+```
+
+```
+SELECT q.cod_negozio, p.cod_prodotto, p.tipo, q.quantità 
+FROM quantità q, prodotti p 
+WHERE q.cod_prodotto = ?
+AND q.cod_prodotto = p.cod_prodotto
 ```
 
 ### OP28: Visualizzare tutti i clienti
@@ -750,4 +876,16 @@ SELECT * FROM negozi
 ```
 INSERT INTO tecnici_commerciali(cf_tecnico_commerciale, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_orario, cod_negozio) 
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+```
+
+### OP41: Leggere gli alimenti porzionati meno costosi
+```
+SELECT a.* FROM alimenti a 
+ORDER BY prezzo_porzionato ASC LIMIT 10
+```
+
+### OP42: Leggere gli alimenti confezionati meno costosi
+```
+SELECT a.* FROM alimenti a 
+ORDER BY prezzo_confezionato ASC LIMIT 10
 ```
