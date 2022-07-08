@@ -259,7 +259,7 @@ Di seguito vengono riportate le frequenze delle varie operazioni effettuabili.
 | 23     | Leggere tutti i membri del personale                                       | 1 al mese       |
 | 24     | Leggere i prodotti con lo sconto maggiore                                  | 2 all'anno      |
 | 25     | Leggere tutti gli ordini effettuati dopo una certa data                    | 1 all'anno      |
-| 26     | Leggere gli ordini più costosti                                            | 1 all'anno      |
+| 26     | Leggere gli ordini più costosi                                             | 1 all'anno      |
 | 27     | Leggere gli ordine più costosi effettuati da un determinato cliente        | 1 all'anno      |
 | 28     | Leggere tutti i clienti                                                    | 10 al giorno    |
 | 29     | Disiscrizione di un cliente socio                                          | 10 al mese      |
