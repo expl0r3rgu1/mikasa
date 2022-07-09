@@ -268,7 +268,7 @@ def prodotti_piu_acquistato_window(prodotti):
 
 def prodotti_meno_acquistati_window(prodotti):
     table = sg.Table(values=prodotti, headings=[
-                     'Codice', 'Nome', 'Prezzo', 'Altezza', 'Larghezza', 'Profondità', 'Peso', 'Codice Sconto', 'Tipologia'])
+                     'Codice', 'Nome', 'Prezzo', 'Altezza', 'Larghezza', 'Profondità', 'Peso', 'Codice Sconto', 'Tipo'])
 
     layout = [
         [sg.Text('Top 10 prodotti meno acquistati')],
@@ -281,7 +281,7 @@ def prodotti_meno_acquistati_window(prodotti):
 
 def prodotti_piu_costosi_window(prodotti):
     table = sg.Table(values=prodotti, headings=[
-                     'Codice', 'Nome', 'Prezzo', 'Altezza', 'Larghezza', 'Profondità', 'Peso', 'Codice Sconto', 'Tipologia'])
+                     'Codice', 'Nome', 'Prezzo', 'Altezza', 'Larghezza', 'Profondità', 'Peso', 'Codice Sconto', 'Tipo'])
 
     layout = [
         [sg.Text('Top 10 prodotti più costosi')],
@@ -294,7 +294,7 @@ def prodotti_piu_costosi_window(prodotti):
 
 def prodotti_meno_costosi_window(prodotti):
     table = sg.Table(values=prodotti, headings=[
-                     'Codice', 'Nome', 'Prezzo', 'Altezza', 'Larghezza', 'Profondità', 'Peso', 'Codice Sconto', 'Tipologia'])
+                     'Codice', 'Nome', 'Prezzo', 'Altezza', 'Larghezza', 'Profondità', 'Peso', 'Codice Sconto', 'Tipo'])
 
     layout = [
         [sg.Text('Top 10 prodotti meno costosi')],
