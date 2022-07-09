@@ -660,16 +660,19 @@ while True:
             if event == 'Conferma':
                 costo_totale = 0
                 prodotti_composizione = values['prodotti']
-                
-                for i,prodotto in enumerate(prodotti_composizione):
-                    costo_totale += prodotto[2] * values['quantita'].split(',')[i]
-                
-                db_cursor.execute(QUERIES['Aggiungi composizione'], (values['nome'], len(prodotti_composizione), costo_totale))
+
+                for i, prodotto in enumerate(prodotti_composizione):
+                    costo_totale += prodotto[2] * \
+                        values['quantita'].split(',')[i]
+
+                db_cursor.execute(QUERIES['Aggiungi composizione'], (values['nome'], len(
+                    prodotti_composizione), costo_totale))
                 db_cursor.commit()
-                
+
                 cod_composizione = db_cursor.lastrowid
-                for i,prodotto in enumerate(prodotti_composizione):
-                    db_cursor.execute(QUERIES['Aggiungi composta'], cod_composizione, prodotto[0])
+                for i, prodotto in enumerate(prodotti_composizione):
+                    db_cursor.execute(
+                        QUERIES['Aggiungi composta'], cod_composizione, prodotto[0])
 
                 window.close()
                 window = default_window()
@@ -690,7 +693,8 @@ while True:
             event, values = window.read()
 
             if event == 'Conferma':
-                db_cursor.execute(QUERIES['Aggiungi sconto'], (values['percentuale'], values['storico'][0]))
+                db_cursor.execute(
+                    QUERIES['Aggiungi sconto'], (values['percentuale'], values['storico'][0]))
                 db_cursor.commit()
                 window.close()
                 window = default_window()
@@ -709,7 +713,28 @@ while True:
             event, values = window.read()
 
             if event == 'Conferma':
-                db_cursor.execute(QUERIES['Aggiungi storico sconto'], (values['-DATA INIZIO-'], values['-DATA FINE-']))
+                db_cursor.execute(
+                    QUERIES['Aggiungi storico sconto'], (values['-DATA INIZIO-'], values['-DATA FINE-']))
+                db_cursor.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi orario':
+        window.close()
+        window = aggiungi_orario_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi orario'], (values[0], values[1], values[2]))
                 db_cursor.commit()
                 window.close()
                 window = default_window()
