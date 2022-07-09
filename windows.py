@@ -12,7 +12,7 @@ def default_window():
             'Aggiungi manager'), sg.Button('Aggiungi tecnico'), sg.Button('Aggiungi Tecnico commerciale'), sg.Button('Aggiungi amministratore'), sg.Button('Aggiungi negozio')],
         [sg.Button('Effettua ordine per cliente'), sg.Button('Aggiungi prodotto'), sg.Button('Aggiungi alimento'), sg.Button(
             'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi storico sconto'), sg.Button('Aggiungi orario')],
-        [sg.Button('Aggiungi porzione'), sg.Button('Aggiungi colorazione')],
+        [sg.Button('Aggiungi porzione'), sg.Button('Aggiungi colorazione'), sg.Button('Licenzia personale')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button(
@@ -534,3 +534,15 @@ def aggiungi_colorazione_window(colori, prodotti):
     ]
 
     return sg.Window('Aggiungi colorazione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def licenzia_personale_window(manager, amministratori, tecnici, tecnici_commerciali):
+    layout = [
+        [sg.Text('Licenzia personale')],
+        [sg.Text('Manager'), sg.Listbox(values=manager, select_mode='extended', key='manager')],
+        [sg.Text('Amministratori'), sg.Listbox(values=amministratori, select_mode='extended', key='amministratori')],
+        [sg.Text('Tecnici'), sg.Listbox(values=tecnici, select_mode='extended', key='tecnici')],
+        [sg.Text('Tecnici commerciali'), sg.Listbox(values=tecnici_commerciali, select_mode='extended', key='tecnici_commerciali')],
+        [sg.Button('Licenzia'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Licenzia personale', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
