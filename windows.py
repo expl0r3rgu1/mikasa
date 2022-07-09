@@ -422,3 +422,15 @@ def ordini_data_window():
     ]
 
     return sg.Window('Ordini da una data', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def ordini_costosi_window(ordini):
+    table = sg.Table(values=ordini, headings=['Codice Ordine', 'Data effettuazione', 'Costo totale',
+                     'Peso totale', 'Data arrivo', 'Codice Fiscale Cliente', 'Codice Fiscale tecnico commerciale'])
+
+    layout = [
+        [sg.Text('Top 10 Ordini più costosi')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Top 10 ordini più costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
