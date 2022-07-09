@@ -793,6 +793,30 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Aggiungi colorazione':
+        db_cursor.execute(QUERIES['Visualizza colori'])
+        colori = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza prodotti'])
+        prodotti = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_colorazione_window(colori, prodotti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi colorazione'], (values['colore'][0], values['prodotto'][0]))
+                db_cursor.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
