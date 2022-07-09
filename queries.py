@@ -52,6 +52,7 @@ QUERIES = {
     'Visualizza prodotti' : 'SELECT * FROM prodotti',
     'Visualizza composizioni' : 'SELECT * FROM composizioni',
     'Visualizza colori': 'SELECT * FROM colori',
+    'Visualizza alimenti' : 'SELECT * FROM alimenti',
     'Visualizza storico sconto prodotto': 'SELECT s.inizio, s.fine FROM storico_sconti s WHERE cod_storico = (SELECT sc.cod_storico FROM sconti sc WHERE cod_sconto = %s LIMIT 1)',
     'Aggiungi orario': 'INSERT INTO orari(giorni, oreinizio, orefine) VALUES (%s, %s, %s)',
     'Aggiungi colorazione': 'INSERT INTO colorazione(cod_colore, cod_prodotto) VALUES (%s, %s)',
