@@ -680,6 +680,27 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Aggiungi sconto':
+        db_cursor.execute(QUERIES['Visualizza storico sconti'])
+        storico_sconti = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_sconto_window(storico_sconti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(QUERIES['Aggiungi sconto'], (values['percentuale'], values['storico'][0]))
+                db_cursor.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
