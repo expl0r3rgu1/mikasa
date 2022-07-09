@@ -602,6 +602,12 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Visualizza 10 ordini più costosi':
+        db_cursor.execute(QUERIES['Visualizza 10 ordini più costosi'])
+        ordini = db_cursor.fetchall()
+
+        window.close()
+        window = ordini_costosi_window(ordini)
     elif event == 'Indietro':
         window.close()
         window = default_window()
