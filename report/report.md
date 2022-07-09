@@ -268,14 +268,15 @@ Di seguito vengono riportate le frequenze delle varie operazioni effettuabili.
 | 32     | Aggiungere una nuova confezione                                            | 2 all'anno      |
 | 33     | Aggiungere una nuova porzione                                              | 2 all'anno      |
 | 34     | Esporre una composizione nella zona esposizioni di un negozio              | 2 all'anno      |
-| 35     | Leggere tutti i colori                                                     | 10 all'anno     |
+| 35     | Aggiungere un nuovo colore                                                 | 1 all'anno      | 
 | 36     | Aggiungere una nuova colorazione per un determinato prodotto               | 10 all'anno     |
 | 37     | Aggiungere un nuovo amministratore                                         | 10 all'anno     |
 | 38     | Aggiungere un nuovo tecnico                                                | 10 all'anno     |
 | 39     | Aggiungere un nuovo tecnico commerciale                                    | 10 all'anno     |
-| 40     | Licenziare un membro del personale                                         | 5 all'anno      |
+| 40     | Licenziare dei membri del personale                                        | 5 all'anno      |
 | 41     | Leggere gli alimenti porzionati meno costosi                               | 1 all'anno      |
 | 42     | Leggere gli alimenti confezionati meno costosi                             | 1 all'anno      |
+| 43     | Aggiungere un nuovo storico sconto                                         | 1 ogni due anni |
 
 <div style="page-break-after: always;"></div>
 
@@ -335,6 +336,27 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Sconto                             | E         | 1       | L    |
 | Prodotto                           | E         | 1       | S    |
 #### Totale: 1L, 1S -> 20 all'anno
+
+### OP7: Aggiungere un nuovo alimento
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Alimento | E         | 1       | S    | 
+#### Totale: 1S -> 10 all'anno
+
+### OP8: Aggiungere una nuova composizione
+| Concetto     | Costrutto | Accessi                                     | Tipo |
+| ------------ | --------- | ------------------------------------------- | ---- |
+| Prodotto     | E         | 1                                           | L    |
+| Composizione | E         | 1                                           | S    |
+| Composta     | E         | numero di prodotti nella nuova composizione | S    |
+#### Totale: 1L, (2+numero di prodotti nella nuova composizione)S -> (3 + numero di prodotti nella nuova composizione)\*10 all'anno
+
+### OP9: Aggiungere un nuovo sconto
+| Concetto       | Costrutto | Accessi | Tipo |
+| -------------- | --------- | ------- | ---- |
+| Storico Sconti | E         | 1       | L    |
+| Sconto         | E         | 1       | S    | 
+#### Totale: 1L, 1S -> 2 all'anno
 
 ### OP10: Leggere tutti gli ordini effettuati in un determinato mese 
 | Concetto | Costrutto | Accessi | Tipo |
@@ -416,6 +438,47 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Quantità | E         | 1       | L    | 
 #### Totale: 3L -> 3 al giorno
 
+### OP22: Leggere tutti i prodotti terminati nei vari magazzini 
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Prodotto | E         | 1       | L    |
+| Quantità | E         | 1       | L    | 
+#### Totale: 2L -> 2 al giorno
+
+### OP23: Leggere tutti i membri del personale 
+| Concetto            | Costrutto | Accessi | Tipo |
+| ------------------- | --------- | ------- | ---- |
+| Manager             | E         | 1       | L    |
+| Amministratore      | E         | 1       | L    |
+| Tecnico             | E         | 1       | L    |
+| Tecnico Commerciale | E         | 1       | L    | 
+#### Totale: 4L -> 4 al mese
+
+### OP24: Leggere i prodotti con lo sconto maggiore
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Sconto   | E         | 1       | L    |
+| Prodotto | E         | 1       | L    |
+#### Totale: 2L -> 4 all'anno
+
+### OP25: Leggere tutti gli ordini effettuati dopo una certa data
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Ordine   | E         | 1       | L    | 
+#### Totale: 1L -> 1 all'anno
+
+### OP26: Leggere gli ordini più costosi
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Ordine   | E         | 1       | L    |
+#### Totale: 1L -> 1 all'anno
+
+### OP27: Leggere gli ordine più costosi effettuati da un determinato cliente
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Ordine   | E         | 1       | L    |
+#### Totale: 1L ->  all'anno
+
 ### OP28: Visualizzare tutti i clienti
 | Concetto | Costrutto | Accessi | Tipo |
 | -------- | --------- | ------- | ---- |
@@ -429,6 +492,36 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Cliente  | E         | 1       | L    |
 | Cliente  | E         | 1       | S    | 
 #### Totale: 2L, 1S -> 30 al mese
+
+### OP30: Aggiungere un orario 
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Orario   | E         | 1       | S    | 
+#### Totale: 5S -> 5 all'anno 
+
+### OP32: Aggiungere una nuova confezione
+| Concetto   | Costrutto | Accessi | Tipo |
+| ---------- | --------- | ------- | ---- |
+| Negozio    | E         | 1       | L    | 
+| Alimento   | E         | 1       | L    |
+| Confezione | E         | 1       | S    |	
+#### Totale: 2L, 1S -> 3 all'anno
+
+### OP33: Aggiungere una nuova porzione
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Negozio  | E         | 1       | L    |
+| Alimento | E         | 1       | L    |
+| Porzione | E         | 1       | S    |
+#### Totale: 2L, 1S -> 3 all'anno
+
+### OP36: Aggiungere una nuova colorazione per un determinato prodotto 
+| Concetto    | Costrutto | Accessi | Tipo |
+| ----------- | --------- | ------- | ---- |
+| Colore      | E         | 1       | L    |
+| Prodotto    | E         | 1       | L    |
+| Colorazione | E         | 1       | S    |
+#### Totale: 2L, 1S -> 30 all'anno
 
 ## OP37 : Aggiungere un nuovo amministratore
 | Concetto       | Costrutto | Accessi | Tipo |
@@ -451,6 +544,19 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Tecnico Commerciale | E         | 1       | S    |
 #### Totale: 1L, 1S -> 20 all'anno
 
+### OP40:  Licenziare dei membri del personale
+| Concetto            | Costrutto | Accessi | Tipo |
+| ------------------- | --------- | ------- | ---- |
+| Manager             | E         | 1       | L    |
+| Tecnico             | E         | 1       | L    |
+| Tecnico Commerciale | E         | 1       | L    |
+| Amministratore      | E         | 1       | L    |
+| Manager             | E         | 0/1     | S    |
+| Tecnico             | E         | 0/1     | S    |
+| Tecnico Commerciale | E         | 0/1     | S    |
+| Amministratore      | E         | 0/1     | S    |
+#### Totale: 4L, 0-4S -> 20-40 all'anno
+
 ### OP41: Leggere gli alimenti porzionati meno costosi
 | Concetto | Costrutto | Accessi | Tipo |
 | -------- | --------- | ------- | ---- |
@@ -462,6 +568,12 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | -------- | --------- | ------- | ---- |
 | Alimento | E         | 1       | L    |
 #### Totale: 1L -> 1 all'anno
+
+### OP43: Aggiungere un nuovo storico sconto
+| Concetto       | Costrutto | Accessi | Tipo |
+| -------------- | --------- | ------- | ---- |
+| Storico Sconti | E         | 1       | S    | 
+#### Totale: 1S -> 1 ogni due anni
 
 <div style="page-break-after: always;"></div>
 
@@ -746,6 +858,42 @@ INSERT INTO elettrodomestici(cod_prodotto)
 VALUES (?)
 ```
 
+### OP7: Aggiungere un nuovo alimento
+```
+INSERT INTO alimenti(nome, provenienza, scadenza, ingredienti, allergeni, prezzo_porzionato, prezzo_confezionato) 
+VALUES (?, ?, ?, ?, ?, ?, ?)
+```
+
+### OP8: Aggiungere una nuova composizione
+Si visualizzano tutti i prodotti per selezionare quelli che formeranno la nuova composizione.
+
+```
+SELECT * FROM prodotti
+```
+
+```
+INSERT INTO composizioni(nome, num_prodotti, peso) 
+VALUES (?, ?, ?)
+```
+
+Per ogni prodotto della nuova composizione viene aggiunta una entry nella tabella "composte", così da salvare il legame tra una composizione e un prodotto che ne fa parte.
+```
+INSERT INTO composte(cod_composizione, cod_prodotto) 
+VALUES (?, ?)
+```
+
+### OP9: Aggiungere un nuovo sconto
+Vengono visualizzati gli storici sconti esistenti così da poter scegliere quale periodo di validità assegnare al nuovo sconto creato.
+
+```
+SELECT * FROM storico_sconti
+```
+
+```
+INSERT INTO sconti(percentuale, cod_storico) 
+VALUES (?, ?)
+```
+
 ### OP10: Leggere tutti gli ordini effettuati in un determinato mese 
 ```
 SELECT * FROM ordini WHERE YEAR(data_effettuazione) = ? AND MONTH(data_effettuazione) = ?
@@ -843,6 +991,62 @@ WHERE q.cod_prodotto = ?
 AND q.cod_prodotto = p.cod_prodotto
 ```
 
+### OP22: Leggere tutti i prodotti terminati nei vari magazzini 
+```
+SELECT q.cod_negozio, q.cod_prodotto, p.nome, p.tipo FROM quantità q, prodotti p 
+WHERE q.cod_prodotto = p.cod_prodotto 
+AND q.quantità = 0
+```
+
+### OP23: Leggere tutti i membri del personale 
+Per poter leggere tutti i membri del personale, che si trovano in tabelle diverse, abbiamo utilizzato UNION per unire gli insiemi di dati delle varie tabelle. Abbiamo aggiunto ALL, il quale ignora le operazioni per eliminare eventuali doppioni, in quanto sappiamo che la gerarchia tra i membri del personale è totale ed esclusiva. 
+
+```
+SELECT cf_manager 
+AS cf, nome, cognome 
+FROM manager 
+UNION ALL SELECT cf_amministratore, nome, cognome 
+FROM amministratori 
+UNION ALL SELECT cf_tecnico, nome, cognome 
+FROM tecnici 
+UNION ALL SELECT cf_tecnico_commerciale, nome, cognome 
+FROM tecnici_commerciali
+```
+
+### OP24: Leggere i prodotti con lo sconto maggiore
+```
+SELECT p.cod_prodotto, p.tipo, p.nome, s.cod_sconto, s.percentuale 
+FROM sconti s, prodotti p 
+WHERE p.cod_sconto = s.cod_sconto 
+GROUP BY p.cod_sconto 
+ORDER BY s.percentuale DESC LIMIT 10
+```
+
+### OP25: Leggere tutti gli ordini effettuati dopo una certa data
+```
+SELECT * FROM ordini 
+WHERE data_effettuazione > ?
+```
+
+### OP26: Leggere gli ordini più costosi
+```
+SELECT * FROM ordini 
+ORDER BY costo_totale DESC LIMIT 10
+```
+
+### OP27: Leggere gli ordine più costosi effettuati da un determinato cliente
+Vengono visualizzati tutti i clienti per selezionare quello di cui si vogliono mostrare gli ordini più costosi
+
+```
+SELECT * FROM clienti
+```
+
+```
+SELECT * FROM ordini o 
+WHERE cf_cliente = ?
+ORDER BY costo_totale DESC LIMIT 10
+```
+
 ### OP28: Visualizzare tutti i clienti
 ```
 SELECT * FROM client
@@ -851,14 +1055,68 @@ SELECT * FROM client
 ### OP29: Disiscrizione di un cliente socio 
 Vengono visualizzati i clienti così da selezionarne uno, dopo di chè si imposta il campo "socio" del cliente a 0.
  ```
-Visualizza clienti': 'SELECT * FROM clienti
+SELECT * FROM clienti
  ```
 
 ```
 UPDATE clienti SET socio = 0 WHERE cf_cliente = ?
 ```
 
-## OP37 : Aggiungere un nuovo amministratore
+### OP30: Aggiungere un orario
+```
+INSERT INTO orari(giorni, oreinizio, orefine) 
+VALUES (?, ?, ?)
+```
+
+### OP32: Aggiungere una nuova confezione
+Vengono visualizzati i negozi per scegliere il negozio la cui zona ristoro venderà questa nuova confezione
+```
+SELECT * FROM negozi
+```
+
+Vengono visualizzati gli alimenti per scegliere quello di cui viene creata la nuovo confezione
+```
+SELECT * FROM alimenti
+```
+
+```
+INSERT INTO confezioni(cod_negozio, cod_alimento, quantità, prezzo_totale) 
+VALUES (?, ?, ?, ?)
+```
+
+### OP33: Aggiungere una nuova porzione
+Vengono visualizzati i negozi per scegliere il negozio la cui zona alimentari venderà questa nuova porzione
+```
+SELECT * FROM negozi
+```
+
+Vengono visualizzati gli alimenti per scegliere quello di cui viene creata la nuovo confezione
+```
+SELECT * FROM alimenti
+```
+
+```
+INSERT INTO porzione(cod_negozio, cod_alimento)
+VALUES (?, ?)
+```
+
+### OP36: Aggiungere una nuova colorazione per un determinato prodotto 
+Vengono visualizzati i colori per scegliere quello che formerà la nuova colorazione di un prodotto
+```
+SELECT * FROM colori
+```
+
+Vengono visualizzati i prodotti per scegliere quello di cui verrà creata la nuova colorazione
+```
+SELECT * FROM prodotti
+```
+
+```
+INSERT INTO colorazione(cod_colore, cod_prodotto) 
+VALUES (?, ?)
+```
+
+### OP37 : Aggiungere un nuovo amministratore
 Si visualizzano i negozi per scegliere il cod_negozio di quello nel quale lavorerà il nuovo amministartore.
 ```
 SELECT * FROM negozi
@@ -891,6 +1149,42 @@ INSERT INTO tecnici_commerciali(cf_tecnico_commerciale, nome, cognome, telefono,
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ```
 
+### OP40: Licenziare dei membri del personale
+Vengono visualizzati tutti i membri del personale: per ogni operazione si può scegliere un membro da licenziare da ognuna delle seguenti tabelle: manager, tecnico, tecnico commerciale, amministratore
+
+```
+SELECT * FROM manager
+```
+
+```
+SELECT * FROM tecnico
+```
+
+```
+SELECT * FROM tecnico commerciale
+```
+
+```
+SELECT * FROM amministratore
+```
+
+In base ai membri del personale scelti vengono utilizzate le seguenti query: 
+```
+DELETE FROM manager WHERE cf_manager = ?
+```
+
+```
+DELETE FROM tecnici WHERE cf_tecnico = ?
+```
+
+```
+DELETE FROM tecnici_commerciali WHERE cf_tecnico_commerciale = ?
+```
+
+```
+DELETE FROM amministratori WHERE cf_amministratore = ?
+```
+
 ### OP41: Leggere gli alimenti porzionati meno costosi
 ```
 SELECT a.* FROM alimenti a 
@@ -901,4 +1195,10 @@ ORDER BY prezzo_porzionato ASC LIMIT 10
 ```
 SELECT a.* FROM alimenti a 
 ORDER BY prezzo_confezionato ASC LIMIT 10
+```
+
+### OP43: Aggiungere un nuovo storico sconto
+```
+INSERT INTO storico_sconti(inizio, fine) 
+VALUES (?, ?)
 ```
