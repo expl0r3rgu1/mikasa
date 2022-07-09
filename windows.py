@@ -180,7 +180,6 @@ def clienti_window(clienti):
 
 
 def ordini_mese_window():
-
     table = sg.Table(key='ordini', values=[], headings=['Codice Ordine', 'Data effettuazione', 'Costo totale',
                      'Peso totale', 'Data arrivo', 'Codice Fiscale Cliente', 'Codice Fiscale tecnico commerciale'])
 
