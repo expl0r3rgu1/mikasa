@@ -558,6 +558,12 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Visualizza prodotti terminati nei magazzini':
+        db_cursor.execute(QUERIES['Visualizza prodotti terminati'])
+        quantita = db_cursor.fetchall()
+
+        window.close()
+        window = prodotti_terminati_window(quantita)
     elif event == 'Indietro':
         window.close()
         window = default_window()
