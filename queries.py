@@ -42,6 +42,7 @@ QUERIES = {
     'Visualizza 10 ordini più costosi': 'SELECT * FROM ordini ORDER BY costo_totale DESC LIMIT 10',
     'Visualizza 10 ordini più costosi cliente': 'SELECT * FROM ordini o WHERE cf_cliente = %s ORDER BY costo_totale DESC LIMIT 10',
     'Visualizza sconti' : 'SELECT * FROM sconti',
+    'Visualizza storico sconti' : 'SELECT * FROM storico_sconti',
     'Visualizza negozi' : 'SELECT * FROM negozi',
     'Visualizza acquirenti' : 'SELECT * FROM acquirenti',
     'Visualizza tecnici' : 'SELECT * FROM tecnici',
