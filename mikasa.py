@@ -608,6 +608,26 @@ while True:
 
         window.close()
         window = ordini_costosi_window(ordini)
+    elif event == 'Visualizza 10 ordini più costosi di un cliente':
+        db_cursor.execute(QUERIES['Visualizza clienti'])
+        clienti = db_cursor.fetchall()
+        window.close()
+        window = ordini_cliente_window(clienti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'cliente':
+                db_cursor.execute(
+                    QUERIES['Visualizza 10 ordini più costosi cliente'], (values['cliente'][0],))
+                ordini = db_cursor.fetchall()
+                window['ordini'].update(values=ordini)
+            elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
