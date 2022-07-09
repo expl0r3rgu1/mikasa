@@ -386,7 +386,8 @@ def prodotti_terminati_window(quantita):
 
 
 def personale_window(personale):
-    table = sg.Table(values=personale, headings=['Codice Fiscale', 'Nome', 'Cognome'])
+    table = sg.Table(values=personale, headings=[
+                     'Codice Fiscale', 'Nome', 'Cognome'])
 
     layout = [
         [sg.Text('Personale')],
@@ -395,3 +396,16 @@ def personale_window(personale):
     ]
 
     return sg.Window('Personale', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+
+def prodotti_sconto_maggiore_window(prodotti):
+    table = sg.Table(values=prodotti, headings=[
+                     'Codice', 'Tipo', 'Nome', 'Codice Sconto', 'Percentuale Sconto'])
+
+    layout = [
+        [sg.Text('Top 10 prodotti con sconto maggiore')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Top 10 prodotti con sconto maggiore', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
