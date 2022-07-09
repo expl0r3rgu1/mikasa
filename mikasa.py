@@ -648,6 +648,38 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Aggiungi composizione':
+        db_cursor.execute(QUERIES['Visualizza prodotti'])
+        prodotti = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_composizione_window(prodotti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                costo_totale = 0
+                prodotti_composizione = values['prodotti']
+                
+                for i,prodotto in enumerate(prodotti_composizione):
+                    costo_totale += prodotto[2] * values['quantita'].split(',')[i]
+                
+                db_cursor.execute(QUERIES['Aggiungi composizione'], (values['nome'], len(prodotti_composizione), costo_totale))
+                db_cursor.commit()
+                
+                cod_composizione = db_cursor.lastrowid
+                for i,prodotto in enumerate(prodotti_composizione):
+                    db_cursor.execute(QUERIES['Aggiungi composta'], cod_composizione, prodotto[0])
+
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
