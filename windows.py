@@ -11,7 +11,7 @@ def default_window():
         [sg.Button('Aggiungi cliente'), sg.Button('Rendi socio un cliente'), sg.Button('Rendi non socio un cliente'), sg.Button(
             'Aggiungi manager'), sg.Button('Aggiungi tecnico'), sg.Button('Aggiungi Tecnico commerciale'), sg.Button('Aggiungi amministratore'), sg.Button('Aggiungi negozio')],
         [sg.Button('Effettua ordine per cliente'), sg.Button('Aggiungi prodotto'), sg.Button('Aggiungi alimento'), sg.Button(
-            'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi orario')],
+            'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi storico sconto'), sg.Button('Aggiungi orario')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button(
@@ -484,3 +484,13 @@ def aggiungi_sconto_window(storico_sconti):
     ]
 
     return sg.Window('Aggiungi sconto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_storico_sconto_window():
+    layout = [
+        [sg.Text('Aggiungi storico sconto')],
+        [sg.Text('Data inizio'), sg.In(key='-DATA INIZIO-', enable_events=True, visible=False), sg.CalendarButton('Data inizio', target='-DATA INIZIO-', format='%Y-%m-%d')],
+        [sg.Text('Data fine'), sg.In(key='-DATA FINE-', enable_events=True, visible=False), sg.CalendarButton('Data fine', target='-DATA FINE-', format='%Y-%m-%d')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi storico sconto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
