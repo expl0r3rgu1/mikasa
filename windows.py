@@ -408,3 +408,17 @@ def prodotti_sconto_maggiore_window(prodotti):
     ]
 
     return sg.Window('Top 10 prodotti con sconto maggiore', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def ordini_data_window():
+    table = sg.Table(key='ordini', values=[], headings=['Codice Ordine', 'Data effettuazione', 'Costo totale',
+                     'Peso totale', 'Data arrivo', 'Codice Fiscale Cliente', 'Codice Fiscale tecnico commerciale'])
+
+    layout = [
+        [sg.Text('Ordini da una data')],
+        [sg.In(key='-CAL-', enable_events=True, visible=False),
+         sg.CalendarButton('Data', target='-CAL-', format='%Y-%m-%d')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Ordini da una data', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
