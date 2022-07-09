@@ -447,3 +447,18 @@ def ordini_costosi_cliente_window(clienti):
     ]
 
     return sg.Window('Ordini di un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_alimento_window():
+    layout = [
+        [sg.Text('Aggiungi alimento')],
+        [sg.Text('Nome'), sg.Input(key='nome')],
+        [sg.Text('Provenienza'), sg.Input(key='provenienza')],
+        [sg.Text('Scadenza'), sg.Input(key='scadenza')],
+        [sg.Text('Ingredienti'), sg.Input(key='ingredienti')],
+        [sg.Text('Allergeni'), sg.Input(key='allergeni')],
+        [sg.Text('Prezzo Porzionato'), sg.Input(key='prezzo_porzionato')],
+        [sg.Text('Prezzo confezionato'), sg.Input(key='prezzo_confezionato')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi alimento', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
