@@ -462,3 +462,15 @@ def aggiungi_alimento_window():
     ]
 
     return sg.Window('Aggiungi alimento', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_composizione_window(prodotti):
+    layout = [
+        [sg.Text('Aggiungi composizione')],
+        [sg.Text('Nome'), sg.Input(key='nome')],
+        [sg.Text('Prodotti')],
+        [sg.Listbox(values=prodotti, select_mode='extended', key='prodotti')],
+        [sg.Text('Quantità prodotti (10,4,...):'), sg.InputText(key='quantita')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Effettua ordine', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
