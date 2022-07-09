@@ -564,6 +564,12 @@ while True:
 
         window.close()
         window = prodotti_terminati_window(quantita)
+    elif event == 'Visualizza personale':
+        db_cursor.execute(QUERIES['Visualizza personale'])
+        personale = db_cursor.fetchall()
+
+        window.close()
+        window = personale_window(personale)
     elif event == 'Indietro':
         window.close()
         window = default_window()
