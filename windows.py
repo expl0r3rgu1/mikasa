@@ -134,7 +134,8 @@ def effettua_ordine_cliente_window(clienti, prodotti, composizioni, negozi):
             values=composizioni, select_mode='extended', key='composizioni', size=(0, 10))],
         [sg.Text('Quantità prodotti (10,4,...):'), sg.InputText(key='quantità_prodotti'), sg.Text(
             'Quantità composizioni (10,4,...):'), sg.InputText(key='quantità_composizioni')],
-        [sg.Combo(['Con spedizione', 'senza spedizione'], key='spedizione', enable_events=True)],
+        [sg.Combo(['Con spedizione', 'senza spedizione'],
+                  key='spedizione', enable_events=True)],
         [sg.Combo(['Con montaggio', 'senza montaggio'],
                   default_value='senza montaggio', key='montaggio')],
         [sg.Text('Indirizzo di consegna'), sg.InputText(key='indirizzo')],
@@ -370,6 +371,7 @@ def quantita_prodotto_magazzini_window(prodotti):
 
     return sg.Window('Quantità prodotto nei magazzini', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def prodotti_terminati_window(quantita):
     table = sg.Table(values=quantita, headings=[
                      'Codice Negozio', 'Codice Prodotto', 'Nome Prodotto', 'Tipo'])
@@ -381,3 +383,15 @@ def prodotti_terminati_window(quantita):
     ]
 
     return sg.Window('Prodotti terminati', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+
+def personale_window(personale):
+    table = sg.Table(values=personale, headings=['Codice Fiscale', 'Nome', 'Cognome'])
+
+    layout = [
+        [sg.Text('Personale')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Personale', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
