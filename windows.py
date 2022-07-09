@@ -369,3 +369,15 @@ def quantita_prodotto_magazzini_window(prodotti):
     ]
 
     return sg.Window('Quantità prodotto nei magazzini', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def prodotti_terminati_window(quantita):
+    table = sg.Table(values=quantita, headings=[
+                     'Codice Negozio', 'Codice Prodotto', 'Nome Prodotto', 'Tipo'])
+
+    layout = [
+        [sg.Text('Prodotti terminati')],
+        [table],
+        [sg.Button('Indietro')]
+    ]
+
+    return sg.Window('Prodotti terminati', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
