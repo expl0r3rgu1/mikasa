@@ -513,3 +513,13 @@ def aggiungi_confezione_window(negozi, alimenti):
     ]
 
     return sg.Window('Aggiungi confezione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_porzione_window(negozi, alimenti):
+    layout = [
+        [sg.Text('Aggiungi porzione')],
+        [sg.Text('Negozio'), sg.Combo(negozi, key='negozio')],
+        [sg.Text('Alimenti'), sg.Combo(alimenti, key='alimento')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi porzione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
