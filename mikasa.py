@@ -628,6 +628,26 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Aggiungi alimento':
+        window.close()
+        window = aggiungi_alimento_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(QUERIES['Aggiungi alimento'], (values['nome'], values['provenienza'], values['scadenza'],
+                                  values['ingredienti'], values['allergeni'], values['prezzo_porzionato'], values['prezzo_confezionato']))
+                db_cursor.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
