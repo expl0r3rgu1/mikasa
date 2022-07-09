@@ -502,3 +502,14 @@ def aggiungi_orario_window():
     ]
 
     return sg.Window('Aggiungi orario', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_confezione_window(negozi, alimenti):
+    layout = [
+        [sg.Text('Aggiungi confezione')],
+        [sg.Text('Negozio'), sg.Combo(negozi, key='negozio')],
+        [sg.Text('Alimenti'), sg.Combo(alimenti, key='alimento')],
+        [sg.Text('Quantità'), sg.InputText(key='quantita')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi confezione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
