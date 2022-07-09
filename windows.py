@@ -474,3 +474,13 @@ def aggiungi_composizione_window(prodotti):
     ]
 
     return sg.Window('Effettua ordine', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_sconto_window(storico_sconti):
+    layout = [
+        [sg.Text('Aggiungi sconto')],
+        [sg.Text('Percentuale'), sg.Input(key='percentuale')],
+        [sg.Combo(storico_sconti, key='storico')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi sconto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
