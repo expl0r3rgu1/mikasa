@@ -494,3 +494,14 @@ def aggiungi_storico_sconto_window():
     ]
 
     return sg.Window('Aggiungi storico sconto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_orario_window():
+    layout = [
+        [sg.Text('Aggiungi orario')],
+        [sg.Text('Giorni'), sg.InputText()],
+        [sg.Text('Ore inizio'), sg.InputText()],
+        [sg.Text('Ore fine'), sg.InputText()],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi orario', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
