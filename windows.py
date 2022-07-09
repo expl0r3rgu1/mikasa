@@ -12,6 +12,7 @@ def default_window():
             'Aggiungi manager'), sg.Button('Aggiungi tecnico'), sg.Button('Aggiungi Tecnico commerciale'), sg.Button('Aggiungi amministratore'), sg.Button('Aggiungi negozio')],
         [sg.Button('Effettua ordine per cliente'), sg.Button('Aggiungi prodotto'), sg.Button('Aggiungi alimento'), sg.Button(
             'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi storico sconto'), sg.Button('Aggiungi orario')],
+        [sg.Button('Aggiungi colorazione')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button(
@@ -523,3 +524,13 @@ def aggiungi_porzione_window(negozi, alimenti):
     ]
 
     return sg.Window('Aggiungi porzione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_colorazione_window(colori, prodotti):
+    layout = [
+        [sg.Text('Aggiungi colorazione')],
+        [sg.Text('Colori'), sg.Combo(colori, key='colore')],
+        [sg.Text('Prodotti'), sg.Combo(prodotti, key='prodotto')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi colorazione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
