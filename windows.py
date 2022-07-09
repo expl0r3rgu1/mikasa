@@ -19,7 +19,7 @@ def default_window():
         [sg.Button('Visualizza 10 alimenti confezionati più costosi'), sg.Button('Visualizza 10 alimenti confezionati meno costosi'), sg.Button('Visualizza quantità prodotto nei magazzini'), sg.Button(
             'Visualizza prodotti terminati nei magazzini'), sg.Button('Visualizza personale'), sg.Button('Visualizza 10 prodotti con sconto maggiore')],
         [sg.Button('Visualizza clienti'), sg.Button('Visualizza ordini da una data'), sg.Button(
-            'Visualizza ordine più costoso'), sg.Button('Visualizza ordine più costoso di un cliente')]
+            'Visualizza 10 ordini più costosi'), sg.Button('Visualizza 10 ordini più costosi di un cliente')]
     ]
 
     return sg.Window('Mikasa', empty_layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
