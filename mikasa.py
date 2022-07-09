@@ -817,6 +817,37 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Licenzia personale':
+        db_cursor.execute(QUERIES['Visualizza manager'])
+        manager = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza amministratori'])
+        amministratori = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza tecnici'])
+        tecnici = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza tecnici commerciali'])
+        tecnici_commerciali = db_cursor.fetchall()
+        window.close()
+        window = licenzia_personale_window(manager, amministratori, tecnici, tecnici_commerciali)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                for personale in ['manager', 'amministratore', 'tecnico', 'tecnico commerciale']:
+                    for persona in values[personale]:
+                        db_cursor.execute(
+                            QUERIES['Licenzia ' + personale], (persona[0],))
+                        db_cursor.commit()
+                
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
