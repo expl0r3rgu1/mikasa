@@ -165,9 +165,6 @@ def aggiungi_prodotto_window(sconti):
 
     return sg.Window('Aggiungi prodotto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
-# VISUALIZZAZIONE
-
-
 def clienti_window(clienti):
     table = sg.Table(values=clienti, headings=['Codice Fiscale', 'Nome', 'Cognome',
                                                'Telefono', 'E-mail', 'Via', 'Civico', 'CAP', 'CITTÀ'])
