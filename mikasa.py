@@ -346,13 +346,16 @@ while True:
                         db.commit()
                         weights = [1] * len(tecnici)
                         weights[tecnici.index(tecnico)] = 0
-                        tecnici_montaggio = random.choices(tecnici, weights, k = 1)
+                        tecnici_montaggio = random.choices(
+                            tecnici, weights, k=1)
                         weights[tecnici.index(tecnici_montaggio[0])] = 0
-                        tecnici_montaggio += random.choices(tecnici, weights, k = 1)
-                        print((tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
-                        db_cursor.execute(QUERIES['Aggiungi dettaglio montaggio'] + ",(%s,%s)", (tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
+                        tecnici_montaggio += random.choices(
+                            tecnici, weights, k=1)
+                        print(
+                            (tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
+                        db_cursor.execute(QUERIES['Aggiungi dettaglio montaggio'] + ",(%s,%s)", (
+                            tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
                         db.commit()
-                        
 
                 window.close()
                 window = default_window()
@@ -515,25 +518,29 @@ while True:
         window.close()
         window = prodotti_meno_costosi_window(prodotti)
     elif event == 'Visualizza 10 alimenti porzionati più costosi':
-        db_cursor.execute(QUERIES['Visualizza 10 alimenti porzionati più costosi'])
+        db_cursor.execute(
+            QUERIES['Visualizza 10 alimenti porzionati più costosi'])
         prodotti = db_cursor.fetchall()
 
         window.close()
         window = alimenti_porzionati_piu_costosi_window(prodotti)
     elif event == 'Visualizza 10 alimenti porzionati meno costosi':
-        db_cursor.execute(QUERIES['Visualizza 10 alimenti porzionati meno costosi'])
+        db_cursor.execute(
+            QUERIES['Visualizza 10 alimenti porzionati meno costosi'])
         prodotti = db_cursor.fetchall()
 
         window.close()
         window = alimenti_porzionati_meno_costosi_window(prodotti)
     elif event == 'Visualizza 10 alimenti confezionati più costosi':
-        db_cursor.execute(QUERIES['Visualizza 10 alimenti confezionati più costosi'])
+        db_cursor.execute(
+            QUERIES['Visualizza 10 alimenti confezionati più costosi'])
         prodotti = db_cursor.fetchall()
 
         window.close()
         window = alimenti_confezionati_piu_costosi_window(prodotti)
     elif event == 'Visualizza 10 alimenti confezionati meno costosi':
-        db_cursor.execute(QUERIES['Visualizza 10 alimenti confezionati meno costosi'])
+        db_cursor.execute(
+            QUERIES['Visualizza 10 alimenti confezionati meno costosi'])
         prodotti = db_cursor.fetchall()
 
         window.close()
@@ -571,11 +578,30 @@ while True:
         window.close()
         window = personale_window(personale)
     elif event == 'Visualizza 10 prodotti con sconto maggiore':
-        db_cursor.execute(QUERIES['Visualizza 10 prodotti con sconto maggiore'])
+        db_cursor.execute(
+            QUERIES['Visualizza 10 prodotti con sconto maggiore'])
         prodotti = db_cursor.fetchall()
 
         window.close()
         window = prodotti_sconto_maggiore_window(prodotti)
+    elif event == 'Visualizza ordini da una data':
+        window.close()
+        window = ordini_data_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == '-CAL-':
+                db_cursor.execute(
+                    QUERIES['Visualizza ordini da una data'], (values['-CAL-'],))
+                ordini = db_cursor.fetchall()
+                window['ordini'].update(values=ordini)
+            elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
