@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 import mysql.connector
 from credentials import *
 from windows import *
-from queries import *
+#from queries import *
 from datetime import date, timedelta, datetime
 import random
 
@@ -839,6 +839,27 @@ while True:
                             QUERIES['Licenzia ' + personale], (persona[0],))
                         db_cursor.commit()
                 
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi colore':
+        db_cursor.execute('SELECT * FROM colori')
+        colori = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_colore_window(colori)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute('INSERT INTO colori(nome) VALUES (%s)', (values['nome'],))
+                db.commit()
                 window.close()
                 window = default_window()
                 break
