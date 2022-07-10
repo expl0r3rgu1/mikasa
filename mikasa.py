@@ -849,7 +849,7 @@ while True:
             elif event == sg.WIN_CLOSED:
                 break
     elif event == 'Aggiungi colore':
-        db_cursor.execute('SELECT * FROM colori')
+        db_cursor.execute(QUERIES['Visualizza colori'])
         colori = db_cursor.fetchall()
         window.close()
         window = aggiungi_colore_window(colori)
