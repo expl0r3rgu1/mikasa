@@ -869,6 +869,30 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Esponi composizione':
+        db_cursor.execute(QUERIES['Visualizza composizioni'])
+        composizioni = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza negozi'])
+        negozi = db_cursor.fetchall()
+        window.close()
+        window = esponi_composizione_window(composizioni, negozi)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi esposta'], (values['composizione'][0], values['negozio'][0]))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
