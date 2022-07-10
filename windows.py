@@ -13,7 +13,7 @@ def default_window():
         [sg.Button('Effettua ordine per cliente'), sg.Button('Aggiungi prodotto'), sg.Button('Aggiungi alimento'), sg.Button(
             'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi storico sconto'), sg.Button('Aggiungi orario')],
         [sg.Button('Aggiungi porzione'), sg.Button('Aggiungi colorazione'), sg.Button(
-            'Licenzia personale'), sg.Button('Aggiungi colore'), sg.Button('Esponi composizione')],
+            'Licenzia personale'), sg.Button('Aggiungi colore'), sg.Button('Esponi composizione'), sg.Button('Restock prodotto')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button(
@@ -594,3 +594,14 @@ def esponi_composizione_window(composizioni, negozi):
     ]
 
     return sg.Window('Esponi composizione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def restock_prodotto_window(prodotti, negozi):
+    layout = [
+        [sg.Text('Restock prodotto')],
+        [sg.Text('Prodotti'), sg.Combo(prodotti, key='prodotto')],
+        [sg.Text('Negozio'), sg.Combo(negozi, key='negozio')],
+        [sg.Text('Quantità'), sg.InputText(key='quantita')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Restock prodotto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
