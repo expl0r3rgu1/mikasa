@@ -638,7 +638,7 @@ while True:
             if event == 'Conferma':
                 db_cursor.execute(QUERIES['Aggiungi alimento'], (values['nome'], values['provenienza'], values['scadenza'],
                                   values['ingredienti'], values['allergeni'], values['prezzo_porzionato'], values['prezzo_confezionato']))
-                db_cursor.commit()
+                db.commit()
                 window.close()
                 window = default_window()
                 break
@@ -667,7 +667,7 @@ while True:
 
                 db_cursor.execute(QUERIES['Aggiungi composizione'], (values['nome'], len(
                     prodotti_composizione), costo_totale))
-                db_cursor.commit()
+                db.commit()
 
                 cod_composizione = db_cursor.lastrowid
                 for i, prodotto in enumerate(prodotti_composizione):
@@ -695,7 +695,7 @@ while True:
             if event == 'Conferma':
                 db_cursor.execute(
                     QUERIES['Aggiungi sconto'], (values['percentuale'], values['storico'][0]))
-                db_cursor.commit()
+                db.commit()
                 window.close()
                 window = default_window()
                 break
@@ -715,7 +715,7 @@ while True:
             if event == 'Conferma':
                 db_cursor.execute(
                     QUERIES['Aggiungi storico sconto'], (values['-DATA INIZIO-'], values['-DATA FINE-']))
-                db_cursor.commit()
+                db.commit()
                 window.close()
                 window = default_window()
                 break
@@ -735,7 +735,7 @@ while True:
             if event == 'Conferma':
                 db_cursor.execute(
                     QUERIES['Aggiungi orario'], (values[0], values[1], values[2]))
-                db_cursor.commit()
+                db.commit()
                 window.close()
                 window = default_window()
                 break
@@ -759,7 +759,7 @@ while True:
             if event == 'Conferma':
                 db_cursor.execute(
                     QUERIES['Aggiungi confezione'], (values['negozio'][0], values['alimento'][0], values['quantita'], int(values['quantita']) * values['alimento'][7]))
-                db_cursor.commit()
+                db.commit()
                 window.close()
                 window = default_window()
                 break
@@ -783,7 +783,7 @@ while True:
             if event == 'Conferma':
                 db_cursor.execute(
                     QUERIES['Aggiungi porzione'], (values['negozio'][0], values['alimento'][0]))
-                db_cursor.commit()
+                db.commit()
                 window.close()
                 window = default_window()
                 break
@@ -807,7 +807,7 @@ while True:
             if event == 'Conferma':
                 db_cursor.execute(
                     QUERIES['Aggiungi colorazione'], (values['colore'][0], values['prodotto'][0]))
-                db_cursor.commit()
+                db.commit()
                 window.close()
                 window = default_window()
                 break
@@ -837,7 +837,7 @@ while True:
                     for persona in values[personale]:
                         db_cursor.execute(
                             QUERIES['Licenzia ' + personale], (persona[0],))
-                        db_cursor.commit()
+                        db.commit()
                 
                 window.close()
                 window = default_window()
