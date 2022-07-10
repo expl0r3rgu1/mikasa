@@ -268,7 +268,7 @@ Di seguito vengono riportate le frequenze delle varie operazioni effettuabili.
 | 32     | Aggiungere una nuova confezione                                            | 2 all'anno      |
 | 33     | Aggiungere una nuova porzione                                              | 2 all'anno      |
 | 34     | Esporre una composizione nella zona esposizioni di un negozio              | 2 all'anno      |
-| 35     | Aggiungere un nuovo colore                                                 | 1 all'anno      | 
+| 35     | Aggiungere un nuovo colore                                                 | 1 all'anno      |
 | 36     | Aggiungere una nuova colorazione per un determinato prodotto               | 10 all'anno     |
 | 37     | Aggiungere un nuovo amministratore                                         | 10 all'anno     |
 | 38     | Aggiungere un nuovo tecnico                                                | 10 all'anno     |
@@ -277,6 +277,7 @@ Di seguito vengono riportate le frequenze delle varie operazioni effettuabili.
 | 41     | Leggere gli alimenti porzionati meno costosi                               | 1 all'anno      |
 | 42     | Leggere gli alimenti confezionati meno costosi                             | 1 all'anno      |
 | 43     | Aggiungere un nuovo storico sconto                                         | 1 ogni due anni |
+| 44     | Aggiungere un nuovo acquirente                                             | 1 ogni due anni | 
 
 <div style="page-break-after: always;"></div>
 
@@ -598,6 +599,8 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Storico Sconti | E         | 1       | S    | 
 #### Totale: 1S -> 1 ogni due anni
 
+### OP44: Aggiungere un nuovo acquirente
+
 <div style="page-break-after: always;"></div>
 
 ## Raffinamento dello schema
@@ -901,8 +904,8 @@ VALUES (?, ?, ?)
 
 Per ogni prodotto della nuova composizione viene aggiunta una entry nella tabella "composte", così da salvare il legame tra una composizione e un prodotto che ne fa parte.
 ```
-INSERT INTO composte(cod_composizione, cod_prodotto) 
-VALUES (?, ?)
+INSERT INTO composte(cod_composizione, cod_prodotto, quantità) 
+VALUES (?, ?, ?)
 ```
 
 ### OP9: Aggiungere un nuovo sconto
@@ -1275,4 +1278,9 @@ ORDER BY prezzo_confezionato ASC LIMIT 10
 ```
 INSERT INTO storico_sconti(inizio, fine) 
 VALUES (?, ?)
+```
+
+### OP44: Aggiungere un nuovo acquirente
+```
+
 ```
