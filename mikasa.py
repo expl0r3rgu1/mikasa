@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 import mysql.connector
 from credentials import *
 from windows import *
-#from queries import *
+from queries import *
 from datetime import date, timedelta, datetime
 import random
 
