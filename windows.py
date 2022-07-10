@@ -12,7 +12,8 @@ def default_window():
             'Aggiungi manager'), sg.Button('Aggiungi tecnico'), sg.Button('Aggiungi Tecnico commerciale'), sg.Button('Aggiungi amministratore'), sg.Button('Aggiungi negozio')],
         [sg.Button('Effettua ordine per cliente'), sg.Button('Aggiungi prodotto'), sg.Button('Aggiungi alimento'), sg.Button(
             'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi storico sconto'), sg.Button('Aggiungi orario')],
-        [sg.Button('Aggiungi porzione'), sg.Button('Aggiungi colorazione'), sg.Button('Licenzia personale')],
+        [sg.Button('Aggiungi porzione'), sg.Button('Aggiungi colorazione'), sg.Button(
+            'Licenzia personale'), sg.Button('Aggiungi colore')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button(
@@ -165,6 +166,7 @@ def aggiungi_prodotto_window(sconti):
     ]
 
     return sg.Window('Aggiungi prodotto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
 
 def clienti_window(clienti):
     table = sg.Table(values=clienti, headings=['Codice Fiscale', 'Nome', 'Cognome',
@@ -407,6 +409,7 @@ def prodotti_sconto_maggiore_window(prodotti):
 
     return sg.Window('Top 10 prodotti con sconto maggiore', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def ordini_data_window():
     table = sg.Table(key='ordini', values=[], headings=['Codice Ordine', 'Data effettuazione', 'Costo totale',
                      'Peso totale', 'Data arrivo', 'Codice Fiscale Cliente', 'Codice Fiscale tecnico commerciale'])
@@ -421,6 +424,7 @@ def ordini_data_window():
 
     return sg.Window('Ordini da una data', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def ordini_costosi_window(ordini):
     table = sg.Table(values=ordini, headings=['Codice Ordine', 'Data effettuazione', 'Costo totale',
                      'Peso totale', 'Data arrivo', 'Codice Fiscale Cliente', 'Codice Fiscale tecnico commerciale'])
@@ -432,6 +436,7 @@ def ordini_costosi_window(ordini):
     ]
 
     return sg.Window('Top 10 ordini più costosi', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
 
 def ordini_costosi_cliente_window(clienti):
     table = sg.Table(key='ordini', values=[], headings=['Codice Ordine', 'Data effettuazione', 'Costo totale',
@@ -445,6 +450,7 @@ def ordini_costosi_cliente_window(clienti):
     ]
 
     return sg.Window('Ordini di un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
 
 def aggiungi_alimento_window():
     layout = [
@@ -461,17 +467,20 @@ def aggiungi_alimento_window():
 
     return sg.Window('Aggiungi alimento', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def aggiungi_composizione_window(prodotti):
     layout = [
         [sg.Text('Aggiungi composizione')],
         [sg.Text('Nome'), sg.Input(key='nome')],
         [sg.Text('Prodotti')],
         [sg.Listbox(values=prodotti, select_mode='extended', key='prodotti')],
-        [sg.Text('Quantità prodotti (10,4,...):'), sg.InputText(key='quantita')],
+        [sg.Text('Quantità prodotti (10,4,...):'),
+         sg.InputText(key='quantita')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
     return sg.Window('Effettua ordine', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
 
 def aggiungi_sconto_window(storico_sconti):
     layout = [
@@ -483,15 +492,19 @@ def aggiungi_sconto_window(storico_sconti):
 
     return sg.Window('Aggiungi sconto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def aggiungi_storico_sconto_window():
     layout = [
         [sg.Text('Aggiungi storico sconto')],
-        [sg.Text('Data inizio'), sg.In(key='-DATA INIZIO-', enable_events=True, visible=False), sg.CalendarButton('Data inizio', target='-DATA INIZIO-', format='%Y-%m-%d')],
-        [sg.Text('Data fine'), sg.In(key='-DATA FINE-', enable_events=True, visible=False), sg.CalendarButton('Data fine', target='-DATA FINE-', format='%Y-%m-%d')],
+        [sg.Text('Data inizio'), sg.In(key='-DATA INIZIO-', enable_events=True, visible=False),
+         sg.CalendarButton('Data inizio', target='-DATA INIZIO-', format='%Y-%m-%d')],
+        [sg.Text('Data fine'), sg.In(key='-DATA FINE-', enable_events=True, visible=False),
+         sg.CalendarButton('Data fine', target='-DATA FINE-', format='%Y-%m-%d')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
     return sg.Window('Aggiungi storico sconto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
 
 def aggiungi_orario_window():
     layout = [
@@ -504,6 +517,7 @@ def aggiungi_orario_window():
 
     return sg.Window('Aggiungi orario', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def aggiungi_confezione_window(negozi, alimenti):
     layout = [
         [sg.Text('Aggiungi confezione')],
@@ -515,6 +529,7 @@ def aggiungi_confezione_window(negozi, alimenti):
 
     return sg.Window('Aggiungi confezione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def aggiungi_porzione_window(negozi, alimenti):
     layout = [
         [sg.Text('Aggiungi porzione')],
@@ -524,6 +539,7 @@ def aggiungi_porzione_window(negozi, alimenti):
     ]
 
     return sg.Window('Aggiungi porzione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
 
 def aggiungi_colorazione_window(colori, prodotti):
     layout = [
@@ -535,14 +551,33 @@ def aggiungi_colorazione_window(colori, prodotti):
 
     return sg.Window('Aggiungi colorazione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
+
 def licenzia_personale_window(manager, amministratori, tecnici, tecnici_commerciali):
     layout = [
         [sg.Text('Licenzia personale')],
-        [sg.Text('Manager'), sg.Listbox(values=manager, select_mode='extended', key='manager')],
-        [sg.Text('Amministratori'), sg.Listbox(values=amministratori, select_mode='extended', key='amministratori')],
-        [sg.Text('Tecnici'), sg.Listbox(values=tecnici, select_mode='extended', key='tecnici')],
-        [sg.Text('Tecnici commerciali'), sg.Listbox(values=tecnici_commerciali, select_mode='extended', key='tecnici_commerciali')],
+        [sg.Text('Manager'), sg.Listbox(values=manager,
+                                        select_mode='extended', key='manager')],
+        [sg.Text('Amministratori'), sg.Listbox(values=amministratori,
+                                               select_mode='extended', key='amministratori')],
+        [sg.Text('Tecnici'), sg.Listbox(values=tecnici,
+                                        select_mode='extended', key='tecnici')],
+        [sg.Text('Tecnici commerciali'), sg.Listbox(
+            values=tecnici_commerciali, select_mode='extended', key='tecnici_commerciali')],
         [sg.Button('Licenzia'), sg.Button('Annulla')]
     ]
 
     return sg.Window('Licenzia personale', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+
+def aggiungi_colore_window(colori):
+    table = sg.Table(values=colori, headings=['Codice', 'Nome'])
+
+    layout = [
+        [sg.Text('Aggiungi colore')],
+        [sg.Text('Colori esistenti')],
+        [table],
+        [sg.Text('Nome'), sg.InputText(key='nome')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi colore', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
