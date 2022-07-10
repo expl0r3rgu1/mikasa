@@ -13,7 +13,7 @@ def default_window():
         [sg.Button('Effettua ordine per cliente'), sg.Button('Aggiungi prodotto'), sg.Button('Aggiungi alimento'), sg.Button(
             'Aggiungi composizione'), sg.Button('Aggiungi sconto'), sg.Button('Aggiungi storico sconto'), sg.Button('Aggiungi orario')],
         [sg.Button('Aggiungi porzione'), sg.Button('Aggiungi colorazione'), sg.Button(
-            'Licenzia personale'), sg.Button('Aggiungi colore')],
+            'Licenzia personale'), sg.Button('Aggiungi colore'), sg.Button('Esponi composizione')],
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button(
@@ -581,3 +581,16 @@ def aggiungi_colore_window(colori):
     ]
 
     return sg.Window('Aggiungi colore', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+
+def esponi_composizione_window(composizioni, negozi):
+    table = sg.Table(values=composizioni, headings=['Codice', 'Nome'])
+
+    layout = [
+        [sg.Text('Esponi composizione')],
+        [sg.Text('Composizioni'), sg.Combo(composizioni, key='composizione')],
+        [sg.Text('Negozio'), sg.Combo(negozi, key='negozio')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Esponi composizione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
