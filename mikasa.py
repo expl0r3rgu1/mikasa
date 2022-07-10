@@ -893,6 +893,34 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Restock prodotto':
+        db_cursor.execute(QUERIES['Visualizza prodotti'])
+        prodotti = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza negozi'])
+        negozi = db_cursor.fetchall()
+        window.close()
+        window = restock_prodotto_window(prodotti, negozi)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Restock prodotto'], (values['quantita'], values['prodotto'][0], values['negozio'][0]))
+                db.commit()
+                rows_affected = db_cursor.rowcount
+                if rows_affected == 0:
+                    db_cursor.execute('INSERT INTO quantità(prodotto, negozio, quantità) VALUES (%s, %s, %s)', (values['prodotto'][0], values['negozio'][0], values['quantita']))
+                    db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
