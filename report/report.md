@@ -499,6 +499,14 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Orario   | E         | 1       | S    | 
 #### Totale: 5S -> 5 all'anno 
 
+### OP31: Restock di un prodotto nel magazzino di un negozio
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Negozio  | E         | 1       | L    |
+| Prodotto | E         | 1       | L    |
+| Quantità | E         | 1       | S    |
+#### Totale: 2L, 1S -> 300 a settimana
+
 ### OP32: Aggiungere una nuova confezione
 | Concetto   | Costrutto | Accessi | Tipo |
 | ---------- | --------- | ------- | ---- |
@@ -514,6 +522,21 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Alimento | E         | 1       | L    |
 | Porzione | E         | 1       | S    |
 #### Totale: 2L, 1S -> 3 all'anno
+
+### OP34: Esporre una composizione nella zona esposizioni di un negozio
+| Concetto     | Costrutto | Accessi | Tipo |
+| ------------ | --------- | ------- | ---- |
+| Negozio      | E         | 1       | L    |
+| Composizione | E         | 1       | L    |
+| Esposta      | E         | 1       | S    | 
+#### Totale: 2L, 1S -> 6 all'anno
+
+### OP35: Aggiungere un nuovo colore  
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Colore   | E         | 1       | L    | 
+| Colore   | E         | 1       | S    |
+#### Totale: 1L, 1S -> 2 all'anno
 
 ### OP36: Aggiungere una nuova colorazione per un determinato prodotto 
 | Concetto    | Costrutto | Accessi | Tipo |
@@ -1068,6 +1091,30 @@ INSERT INTO orari(giorni, oreinizio, orefine)
 VALUES (?, ?, ?)
 ```
 
+### OP31: Restock di un prodotto nel magazzino di un negozio 
+Vengono visualizzati tutti i prodotti per scegliere quello da rifornire
+```
+SELECT * FROM prodotti
+```
+
+Vengono visualizzati tutti i negozi per scegliere quello in cui il prodotto verrà rifornito
+```
+SELECT * FROM negozi
+```
+
+Se il prodotto è già presente nel magazzino di quel negozio, viene modificata la relativa entry nella tabella "quantità"
+```
+UPDATE quantità SET quantità = ? 
+WHERE cod_prodotto = ? 
+AND cod_negozio = ?
+```
+
+Se il prodotto non è presente si aggiunge una entry nella tabella "quantità"
+```
+INSERT INTO quantità(prodotto, negozio, quantità) 
+VALUES (?, ?, ?)
+```
+
 ### OP32: Aggiungere una nuova confezione
 Vengono visualizzati i negozi per scegliere il negozio la cui zona ristoro venderà questa nuova confezione
 ```
@@ -1098,6 +1145,33 @@ SELECT * FROM alimenti
 ```
 INSERT INTO porzione(cod_negozio, cod_alimento)
 VALUES (?, ?)
+```
+
+### OP34: Esporre una composizione nella zona esposizioni di un negozio
+Vengono visualizzate tutte le composizioni  per scegliere quale sarà quella esposta
+```
+SELECT * FROM composizioni
+```
+
+Vengono visualizzati tutti i negozi per scegliere quello nel quale verrà esposta la composizione  
+```
+SELECT * FROM negozi
+```
+
+```
+INSERT INTO esposte(cod_composizione, cod_negozio) 
+VALUES (?, ?)
+```
+
+### OP35: Aggiungere un nuovo colore  
+Vengono visualizzati tutti i colori per controllare quali colori sono già presenti
+```
+SELECT * FROM colori
+```
+
+```
+INSERT INTO colori(nome) 
+VALUES (?)
 ```
 
 ### OP36: Aggiungere una nuova colorazione per un determinato prodotto 
