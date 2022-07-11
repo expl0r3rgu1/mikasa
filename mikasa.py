@@ -56,7 +56,6 @@ while True:
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                print(values['cliente'][0])
                 db_cursor.execute(
                     QUERIES['Rendi socio un cliente'], (values['cliente'][0],))
                 db.commit()
@@ -73,12 +72,11 @@ while True:
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
         window.close()
-        window = rendi_socio_cliente_window(clienti)
+        window = rendi_non_socio_cliente_window(clienti)
 
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                print(values['cliente'][0])
                 db_cursor.execute(
                     QUERIES['Rendi non socio un cliente'], (values['cliente'][0],))
                 db.commit()
@@ -351,8 +349,6 @@ while True:
                         weights[tecnici.index(tecnici_montaggio[0])] = 0
                         tecnici_montaggio += random.choices(
                             tecnici, weights, k=1)
-                        print(
-                            (tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
                         db_cursor.execute(QUERIES['Aggiungi dettaglio montaggio'] + ",(%s,%s)", (
                             tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
                         db.commit()
@@ -593,7 +589,7 @@ while True:
 
             if event == '-CAL-':
                 db_cursor.execute(
-                    QUERIES['Visualizza ordini da una data'], (values['-CAL-'],))
+                    QUERIES['Visualizza ordini dopo data'], (values['-CAL-'],))
                 ordini = db_cursor.fetchall()
                 window['ordini'].update(values=ordini)
             elif event == 'Indietro':
@@ -663,7 +659,7 @@ while True:
 
                 for i, prodotto in enumerate(prodotti_composizione):
                     costo_totale += prodotto[2] * \
-                        values['quantita'].split(',')[i]
+                        int(values['quantita'].split(',')[i])
 
                 db_cursor.execute(QUERIES['Aggiungi composizione'], (values['nome'], len(
                     prodotti_composizione), costo_totale))
@@ -672,7 +668,8 @@ while True:
                 cod_composizione = db_cursor.lastrowid
                 for i, prodotto in enumerate(prodotti_composizione):
                     db_cursor.execute(
-                        QUERIES['Aggiungi composta'], cod_composizione, prodotto[0])
+                        QUERIES['Aggiungi composta'], (cod_composizione, prodotto[0], int(values['quantita'].split(',')[i])))
+                    db.commit()
 
                 window.close()
                 window = default_window()
@@ -714,7 +711,7 @@ while True:
 
             if event == 'Conferma':
                 db_cursor.execute(
-                    QUERIES['Aggiungi storico sconto'], (values['-DATA INIZIO-'], values['-DATA FINE-']))
+                    QUERIES['Aggiungi storico sconti'], ('1111-' + values['-DATA INIZIO-'], '1111-' + values['-DATA FINE-']))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -827,7 +824,8 @@ while True:
         db_cursor.execute(QUERIES['Visualizza tecnici commerciali'])
         tecnici_commerciali = db_cursor.fetchall()
         window.close()
-        window = licenzia_personale_window(manager, amministratori, tecnici, tecnici_commerciali)
+        window = licenzia_personale_window(
+            manager, amministratori, tecnici, tecnici_commerciali)
 
         while True:
             event, values = window.read()
@@ -838,7 +836,7 @@ while True:
                         db_cursor.execute(
                             QUERIES['Licenzia ' + personale], (persona[0],))
                         db.commit()
-                
+
                 window.close()
                 window = default_window()
                 break
@@ -858,7 +856,8 @@ while True:
             event, values = window.read()
 
             if event == 'Conferma':
-                db_cursor.execute('INSERT INTO colori(nome) VALUES (%s)', (values['nome'],))
+                db_cursor.execute(
+                    'INSERT INTO colori(nome) VALUES (%s)', (values['nome'],))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -910,7 +909,8 @@ while True:
                 db.commit()
                 rows_affected = db_cursor.rowcount
                 if rows_affected == 0:
-                    db_cursor.execute('INSERT INTO quantità(prodotto, negozio, quantità) VALUES (%s, %s, %s)', (values['prodotto'][0], values['negozio'][0], values['quantita']))
+                    db_cursor.execute('INSERT INTO quantità(prodotto, negozio, quantità) VALUES (%s, %s, %s)', (
+                        values['prodotto'][0], values['negozio'][0], values['quantita']))
                     db.commit()
                 window.close()
                 window = default_window()

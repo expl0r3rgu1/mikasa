@@ -17,7 +17,7 @@ def default_window():
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza ordini cliente'), sg.Button(
             'Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button('Visualizza montaggi in un mese')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button(
-            'Visualizza 10 prodotti più costosi'), sg.Button('Visualizza 10 prodotti meno costosi'), sg.Button('Visualizza 10 alimenti porzionati più costosi'), sg.Button('Visualizza 10 alimenti porzionati mwno costosi')],
+            'Visualizza 10 prodotti più costosi'), sg.Button('Visualizza 10 prodotti meno costosi'), sg.Button('Visualizza 10 alimenti porzionati più costosi'), sg.Button('Visualizza 10 alimenti porzionati meno costosi')],
         [sg.Button('Visualizza 10 alimenti confezionati più costosi'), sg.Button('Visualizza 10 alimenti confezionati meno costosi'), sg.Button('Visualizza quantità prodotto nei magazzini'), sg.Button(
             'Visualizza prodotti terminati nei magazzini'), sg.Button('Visualizza personale'), sg.Button('Visualizza 10 prodotti con sconto maggiore')],
         [sg.Button('Visualizza clienti'), sg.Button('Visualizza ordini da una data'), sg.Button(
@@ -88,7 +88,7 @@ def aggiungi_personale_window(negozi):
 
 def aggiungi_amministratore_window(negozi, zone):
     layout = [
-        [sg.Text('Aggiungi manager')],
+        [sg.Text('Aggiungi amministratore')],
         [sg.Text('Codice Fiscale'), sg.InputText()],
         [sg.Text('Nome'), sg.InputText()],
         [sg.Text('Cognome'), sg.InputText()],
@@ -105,7 +105,7 @@ def aggiungi_amministratore_window(negozi, zone):
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
-    return sg.Window('Aggiungi manager', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+    return sg.Window('Aggiungi amministratore', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
 
 def aggiungi_negozio_window(acquirenti):
@@ -115,12 +115,13 @@ def aggiungi_negozio_window(acquirenti):
         [sg.Text('Civico'), sg.InputText()],
         [sg.Text('CAP'), sg.InputText()],
         [sg.Text('Città'), sg.InputText()],
-        [sg.In(key='-CAL-', enable_events=True, visible=False),
-         sg.CalendarButton('Data inaugurazione', target='-CAL-')],
+        [sg.In(key='-CAL-', enable_events=True, disabled=True),
+         sg.CalendarButton('Data inaugurazione', target='-CAL-', format='%Y-%m-%d')],
         [sg.Text('Acquirente'), sg.Combo(
             acquirenti, default_value=acquirenti[0], key='acquirente')],
-        [sg.Text('Numero posti ristoro'), sg.InputText()],
-        [sg.Text('Numero composizioni'), sg.InputText()],
+        [sg.Text('Numero posti ristoro'),
+         sg.InputText(key='num_posti_ristoro')],
+        [sg.Text('Numero composizioni'), sg.InputText(key='num_composizioni')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
@@ -185,7 +186,7 @@ def ordini_mese_window():
 
     layout = [
         [sg.Text('Ordini in un mese')],
-        [sg.In(key='-CAL-', enable_events=True, visible=False),
+        [sg.In(key='-CAL-', enable_events=True, disabled=True),
          sg.CalendarButton('Mese', target='-CAL-', format='%Y-%m')],
         [table],
         [sg.Button('Indietro')]
@@ -214,7 +215,7 @@ def spedizioni_mese_window():
 
     layout = [
         [sg.Text('Spedizioni in un mese')],
-        [sg.In(key='-CAL-', enable_events=True, visible=False),
+        [sg.In(key='-CAL-', enable_events=True, disabled=True),
          sg.CalendarButton('Mese', target='-CAL-', format='%Y-%m')],
         [table],
         [sg.Button('Indietro')]
@@ -229,7 +230,7 @@ def ritiri_mese_window():
 
     layout = [
         [sg.Text('Ritiri in un mese')],
-        [sg.In(key='-CAL-', enable_events=True, visible=False),
+        [sg.In(key='-CAL-', enable_events=True, disabled=True),
          sg.CalendarButton('Mese', target='-CAL-', format='%Y-%m')],
         [table],
         [sg.Button('Indietro')]
@@ -244,7 +245,7 @@ def montaggi_mese_window():
 
     layout = [
         [sg.Text('Montaggi in un mese')],
-        [sg.In(key='-CAL-', enable_events=True, visible=False),
+        [sg.In(key='-CAL-', enable_events=True, disabled=True),
          sg.CalendarButton('Mese', target='-CAL-', format='%Y-%m')],
         [table],
         [sg.Button('Indietro')]
@@ -416,7 +417,7 @@ def ordini_data_window():
 
     layout = [
         [sg.Text('Ordini da una data')],
-        [sg.In(key='-CAL-', enable_events=True, visible=False),
+        [sg.In(key='-CAL-', enable_events=True, disabled=True),
          sg.CalendarButton('Data', target='-CAL-', format='%Y-%m-%d')],
         [table],
         [sg.Button('Indietro')]
@@ -443,13 +444,13 @@ def ordini_costosi_cliente_window(clienti):
                      'Peso totale', 'Data arrivo', 'Codice Fiscale Cliente', 'Codice Fiscale tecnico commerciale'])
 
     layout = [
-        [sg.Text('Ordini di un cliente')],
+        [sg.Text('Top 10 ordini più costosi di un cliente')],
         [sg.Combo(clienti, key='cliente', enable_events=True)],
         [table],
         [sg.Button('Indietro')]
     ]
 
-    return sg.Window('Ordini di un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+    return sg.Window('Top 10 ordini più costosi di un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
 
 def aggiungi_alimento_window():
@@ -473,20 +474,21 @@ def aggiungi_composizione_window(prodotti):
         [sg.Text('Aggiungi composizione')],
         [sg.Text('Nome'), sg.Input(key='nome')],
         [sg.Text('Prodotti')],
-        [sg.Listbox(values=prodotti, select_mode='extended', key='prodotti')],
+        [sg.Listbox(values=prodotti, select_mode='extended',
+                    key='prodotti', size=(30, 10))],
         [sg.Text('Quantità prodotti (10,4,...):'),
          sg.InputText(key='quantita')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
-    return sg.Window('Effettua ordine', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+    return sg.Window('Aggiungi composizione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
 
 def aggiungi_sconto_window(storico_sconti):
     layout = [
         [sg.Text('Aggiungi sconto')],
         [sg.Text('Percentuale'), sg.Input(key='percentuale')],
-        [sg.Combo(storico_sconti, key='storico')],
+        [sg.Text('Storico sconto'), sg.Combo(storico_sconti, key='storico')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
@@ -496,10 +498,10 @@ def aggiungi_sconto_window(storico_sconti):
 def aggiungi_storico_sconto_window():
     layout = [
         [sg.Text('Aggiungi storico sconto')],
-        [sg.Text('Data inizio'), sg.In(key='-DATA INIZIO-', enable_events=True, visible=False),
-         sg.CalendarButton('Data inizio', target='-DATA INIZIO-', format='%Y-%m-%d')],
-        [sg.Text('Data fine'), sg.In(key='-DATA FINE-', enable_events=True, visible=False),
-         sg.CalendarButton('Data fine', target='-DATA FINE-', format='%Y-%m-%d')],
+        [sg.Text('Data inizio'), sg.In(key='-DATA INIZIO-', enable_events=True, disabled=True),
+         sg.CalendarButton('Data inizio', target='-DATA INIZIO-', format='%m-%d')],
+        [sg.Text('Data fine'), sg.In(key='-DATA FINE-', enable_events=True, disabled=True),
+         sg.CalendarButton('Data fine', target='-DATA FINE-', format='%m-%d')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
@@ -594,6 +596,7 @@ def esponi_composizione_window(composizioni, negozi):
     ]
 
     return sg.Window('Esponi composizione', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
 
 def restock_prodotto_window(prodotti, negozi):
     layout = [
