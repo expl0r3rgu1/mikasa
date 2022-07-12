@@ -332,11 +332,11 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Ordine                            | E         | 1                                                                                      | S    |
 | Dettaglio Ordine per Prodotto     | E         | numero di prodotti acquistati                                                          | S    |
 | Dettaglio Ordine per Composizione | E         | numero di composizioni acquistate                                                      | S    |
-| Tecnico                           | E         | 1                                                                                      | L    |
-| Spedizione                        | E         | 1                                                                                      | S    |
-| Montaggio                         | E         | 1                                                                                      | S    |
-| Dettaglio montaggio               | E         | 1                                                                                      | S    | 
-#### Totale: (6 + 4\*numero di composizioni acquistate + 3\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)L, (4 + numero di prodotti acquistati + numero di composizioni acquistate)S -> (10 + 5\*numero di composizioni acquistate + 4\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)*all'anno
+| Tecnico                           | E         | 0/1                                                                                    | L    |
+| Spedizione                        | E         | 0/1                                                                                    | S    |
+| Montaggio                         | E         | 0/1                                                                                    | S    |
+| Dettaglio montaggio               | E         | 0/1                                                                                    | S    |
+#### Totale: (6/7 + 4\*numero di composizioni acquistate + 3\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)L, (0/4 + numero di prodotti acquistati + numero di composizioni acquistate)S -> (6/11 + 5\*numero di composizioni acquistate + 4\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)all'anno
 
 ### OP6: Aggiungere un nuovo prodotto
 | Concetto                           | Costrutto | Accessi | Tipo |
@@ -387,10 +387,10 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 #### Totale: 2L -> 2 al mese
 
 ### OP13: Leggere tutti i ritiri effettuati in un determinato mese  TODO
-| Concetto                | Costrutto | Accessi | Tipo |
-| ----------------------- | --------- | ------- | ---- |
-| Ordine senza Spedizione | E         | 1       | L    |
-| Ordine                  | E         | 1       | L    | 
+| Concetto              | Costrutto | Accessi | Tipo |
+| --------------------- | --------- | ------- | ---- |
+| Ordine con Spedizione | E         | 1       | L    |
+| Ordine                | E         | 1       | L    |
 #### Totale: 2L -> 2 al mese
 
 ### OP14: Leggere tutti i montaggi effettuati in un determinato mese 
@@ -485,7 +485,8 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Concetto | Costrutto | Accessi | Tipo |
 | -------- | --------- | ------- | ---- |
 | Ordine   | E         | 1       | L    |
-#### Totale: 1L ->  all'anno
+| Cliente  | E         | 1       | L    | 
+#### Totale: 2L -> 2 all'anno
 
 ### OP28: Visualizzare tutti i clienti
 | Concetto | Costrutto | Accessi | Tipo |
@@ -607,6 +608,9 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 #### Totale: 1S -> 1 ogni due anni
 
 ### OP44: Aggiungere un nuovo acquirente
+| Concetto   | Costrutto | Accessi | Tipo |
+| ---------- | --------- | ------- | ---- |
+| Acquirente | E         | 1       | S    | 
 
 <div style="page-break-after: always;"></div>
 
@@ -683,6 +687,92 @@ Di seguito si elenca la chiave primaria di ogni tabella:
 <div style="page-break-after: always;"></div>
 
 ## Analisi delle ridondanze
+
+### OP5: Effettuazione di un ordine da parte di un cliente
+
+Con ridondanza: 
+
+| Concetto                          | Costrutto | Accessi                                                                                | Tipo |
+| --------------------------------- | --------- | -------------------------------------------------------------------------------------- | ---- |
+| Cliente                           | E         | 2                                                                                      | L    |
+| Prodotto                          | E         | 1 + 2\*numero di composizioni acquistate                                               | L    |
+| Composizione                      | E         | 1                                                                                      | L    |
+| Negozio                           | E         | 1                                                                                      | L    |
+| Sconto                            | E         | 2\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate | L    |
+| Storico Sconto                    | E         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate       | L    |
+| Composta                          | E         | 2\*numero di composizioni acquistate                                                   | L    |
+| Tecnici Commerciali               | E         | 1                                                                                      | L    |
+| Ordine                            | E         | 1                                                                                      | S    |
+| Dettaglio Ordine per Prodotto     | E         | numero di prodotti acquistati                                                          | S    |
+| Dettaglio Ordine per Composizione | E         | numero di composizioni acquistate                                                      | S    |
+| Tecnico                           | E         | 0/1                                                                                    | L    |
+| Spedizione                        | E         | 0/1                                                                                    | S    |
+| Montaggio                         | E         | 0/1                                                                                    | S    |
+| Dettaglio montaggio               | E         | 0/1                                                                                    | S    |
+#### Totale: (6/7 + 4\*numero di composizioni acquistate + 3\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)L, (0/4 + numero di prodotti acquistati + numero di composizioni acquistate)S -> (6/11 + 5\*numero di composizioni acquistate + 4\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)all'anno
+
+Senza ridondanza: 
+
+| Concetto                          | Costrutto | Accessi                                                                                                                        | Tipo |
+| --------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------ | ---- |
+| Cliente                           | E         | 2                                                                                                                              | L    |
+| Prodotto                          | E         | 1 + 3\*numero di composizioni acquistate + 2\*numero di prodotti acquistati + numero di prodotti delle composizioni acquistate | L    |
+| Composizione                      | E         | 1                                                                                                                              | L    |
+| Negozio                           | E         | 1                                                                                                                              | L    |
+| Sconto                            | E         | 2\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate                                         | L    |
+| Storico Sconto                    | E         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate                                               | L    |
+| Composta                          | E         | 3\*numero di composizioni acquistate                                                                                           | L    |
+| Tecnici Commerciali               | E         | 1                                                                                                                              | L    |
+| Ordine                            | E         | 1                                                                                                                              | S    |
+| Dettaglio Ordine per Prodotto     | E         | numero di prodotti acquistati                                                                                                  | S    |
+| Dettaglio Ordine per Composizione | E         | numero di composizioni acquistate                                                                                              | S    |
+| Tecnico                           | E         | 0/1                                                                                                                            | L    |
+| Spedizione                        | E         | 0/1                                                                                                                            | S    |
+| Montaggio                         | E         | 0/1                                                                                                                            | S    |
+| Dettaglio montaggio               | E         | 0/1                                                                                                                            | S    |
+#### Totale: (6/7 + 6\*numero di composizioni acquistate + 5\*numero di prodotti acquistati + 4\*numero di prodotti delle composizioni acquistate)L + (3/6 + numero di prodotti acquistati + numero di composizioni acquistate)S -> (9/13 + 7\*numero di composizioni acquistate + 6\*numero di prodotti acquistati + 4\*numero di prodotti delle composizioni acquistate)all'anno
+
+### OP26: Leggere gli ordini più costosi
+In questo caso la ridondanza è dovuta alla presenza di: prezzoTotale in Dettaglio Ordine per Prodotto, prezzoTotale in Dettaglio Ordine per Composizione e costoTotale in Ordine. Tutte queste informazioni potevano essere ottenute tramite delle operazioni che usassero solamente il prezzo in Prodotto.
+
+Con ridondanza:
+
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Ordine   | E         | 1       | L    |
+#### Totale: 1L -> 1 all'anno
+
+Senza ridondanza:
+
+| Concetto | Costrutto | Accessi                                                                          | Tipo |
+| -------- | --------- | -------------------------------------------------------------------------------- | ---- |
+| Ordine   | E         | 1                                                                                | L    |
+| Prodotto | E         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate | L    | 
+#### Totale: (1+numero di prodotti acquistati + numero di prodotti delle composizioni acquistate)L -> (1+numero di prodotti acquistati + numero di prodotti delle composizioni acquistate) all'anno
+
+Si vede chiaramente che mantenere la ridondanza è più efficiente per questa operazione.
+
+### OP27: Leggere gli ordine più costosi effettuati da un determinato cliente
+In questo caso la ridondanza è dovuta alla presenza di: prezzoTotale in Dettaglio Ordine per Prodotto, prezzoTotale in Dettaglio Ordine per Composizione e costoTotale in Ordine. Tutte queste informazioni potevano essere ottenute tramite delle operazioni che usassero solamente il prezzo in Prodotto.
+
+Con ridondanza: 
+
+| Concetto | Costrutto | Accessi | Tipo |
+| -------- | --------- | ------- | ---- |
+| Ordine   | E         | 1       | L    |
+| Cliente  | E         | 1       | L    | 
+#### Totale: 2L -> 2 all'anno
+
+Senza ridondanza:
+
+| Concetto | Costrutto | Accessi                                                                          | Tipo |
+| -------- | --------- | -------------------------------------------------------------------------------- | ---- |
+| Ordine   | E         | 1                                                                                | L    |
+| Cliente  | E         | 1                                                                                | L    | 
+| Prodotto | E         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate | L    |
+#### Totale: (2+numero di prodotti acquistati + numero di prodotti delle composizioni acquistate)L -> (1+numero di prodotti acquistati + numero di prodotti delle composizioni acquistate) all'anno
+
+Si vede chiaramente che mantenere la ridondanza è più efficiente per questa operazione.
 
 <div style="page-break-after: always;"></div>
 
@@ -952,10 +1042,10 @@ AND o.cod_ordine = s.cod_ordine
 
 ### OP13: Leggere tutti i ritiri effettuati in un determinato mese 
 ```
-SELECT n.cod_ordine, n.cod_negozio, o.data_effettuazione, o.data_arrivo FROM ordini_no_spedizione n, ordini o 
-WHERE YEAR(o.data_effettuazione) = ? 
+SELECT o.cod_ordine, o.data_effettuazione FROM ordini o 
+WHERE NOT EXISTS (SELECT s.cod_ordine FROM spedizioni s WHERE s.cod_ordine = o.cod_ordine) 
+AND YEAR(o.data_effettuazione) = ?
 AND MONTH(o.data_effettuazione) = ?
-AND o.cod_ordine = n.cod_ordine
 ```
 
 ### OP14: Leggere tutti i montaggi effettuati in un determinato mese 
@@ -1289,5 +1379,6 @@ VALUES (?, ?)
 
 ### OP44: Aggiungere un nuovo acquirente
 ```
-
+INSERT INTO acquirenti (cf_acquirente, nome, cognome, telefono, email, via, civico, cap, città)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 ```
