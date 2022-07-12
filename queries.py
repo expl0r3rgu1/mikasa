@@ -45,6 +45,7 @@ QUERIES = {
     'Visualizza storico sconti' : 'SELECT * FROM storico_sconti',
     'Visualizza negozi' : 'SELECT * FROM negozi',
     'Visualizza acquirenti' : 'SELECT * FROM acquirenti',
+    'Visualizza manager' : 'SELECT * FROM manager',
     'Visualizza tecnici' : 'SELECT * FROM tecnici',
     'Visualizza tecnici commerciali' : 'SELECT * FROM tecnici_commerciali',
     'Visualizza percentuale sconto di uno sconto' : 'SELECT s.percentuale FROM sconti s WHERE s.cod_sconto = %s',
