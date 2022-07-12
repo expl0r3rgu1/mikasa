@@ -60,7 +60,7 @@ QUERIES = {
     'Aggiungi orario': 'INSERT INTO orari(giorni, oreinizio, orefine) VALUES (%s, %s, %s)',
     'Aggiungi colorazione': 'INSERT INTO colorazioni(cod_colore, cod_prodotto) VALUES (%s, %s)',
     'Aggiungi colore' : 'INSERT INTO colori(nome) VALUES (%s)',
-    'Ristock prodotto': 'UPDATE quantità SET quantità = %s WHERE cod_prodotto = %s AND cod_negozio = %s',
+    'Restock prodotto': 'UPDATE quantità SET quantità = %s WHERE cod_prodotto = %s AND cod_negozio = %s',
     'Aggiungi confezione': 'INSERT INTO confezioni(cod_negozio, cod_alimento, quantità, prezzo_totale) VALUES (%s, %s, %s, %s)',
     'Aggiungi porzione': 'INSERT INTO porzioni(cod_negozio, cod_alimento)VALUES (%s, %s)',
     'Aggiungi esposta': 'INSERT INTO esposte(cod_composizione, cod_negozio) VALUES (%s, %s)',
