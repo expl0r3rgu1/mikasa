@@ -56,7 +56,6 @@ while True:
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                print(values['cliente'][0])
                 db_cursor.execute(
                     QUERIES['Rendi socio un cliente'], (values['cliente'][0],))
                 db.commit()
@@ -73,12 +72,11 @@ while True:
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
         window.close()
-        window = rendi_socio_cliente_window(clienti)
+        window = rendi_non_socio_cliente_window(clienti)
 
         while True:
             event, values = window.read()
             if event == 'Conferma':
-                print(values['cliente'][0])
                 db_cursor.execute(
                     QUERIES['Rendi non socio un cliente'], (values['cliente'][0],))
                 db.commit()
@@ -346,13 +344,14 @@ while True:
                         db.commit()
                         weights = [1] * len(tecnici)
                         weights[tecnici.index(tecnico)] = 0
-                        tecnici_montaggio = random.choices(tecnici, weights, k = 1)
+                        tecnici_montaggio = random.choices(
+                            tecnici, weights, k=1)
                         weights[tecnici.index(tecnici_montaggio[0])] = 0
-                        tecnici_montaggio += random.choices(tecnici, weights, k = 1)
-                        print((tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
-                        db_cursor.execute(QUERIES['Aggiungi dettaglio montaggio'] + ",(%s,%s)", (tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
+                        tecnici_montaggio += random.choices(
+                            tecnici, weights, k=1)
+                        db_cursor.execute(QUERIES['Aggiungi dettaglio montaggio'] + ",(%s,%s)", (
+                            tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
                         db.commit()
-                        
 
                 window.close()
                 window = default_window()
@@ -515,25 +514,29 @@ while True:
         window.close()
         window = prodotti_meno_costosi_window(prodotti)
     elif event == 'Visualizza 10 alimenti porzionati più costosi':
-        db_cursor.execute(QUERIES['Visualizza 10 alimenti porzionati più costosi'])
+        db_cursor.execute(
+            QUERIES['Visualizza 10 alimenti porzionati più costosi'])
         prodotti = db_cursor.fetchall()
 
         window.close()
         window = alimenti_porzionati_piu_costosi_window(prodotti)
     elif event == 'Visualizza 10 alimenti porzionati meno costosi':
-        db_cursor.execute(QUERIES['Visualizza 10 alimenti porzionati meno costosi'])
+        db_cursor.execute(
+            QUERIES['Visualizza 10 alimenti porzionati meno costosi'])
         prodotti = db_cursor.fetchall()
 
         window.close()
         window = alimenti_porzionati_meno_costosi_window(prodotti)
     elif event == 'Visualizza 10 alimenti confezionati più costosi':
-        db_cursor.execute(QUERIES['Visualizza 10 alimenti confezionati più costosi'])
+        db_cursor.execute(
+            QUERIES['Visualizza 10 alimenti confezionati più costosi'])
         prodotti = db_cursor.fetchall()
 
         window.close()
         window = alimenti_confezionati_piu_costosi_window(prodotti)
     elif event == 'Visualizza 10 alimenti confezionati meno costosi':
-        db_cursor.execute(QUERIES['Visualizza 10 alimenti confezionati meno costosi'])
+        db_cursor.execute(
+            QUERIES['Visualizza 10 alimenti confezionati meno costosi'])
         prodotti = db_cursor.fetchall()
 
         window.close()
@@ -553,6 +556,386 @@ while True:
                 quantita = db_cursor.fetchall()
                 window['quantita'].update(values=quantita)
             elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Visualizza prodotti terminati nei magazzini':
+        db_cursor.execute(QUERIES['Visualizza prodotti terminati'])
+        quantita = db_cursor.fetchall()
+
+        window.close()
+        window = prodotti_terminati_window(quantita)
+    elif event == 'Visualizza personale':
+        db_cursor.execute(QUERIES['Visualizza personale'])
+        personale = db_cursor.fetchall()
+
+        window.close()
+        window = personale_window(personale)
+    elif event == 'Visualizza 10 prodotti con sconto maggiore':
+        db_cursor.execute(
+            QUERIES['Visualizza 10 prodotti con sconto maggiore'])
+        prodotti = db_cursor.fetchall()
+
+        window.close()
+        window = prodotti_sconto_maggiore_window(prodotti)
+    elif event == 'Visualizza ordini da una data':
+        window.close()
+        window = ordini_data_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == '-CAL-':
+                db_cursor.execute(
+                    QUERIES['Visualizza ordini dopo data'], (values['-CAL-'],))
+                ordini = db_cursor.fetchall()
+                window['ordini'].update(values=ordini)
+            elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Visualizza 10 ordini più costosi':
+        db_cursor.execute(QUERIES['Visualizza 10 ordini più costosi'])
+        ordini = db_cursor.fetchall()
+
+        window.close()
+        window = ordini_costosi_window(ordini)
+    elif event == 'Visualizza 10 ordini più costosi di un cliente':
+        db_cursor.execute(QUERIES['Visualizza clienti'])
+        clienti = db_cursor.fetchall()
+        window.close()
+        window = ordini_cliente_window(clienti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'cliente':
+                db_cursor.execute(
+                    QUERIES['Visualizza 10 ordini più costosi cliente'], (values['cliente'][0],))
+                ordini = db_cursor.fetchall()
+                window['ordini'].update(values=ordini)
+            elif event == 'Indietro':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi alimento':
+        window.close()
+        window = aggiungi_alimento_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(QUERIES['Aggiungi alimento'], (values['nome'], values['provenienza'], values['scadenza'],
+                                  values['ingredienti'], values['allergeni'], values['prezzo_porzionato'], values['prezzo_confezionato']))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi composizione':
+        db_cursor.execute(QUERIES['Visualizza prodotti'])
+        prodotti = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_composizione_window(prodotti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                costo_totale = 0
+                prodotti_composizione = values['prodotti']
+
+                for i, prodotto in enumerate(prodotti_composizione):
+                    costo_totale += prodotto[2] * \
+                        int(values['quantita'].split(',')[i])
+
+                db_cursor.execute(QUERIES['Aggiungi composizione'], (values['nome'], len(
+                    prodotti_composizione), costo_totale))
+                db.commit()
+
+                cod_composizione = db_cursor.lastrowid
+                for i, prodotto in enumerate(prodotti_composizione):
+                    db_cursor.execute(
+                        QUERIES['Aggiungi composta'], (cod_composizione, prodotto[0], int(values['quantita'].split(',')[i])))
+                    db.commit()
+
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi sconto':
+        db_cursor.execute(QUERIES['Visualizza storico sconti'])
+        storico_sconti = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_sconto_window(storico_sconti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi sconto'], (values['percentuale'], values['storico'][0]))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi storico sconto':
+        window.close()
+        window = aggiungi_storico_sconto_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi storico sconti'], ('1111-' + values['-DATA INIZIO-'], '1111-' + values['-DATA FINE-']))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi orario':
+        window.close()
+        window = aggiungi_orario_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi orario'], (values[0], values[1], values[2]))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi confezione':
+        db_cursor.execute(QUERIES['Visualizza negozi'])
+        negozi = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza alimenti'])
+        alimenti = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_confezione_window(negozi, alimenti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi confezione'], (values['negozio'][0], values['alimento'][0], values['quantita'], int(values['quantita']) * values['alimento'][7]))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi porzione':
+        db_cursor.execute(QUERIES['Visualizza negozi'])
+        negozi = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza alimenti'])
+        alimenti = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_porzione_window(negozi, alimenti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi porzione'], (values['negozio'][0], values['alimento'][0]))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi colorazione':
+        db_cursor.execute(QUERIES['Visualizza colori'])
+        colori = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza prodotti'])
+        prodotti = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_colorazione_window(colori, prodotti)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi colorazione'], (values['colore'][0], values['prodotto'][0]))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Licenzia personale':
+        db_cursor.execute(QUERIES['Visualizza manager'])
+        manager = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza amministratori'])
+        amministratori = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza tecnici'])
+        tecnici = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza tecnici commerciali'])
+        tecnici_commerciali = db_cursor.fetchall()
+        window.close()
+        window = licenzia_personale_window(
+            manager, amministratori, tecnici, tecnici_commerciali)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                for personale in ['manager', 'amministratore', 'tecnico', 'tecnico commerciale']:
+                    for persona in values[personale]:
+                        db_cursor.execute(
+                            QUERIES['Licenzia ' + personale], (persona[0],))
+                        db.commit()
+
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi colore':
+        db_cursor.execute(QUERIES['Visualizza colori'])
+        colori = db_cursor.fetchall()
+        window.close()
+        window = aggiungi_colore_window(colori)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    'INSERT INTO colori(nome) VALUES (%s)', (values['nome'],))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Esponi composizione':
+        db_cursor.execute(QUERIES['Visualizza composizioni'])
+        composizioni = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza negozi'])
+        negozi = db_cursor.fetchall()
+        window.close()
+        window = esponi_composizione_window(composizioni, negozi)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi esposta'], (values['composizione'][0], values['negozio'][0]))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Restock prodotto':
+        db_cursor.execute(QUERIES['Visualizza prodotti'])
+        prodotti = db_cursor.fetchall()
+        db_cursor.execute(QUERIES['Visualizza negozi'])
+        negozi = db_cursor.fetchall()
+        window.close()
+        window = restock_prodotto_window(prodotti, negozi)
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Restock prodotto'], (values['quantita'], values['prodotto'][0], values['negozio'][0]))
+                db.commit()
+                rows_affected = db_cursor.rowcount
+                if rows_affected == 0:
+                    db_cursor.execute('INSERT INTO quantità(prodotto, negozio, quantità) VALUES (%s, %s, %s)', (
+                        values['prodotto'][0], values['negozio'][0], values['quantita']))
+                    db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
+    elif event == 'Aggiungi acquirente':
+        window.close()
+        window = aggiungi_acquirente_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi acquirente'], (values['codice_fiscale'], values['nome'], values['cognome'], values['telefono'], values['email'], values['via'], values['civico'], values['cap'], values['citta']))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
                 window.close()
                 window = default_window()
                 break
