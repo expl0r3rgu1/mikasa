@@ -61,6 +61,7 @@ QUERIES = {
     'Aggiungi confezione': 'INSERT INTO confezioni(cod_negozio, cod_alimento, quantità, prezzo_totale) VALUES (%s, %s, %s, %s)',
     'Aggiungi porzione': 'INSERT INTO porzione(cod_negozio, cod_alimento)VALUES (%s, %s)',
     'Aggiungi esposta': 'INSERT INTO esposte(cod_composizione, cod_negozio) VALUES (%s, %s)',
+    'Aggiungi quantità': 'INSERT INTO quantità(prodotto, negozio, quantità) VALUES (%s, %s, %s)',
     'Licenzia manager': 'DELETE FROM manager WHERE cf_manager = %s',
     'Licenzia amministratore': 'DELETE FROM amministratore WHERE cf_amministratore = %s',
     'Licenzia tecnico': 'DELETE FROM tecnici WHERE cf_tecnico = %s',
