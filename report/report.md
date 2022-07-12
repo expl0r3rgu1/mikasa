@@ -17,15 +17,22 @@ Valentina Pieri, matricola: 0000974789
 <div style="page-break-after: always;"></div>
 
 # Indice
-+ [**Analisi dei requisiti**]()
-  - [Intervista]()
-  - [Estrazione dei concetti principali]()
-+ [**Progettazione concettuale**]()
-  - [Schema scheletro ]()
-  - [Schema concettuale finale]()
-+ [**Progettazione logica**]()
-  - [Stima del volume dei dati]()
-  - [Descrizione delle operazioni principali e stima della loro frequenza]()
+- [Indice](#indice)
+- [Capitolo 1 - Analisi dei requisiti](#capitolo-1---analisi-dei-requisiti)
+  - [Intervista](#intervista)
+  - [Estrazione dei concetti principali](#estrazione-dei-concetti-principali)
+- [Capitolo 2 - Progettazione concettuale](#capitolo-2---progettazione-concettuale)
+  - [Schema scheletro](#schema-scheletro)
+  - [Schema concettuale finale](#schema-concettuale-finale)
+- [Capitolo 3 - Progettazione logica](#capitolo-3---progettazione-logica)
+  - [Stima del volume dei dati](#stima-del-volume-dei-dati)
+  - [Descrizione delle operazioni principali e stima della loro frequenza](#descrizione-delle-operazioni-principali-e-stima-della-loro-frequenza)
+  - [Schemi di navigazione e tabelle degli accessi](#schemi-di-navigazione-e-tabelle-degli-accessi)
+  - [Raffinamento dello schema](#raffinamento-dello-schema)
+  - [Analisi delle ridondanze](#analisi-delle-ridondanze)
+  - [Traduzione di entità e associazioni in relazioni](#traduzione-di-entità-e-associazioni-in-relazioni)
+  - [Schema relazionale finale](#schema-relazionale-finale)
+  - [Traduzione delle operazioni in query SQL](#traduzione-delle-operazioni-in-query-sql)
 
 <div style="page-break-after: always;"></div>
 
