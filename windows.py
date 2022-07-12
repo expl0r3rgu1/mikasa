@@ -608,3 +608,21 @@ def restock_prodotto_window(prodotti, negozi):
     ]
 
     return sg.Window('Restock prodotto', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+
+def aggiungi_acquirente_window():
+    layout = [
+        [sg.Text('Aggiungi acquirente')],
+        [sg.Text('Codice fiscale'), sg.InputText(key='codice_fiscale')],
+        [sg.Text('Nome'), sg.InputText(key='nome')],
+        [sg.Text('Cognome'), sg.InputText(key='cognome')],
+        [sg.Text('Indirizzo'), sg.InputText(key='indirizzo')],
+        [sg.Text('Telefono'), sg.InputText(key='telefono')],
+        [sg.Text('Email'), sg.InputText(key='email')],
+        [sg.Text('Via'), sg.InputText(key='via')],
+        [sg.Text('Civico'), sg.InputText(key='civico')],
+        [sg.Text('CAP'), sg.InputText(key='cap')],
+        [sg.Text('Città'), sg.InputText(key='citta')],
+        [sg.Button('Conferma'), sg.Button('Annulla')]
+    ]
+
+    return sg.Window('Aggiungi acquirente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
