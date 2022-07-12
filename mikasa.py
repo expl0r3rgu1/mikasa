@@ -921,6 +921,26 @@ while True:
                 break
             elif event == sg.WIN_CLOSED:
                 break
+    elif event == 'Aggiungi acquirente':
+        window.close()
+        window = aggiungi_acquirente_window()
+
+        while True:
+            event, values = window.read()
+
+            if event == 'Conferma':
+                db_cursor.execute(
+                    QUERIES['Aggiungi acquirente'], (values['codice_fiscale'], values['nome'], values['cognome'], values['telefono'], values['email'], values['via'], values['civico'], values['cap'], values['citta']))
+                db.commit()
+                window.close()
+                window = default_window()
+                break
+            elif event == 'Annulla':
+                window.close()
+                window = default_window()
+                break
+            elif event == sg.WIN_CLOSED:
+                break
     elif event == 'Indietro':
         window.close()
         window = default_window()
