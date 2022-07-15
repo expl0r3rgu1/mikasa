@@ -20,7 +20,7 @@ def default_window():
         [sg.Button('Visualizza ordini in un mese'), sg.Button('Visualizza spedizioni in un mese'), sg.Button('Visualizza ritiri in un mese'), sg.Button(
             'Visualizza montaggi in un mese'), sg.Button('Visualizza ordini da una data'), sg.Button('Visualizza 10 ordini più costosi')]
         [sg.Text('Gestisci negozi')],
-        [sg.Button('Aggiungi negozio'), sg.Button('Aggiungi alimento'), sg.Button('Aggiungi orario'), sg.Button('Aggiungi confezione'), sg.Button(
+        [sg.Button('Aggiungi acquirente'), sg.Button('Aggiungi negozio'), sg.Button('Aggiungi alimento'), sg.Button('Aggiungi orario'), sg.Button('Aggiungi confezione'), sg.Button(
             'Aggiungi porzione'), sg.Button('Visualizza quantità prodotto nei magazzini'), sg.Button('Visualizza prodotti terminati nei magazzini')],
         [sg.Text('Statistiche')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button('Visualizza 10 prodotti più costosi'), sg.Button(
