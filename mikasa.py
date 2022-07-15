@@ -831,10 +831,10 @@ while True:
             event, values = window.read()
 
             if event == 'Licenzia':
-                for personale in ['manager', 'amministratore', 'tecnico', 'tecnico commerciale']:
-                    for persona in values[personale]:
+                for key, value in values.items():
+                    for personale in value:
                         db_cursor.execute(
-                            QUERIES['Licenzia ' + personale], (persona[0],))
+                            QUERIES['Licenzia ' + key], (personale[0],))
                         db.commit()
 
                 window.close()
