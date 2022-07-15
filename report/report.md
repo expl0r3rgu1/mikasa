@@ -79,7 +79,7 @@ Per un ordine con spedizione si può richiedere il montaggio. L'assemblaggio vie
 | Prodotto            | Venduto da ogni negozio, può essere acquistato dal cliente. Ogni prodotto può essere diversamente scontato in base al periodo dell'anno                                                                                                                                                                                                                                                                                                                                                                                                        |                    |
 | Ordine              | Ogni ordine viene effettuato da un cliente. L'ordine è formato da tanti dettagli ordine, specifici o per un prodotto o per una composizione. In caso il cliente che effettua l'ordine, sia socio, viene applicato uno sconto totale sull'ordine. Ogni ordine può essere richiesto con o senza spedizione: un ordine senza spedizione verrà spedito ad un negozio scelto dal cliente mentre, un ordine con spedizione viene spedito all'indirizzo del cliente. Inoltre, per ogni ordine con spedizione può essere richiesto o meno il montaggio |                    |
 
-Non sono stati individuati sinonimi.
+Onde evitare ambiguità il ristoro/punto ristoro verrà nominato esclusivamente come ristoro.
 
 # Capitolo 2 - Progettazione concettuale
 
@@ -312,11 +312,13 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 #### Totale: 1L, 1S -> 20 all'anno
 
 ### OP4: Aggiungere un nuovo negozio alla catena
-| Concetto   | Costrutto | Accessi | Tipo |
-| ---------- | --------- | ------- | ---- |
-| Acquirente | E         | 1       | L    |
-| Negozio    | E         | 1       | S    |
- #### Totale: 1L, 1S -> 2 ogni due anni
+| Concetto        | Costrutto | Accessi | Tipo |
+| --------------- | --------- | ------- | ---- |
+| Acquirente      | E         | 1       | L    |
+| Negozio         | E         | 1       | S    |
+| Apertura        | R         | 1       | S    |
+| Orario Apertura | R         | 1       | S    |
+ #### Totale: 1L, 3S -> 4 ogni due anni
 
 ### OP5: Effettuazione di un ordine da parte di un cliente
 | Concetto                          | Costrutto | Accessi                                                                                | Tipo |
@@ -327,23 +329,33 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Negozio                           | E         | 1                                                                                      | L    |
 | Sconto                            | E         | 2\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate | L    |
 | Storico Sconto                    | E         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate       | L    |
-| Composta                          | E         | 2\*numero di composizioni acquistate                                                   | L    |
 | Tecnici Commerciali               | E         | 1                                                                                      | L    |
 | Ordine                            | E         | 1                                                                                      | S    |
 | Dettaglio Ordine per Prodotto     | E         | numero di prodotti acquistati                                                          | S    |
 | Dettaglio Ordine per Composizione | E         | numero di composizioni acquistate                                                      | S    |
 | Tecnico                           | E         | 0/1                                                                                    | L    |
-| Spedizione                        | E         | 0/1                                                                                    | S    |
-| Montaggio                         | E         | 0/1                                                                                    | S    |
-| Dettaglio montaggio               | E         | 0/1                                                                                    | S    |
-#### Totale: (6/7 + 4\*numero di composizioni acquistate + 3\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)L, (0/4 + numero di prodotti acquistati + numero di composizioni acquistate)S -> (6/11 + 5\*numero di composizioni acquistate + 4\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)all'anno
+| Ordine con Spedizione             | E         | 0/1                                                                                    | S    |
+| Ordine con Montaggio              | E         | 0/1                                                                                    | S    |
+| Applicato                         | R         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate       | L    |
+| Storico                           | R         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate       | L    |
+| Composta                          | R         | 2\*numero di composizioni acquistate                                                   | L    |
+| Effettua                          | R         | 1                                                                                      | S    |
+| Gestione                          | R         | 1                                                                                      | S    |
+| Consegna                          | R         | 0/1                                                                                    | S    |
+| Montaggio                         | R         | 0/1                                                                                    | S    |
+| Dettaglio Prodotto                | R         | numero di prodotti acquistati                                                          | S    |
+| Riferimento prodotto              | R         | numero di prodotti acquistati                                                          | S    |
+| Dettaglio Composizione            | R         | numero di composizioni acquistate                                                      | S    |
+| Riferimento Composizione          | R         | numero di composizioni acquistate                                                      | S    |
+#### Totale: (6/7 + 4\*numero di composizioni acquistate + 5\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)L, (3/7 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/14 + 7\*numero di composizioni acquistate + 8\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)all'anno
 
 ### OP6: Aggiungere un nuovo prodotto
-| Concetto                           | Costrutto | Accessi | Tipo |
-| ---------------------------------- | --------- | ------- | ---- |
-| Sconto                             | E         | 1       | L    |
-| Prodotto                           | E         | 1       | S    |
-#### Totale: 1L, 1S -> 20 all'anno
+| Concetto  | Costrutto | Accessi | Tipo |
+| --------- | --------- | ------- | ---- |
+| Sconto    | E         | 1       | L    |
+| Prodotto  | E         | 1       | S    |
+| Applicato | R         | 1       | S    |
+#### Totale: 1L, 2S -> 30 all'anno
 
 ### OP7: Aggiungere un nuovo alimento
 | Concetto | Costrutto | Accessi | Tipo |
@@ -356,15 +368,16 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | ------------ | --------- | ------------------------------------------- | ---- |
 | Prodotto     | E         | 1                                           | L    |
 | Composizione | E         | 1                                           | S    |
-| Composta     | E         | numero di prodotti nella nuova composizione | S    |
+| Composta     | R         | numero di prodotti nella nuova composizione | S    |
 #### Totale: 1L, (2+numero di prodotti nella nuova composizione)S -> (3 + numero di prodotti nella nuova composizione)\*10 all'anno
 
 ### OP9: Aggiungere un nuovo sconto
 | Concetto       | Costrutto | Accessi | Tipo |
 | -------------- | --------- | ------- | ---- |
 | Storico Sconti | E         | 1       | L    |
-| Sconto         | E         | 1       | S    | 
-#### Totale: 1L, 1S -> 2 all'anno
+| Sconto         | E         | 1       | S    |
+| Storico        | R         | 1       | L    | 
+#### Totale: 2L, 1S -> 3 all'anno
 
 ### OP10: Leggere tutti gli ordini effettuati in un determinato mese 
 | Concetto | Costrutto | Accessi | Tipo |
@@ -377,7 +390,8 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | -------- | --------- | ------- | ---- |
 | Ordine   | E         | 1       | L    |
 | Cliente  | E         | 1       | L    |
-#### Totale: 2L -> 2 al mese
+| Effettua | E         | 1       | L    | 
+#### Totale: 3L -> 3 al mese
 
 ### OP12: Leggere tutte le spedizioni effettuate in un determinato mese 
 | Concetto   | Costrutto | Accessi | Tipo |
@@ -386,7 +400,7 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Ordine     | E         | 1       | L    |
 #### Totale: 2L -> 2 al mese
 
-### OP13: Leggere tutti i ritiri effettuati in un determinato mese  TODO
+### OP13: Leggere tutti i ritiri effettuati in un determinato mese  
 | Concetto              | Costrutto | Accessi | Tipo |
 | --------------------- | --------- | ------- | ---- |
 | Ordine con Spedizione | E         | 1       | L    |
@@ -405,15 +419,17 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Concetto                      | Costrutto | Accessi | Tipo |
 | ----------------------------- | --------- | ------- | ---- |
 | Prodotto                      | E         | 1       | L    |
-| Dettaglio Ordine per Prodotto | E         | 1       | L    | 
-#### Totale: 2L -> 4 all'anno
+| Dettaglio Ordine per Prodotto | E         | 1       | L    |
+| Riferimento Prodotto          | R         | 1       | L    | 
+#### Totale: 3L -> 6 all'anno
 
 ### OP16: Leggere i prodotti meno acquistati
 | Concetto                      | Costrutto | Accessi | Tipo |
 | ----------------------------- | --------- | ------- | ---- |
 | Prodotto                      | E         | 1       | L    |
-| Dettaglio Ordine per Prodotto | E         | 1       | L    | 
-#### Totale: 2L -> 4 all'anno
+| Dettaglio Ordine per Prodotto | E         | 1       | L    |
+| Rfierimento Prodotto          | E         | 1       | L    | 
+#### Totale: 3L -> 6 all'anno
 
 ### OP17: Leggere i prodotti più costosi 
 | Concetto                      | Costrutto | Accessi | Tipo |
@@ -440,18 +456,20 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 #### Totale: 1L -> 1 all'anno
 
 ### OP21: Leggere la quantità presente(in ogni magazzino) di un determinato prodotto
-| Concetto | Costrutto | Accessi | Tipo |
-| -------- | --------- | ------- | ---- |
-| Prodotto | E         | 2       | L    |
-| Quantità | E         | 1       | L    | 
-#### Totale: 3L -> 3 al giorno
+| Concetto   | Costrutto | Accessi | Tipo |
+| ---------- | --------- | ------- | ---- |
+| Prodotto   | E         | 2       | L    |
+| Magazzino  | E         | 1       | L    |
+| Stockaggio | R         | 1       | L    | 
+#### Totale: 4L -> 4 al giorno
 
 ### OP22: Leggere tutti i prodotti terminati nei vari magazzini 
-| Concetto | Costrutto | Accessi | Tipo |
-| -------- | --------- | ------- | ---- |
-| Prodotto | E         | 1       | L    |
-| Quantità | E         | 1       | L    | 
-#### Totale: 2L -> 2 al giorno
+| Concetto   | Costrutto | Accessi | Tipo |
+| ---------- | --------- | ------- | ---- |
+| Prodotto   | E         | 1       | L    |
+| Magazzino  | E         | 1       | L    | 
+| Stockaggio | R         | 1       | L    |
+#### Totale: 3L -> 3 al giorno
 
 ### OP23: Leggere tutti i membri del personale 
 | Concetto            | Costrutto | Accessi | Tipo |
@@ -463,11 +481,12 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 #### Totale: 4L -> 4 al mese
 
 ### OP24: Leggere i prodotti con lo sconto maggiore
-| Concetto | Costrutto | Accessi | Tipo |
-| -------- | --------- | ------- | ---- |
-| Sconto   | E         | 1       | L    |
-| Prodotto | E         | 1       | L    |
-#### Totale: 2L -> 4 all'anno
+| Concetto  | Costrutto | Accessi | Tipo |
+| --------- | --------- | ------- | ---- |
+| Sconto    | E         | 1       | L    |
+| Prodotto  | E         | 1       | L    |
+| Applicato | R         | 1       | L    | 
+#### Totale: 3L -> 6 all'anno
 
 ### OP25: Leggere tutti gli ordini effettuati dopo una certa data
 | Concetto | Costrutto | Accessi | Tipo |
@@ -485,8 +504,9 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Concetto | Costrutto | Accessi | Tipo |
 | -------- | --------- | ------- | ---- |
 | Ordine   | E         | 1       | L    |
-| Cliente  | E         | 1       | L    | 
-#### Totale: 2L -> 2 all'anno
+| Cliente  | E         | 1       | L    |
+| Effettua | R         | 1       | L    | 
+#### Totale: 3L -> 3 all'anno
 
 ### OP28: Visualizzare tutti i clienti
 | Concetto | Costrutto | Accessi | Tipo |
@@ -513,15 +533,16 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | -------- | --------- | ------- | ---- |
 | Negozio  | E         | 1       | L    |
 | Prodotto | E         | 1       | L    |
-| Quantità | E         | 1       | S    |
-#### Totale: 2L, 1S -> 300 a settimana
+| Magazzino  | E         | 1       | S    |
+| Stockaggio | R         | 1       | S    | 
+#### Totale: 2L, 2S -> 400 a settimana
 
 ### OP32: Aggiungere una nuova confezione
 | Concetto   | Costrutto | Accessi | Tipo |
 | ---------- | --------- | ------- | ---- |
 | Negozio    | E         | 1       | L    | 
 | Alimento   | E         | 1       | L    |
-| Confezione | E         | 1       | S    |	
+| Confezione | R         | 1       | S    |	
 #### Totale: 2L, 1S -> 3 all'anno
 
 ### OP33: Aggiungere una nuova porzione
@@ -529,7 +550,7 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | -------- | --------- | ------- | ---- |
 | Negozio  | E         | 1       | L    |
 | Alimento | E         | 1       | L    |
-| Porzione | E         | 1       | S    |
+| Porzione | R         | 1       | S    |
 #### Totale: 2L, 1S -> 3 all'anno
 
 ### OP34: Esporre una composizione nella zona esposizioni di un negozio
@@ -537,7 +558,7 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | ------------ | --------- | ------- | ---- |
 | Negozio      | E         | 1       | L    |
 | Composizione | E         | 1       | L    |
-| Esposta      | E         | 1       | S    | 
+| Esposta      | R         | 1       | S    | 
 #### Totale: 2L, 1S -> 6 all'anno
 
 ### OP35: Aggiungere un nuovo colore  
@@ -552,29 +573,32 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | ----------- | --------- | ------- | ---- |
 | Colore      | E         | 1       | L    |
 | Prodotto    | E         | 1       | L    |
-| Colorazione | E         | 1       | S    |
+| Colorazione | R         | 1       | S    |
 #### Totale: 2L, 1S -> 30 all'anno
 
 ## OP37 : Aggiungere un nuovo amministratore
-| Concetto       | Costrutto | Accessi | Tipo |
-| -------------- | --------- | ------- | ---- |
-| Negozio        | E         | 1       | L    |
-| Amministratore | E         | 1       | S    |
-#### Totale: 1L, 1S -> 20 all'anno
+| Concetto          | Costrutto | Accessi | Tipo |
+| ----------------- | --------- | ------- | ---- |
+| Negozio           | E         | 1       | L    |
+| Amministratore    | E         | 1       | S    |
+| Orario Lavorativo | R         | 1       | S    | 
+#### Totale: 1L, 2S -> 30 all'anno
 
 ### OP38: Aggiungere un nuovo tecnico 
-| Concetto | Costrutto | Accessi | Tipo |
-| -------- | --------- | ------- | ---- |
-| Negozio  | E         | 1       | L    |
-| Tecnico  | E         | 1       | S    |
-#### Totale: 1L, 1S -> 20 all'anno
+| Concetto          | Costrutto | Accessi | Tipo |
+| ----------------- | --------- | ------- | ---- |
+| Negozio           | E         | 1       | L    |
+| Tecnico           | E         | 1       | S    |
+| Orario Lavorativo | R         | 1       | S    |
+#### Totale: 1L, 2S -> 30 all'anno
 
 ### OP39: Aggiungere un nuovo tecnico commerciale
 | Concetto            | Costrutto | Accessi | Tipo |
 | ------------------- | --------- | ------- | ---- |
 | Negozio             | E         | 1       | L    |
 | Tecnico Commerciale | E         | 1       | S    |
-#### Totale: 1L, 1S -> 20 all'anno
+| Orario Lavorativo   | R         | 1       | S    |
+#### Totale: 1L, 2S -> 30 all'anno
 
 ### OP40:  Licenziare dei membri del personale
 | Concetto            | Costrutto | Accessi | Tipo |
@@ -689,6 +713,8 @@ Di seguito si elenca la chiave primaria di ogni tabella:
 ## Analisi delle ridondanze
 
 ### OP5: Effettuazione di un ordine da parte di un cliente
+In questa operazione la ridondanza è data dal fatto che in prodotto c'è il campo peso, in dettaglio ordine per prodotto c'è peso totale che rappresenta la moltiplicazione tra il peso del prodotto e la quantità acquistata, in composizione c'è peso che è la somma dei pesi dei vari prodotti che la compongono, in dettaglio ordine per composizione c'è peso totale che rappresenta la moltiplicazione tra il peso della composizione e la quantità acquistata. Infine, c'è il peso totale dell'ordine nella tabella Ordine.
+L'altra ridondanza è data dal fatto che in prodotto c'è il campo prezzo, in dettaglio ordine per prodotto c'è prezzo totale che rappresenta la moltiplicazione tra il prezzo del prodotto e la quantità acquistata, in dettaglio ordine per composizione c'è prezzo totale che rappresenta la moltiplicazione tra il prezzo della composizione(dato dalla somma dei prezzi dei prodotti che la compongono) e la quantità acquistata. Infine, ci sono peso totale e costo totale dell'ordine nella tabella Ordine.
 
 Con ridondanza: 
 
@@ -700,16 +726,25 @@ Con ridondanza:
 | Negozio                           | E         | 1                                                                                      | L    |
 | Sconto                            | E         | 2\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate | L    |
 | Storico Sconto                    | E         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate       | L    |
-| Composta                          | E         | 2\*numero di composizioni acquistate                                                   | L    |
 | Tecnici Commerciali               | E         | 1                                                                                      | L    |
 | Ordine                            | E         | 1                                                                                      | S    |
 | Dettaglio Ordine per Prodotto     | E         | numero di prodotti acquistati                                                          | S    |
 | Dettaglio Ordine per Composizione | E         | numero di composizioni acquistate                                                      | S    |
 | Tecnico                           | E         | 0/1                                                                                    | L    |
-| Spedizione                        | E         | 0/1                                                                                    | S    |
-| Montaggio                         | E         | 0/1                                                                                    | S    |
-| Dettaglio montaggio               | E         | 0/1                                                                                    | S    |
-#### Totale: (6/7 + 4\*numero di composizioni acquistate + 3\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)L, (0/4 + numero di prodotti acquistati + numero di composizioni acquistate)S -> (6/11 + 5\*numero di composizioni acquistate + 4\*numero di prodotti acquistati + 2\*numero di prodotti delle composizioni acquistate)all'anno
+| Ordine con Spedizione             | E         | 0/1                                                                                    | S    |
+| Ordine con Montaggio              | E         | 0/1                                                                                    | S    |
+| Applicato                         | R         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate       | L    |
+| Storico                           | R         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate       | L    |
+| Composta                          | R         | 2\*numero di composizioni acquistate                                                   | L    |
+| Effettua                          | R         | 1                                                                                      | S    |
+| Gestione                          | R         | 1                                                                                      | S    |
+| Consegna                          | R         | 0/1                                                                                    | S    |
+| Montaggio                         | R         | 0/1                                                                                    | S    |
+| Dettaglio Prodotto                | R         | numero di prodotti acquistati                                                          | S    |
+| Riferimento prodotto              | R         | numero di prodotti acquistati                                                          | S    |
+| Dettaglio Composizione            | R         | numero di composizioni acquistate                                                      | S    |
+| Riferimento Composizione          | R         | numero di composizioni acquistate                                                      | S    |
+#### Totale: (6/7 + 4\*numero di composizioni acquistate + 5\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)L, (3/7 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/14 + 7\*numero di composizioni acquistate + 8\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)all'anno
 
 Senza ridondanza: 
 
@@ -727,10 +762,22 @@ Senza ridondanza:
 | Dettaglio Ordine per Prodotto     | E         | numero di prodotti acquistati                                                                                                  | S    |
 | Dettaglio Ordine per Composizione | E         | numero di composizioni acquistate                                                                                              | S    |
 | Tecnico                           | E         | 0/1                                                                                                                            | L    |
-| Spedizione                        | E         | 0/1                                                                                                                            | S    |
-| Montaggio                         | E         | 0/1                                                                                                                            | S    |
-| Dettaglio montaggio               | E         | 0/1                                                                                                                            | S    |
-#### Totale: (6/7 + 6\*numero di composizioni acquistate + 5\*numero di prodotti acquistati + 4\*numero di prodotti delle composizioni acquistate)L + (3/6 + numero di prodotti acquistati + numero di composizioni acquistate)S -> (9/13 + 7\*numero di composizioni acquistate + 6\*numero di prodotti acquistati + 4\*numero di prodotti delle composizioni acquistate)all'anno
+| Ordine con Spedizione             | E         | 0/1                                                                                                                            | S    |
+| Ordine con Montaggio              | E         | 0/1                                                                                                                            | S    |
+| Applicato                         | R         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate                                               | L    |
+| Storico                           | R         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate                                               | L    |
+| Composta                          | R         | 2\*numero di composizioni acquistate                                                                                           | L    |
+| Effettua                          | R         | 1                                                                                                                              | S    |
+| Gestione                          | R         | 1                                                                                                                              | S    |
+| Consegna                          | R         | 0/1                                                                                                                            | S    |
+| Montaggio                         | R         | 0/1                                                                                                                            | S    |
+| Dettaglio Prodotto                | R         | numero di prodotti acquistati                                                                                                  | S    |
+| Riferimento prodotto              | R         | numero di prodotti acquistati                                                                                                  | S    |
+| Dettaglio Composizione            | R         | numero di composizioni acquistate                                                                                              | S    |
+| Riferimento Composizione          | R         | numero di composizioni acquistate                                                                                              | S    |
+#### Totale: (6/7 + 6\*numero di composizioni acquistate + 6\*numero di prodotti acquistati + 6\*numero di prodotti delle composizioni acquistate)L, (3/7 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/14 + 9\*numero di composizioni acquistate + 9\*numero di prodotti acquistati + 6\*numero di prodotti delle composizioni acquistate)all'anno
+
+Osservando le somme totali delle operazioni nei due casi, risulta più efficiente la versione con le ridondanze
 
 ### OP26: Leggere gli ordini più costosi
 In questo caso la ridondanza è dovuta alla presenza di: prezzoTotale in Dettaglio Ordine per Prodotto, prezzoTotale in Dettaglio Ordine per Composizione e costoTotale in Ordine. Tutte queste informazioni potevano essere ottenute tramite delle operazioni che usassero solamente il prezzo in Prodotto.
@@ -760,17 +807,19 @@ Con ridondanza:
 | Concetto | Costrutto | Accessi | Tipo |
 | -------- | --------- | ------- | ---- |
 | Ordine   | E         | 1       | L    |
-| Cliente  | E         | 1       | L    | 
-#### Totale: 2L -> 2 all'anno
+| Cliente  | E         | 1       | L    |
+| Effettua | R         | 1       | L    |
+#### Totale: 3L -> 3 all'anno
 
 Senza ridondanza:
 
 | Concetto | Costrutto | Accessi                                                                          | Tipo |
 | -------- | --------- | -------------------------------------------------------------------------------- | ---- |
 | Ordine   | E         | 1                                                                                | L    |
-| Cliente  | E         | 1                                                                                | L    | 
+| Cliente  | E         | 1                                                                                | L    |
+| Effettua | R         | 1                                                                                | L    |
 | Prodotto | E         | numero di prodotti acquistati + numero di prodotti delle composizioni acquistate | L    |
-#### Totale: (2+numero di prodotti acquistati + numero di prodotti delle composizioni acquistate)L -> (1+numero di prodotti acquistati + numero di prodotti delle composizioni acquistate) all'anno
+#### Totale: (3+numero di prodotti acquistati + numero di prodotti delle composizioni acquistate)L -> (3+numero di prodotti acquistati + numero di prodotti delle composizioni acquistate) all'anno
 
 Si vede chiaramente che mantenere la ridondanza è più efficiente per questa operazione.
 
@@ -782,12 +831,12 @@ Si vede chiaramente che mantenere la ridondanza è più efficiente per questa op
 - **DETTAGLIO COMPOSIZIONE** (<u>cod_ordine</u>: Ordine, <u>cod_composizione</u>: Composizione, quantità, prezzo_totale, peso_totale)
 - **SPEDIZIONE** (<u>cod_ordine</u>: Ordine, indirizzo, cf_tecnico: Tecnico)
 - **MONTAGGIO** (<u>cod_ordine</u>: Ordine)
-- **CLIENTE** (<u>cf_cliente</u>, nome, cognome, telefono, email, via, civico, cap, città, socio)
-- **ACQUIRENTE** (<u>cf_acquirente</u>, nome, cognome, telefono, email, via, civico, cap, città)
-- **MANAGER** (<u>cf_manager</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
-- **TECNICO** (<u>cf_tecnico</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
-- **TECNICO COMMERCIALE**(<u>cf_tecnico_commerciale</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario)
-- **AMMINISTRATORE** (<u>cf_amministratore</u>, nome, cognome, telefono, email, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario: Orario, cod_zona)
+- **CLIENTE** (<u>cf_cliente</u>, nome, cognome, telefono, email*, via, civico, cap, città, socio)
+- **ACQUIRENTE** (<u>cf_acquirente</u>, nome, cognome, telefono, email*, via, civico, cap, città)
+- **MANAGER** (<u>cf_manager</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario)
+- **TECNICO** (<u>cf_tecnico</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario)
+- **TECNICO COMMERCIALE**(<u>cf_tecnico_commerciale</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario)
+- **AMMINISTRATORE** (<u>cf_amministratore</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario, cod_zona)
 - **ORARIO** (<u>cod_orario</u>, giorni, oreinizio, orefine)
 - **NEGOZIO** (<u>cod_negozio</u>, via, civico, cap, città, data_inaugurazione, cf_acquirente: Acquirente, cod_orario: Orario, num_posti_ristoro, num_composizioni)
 - **ALIMENTO** (<u>cod_alimento</u>, nome, provenienza, scadenza, ingredienti, allergeni, prezzo_porzionato, prezzo_confezionato)
@@ -796,7 +845,7 @@ Si vede chiaramente che mantenere la ridondanza è più efficiente per questa op
 - **COMPOSIZIONE** (<u>cod_composizione</u>, nome, num_prodotti, peso)
 - **ESPOSTA** (<u>cod_composizione</u>: Composizione, <u>cod_negozio</u>: Negozio)
 - **COMPOSTA** (<u>cod_composizione</u>: Composizione, <u>cod_prodotto</u>: Prodotto)
-- **PRODOTTO** (<u>cod_prodotto</u>, nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto: Sconto, tipo)
+- **PRODOTTO** (<u>cod_prodotto</u>, nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto*: Sconto, tipo)
 - **QUANTITÀ** (<u>cod_negozio</u>: Negozio, <u>cod_prodotto</u>: Prodotto, quantità)
 - **SCONTO** (<u>cod_sconto</u>, percentuale, cod_storico: Storico Sconti)
 - **STORICO SCONTI** (<u>cod_storico</u>, inizio, fine)
@@ -809,7 +858,7 @@ Si vede chiaramente che mantenere la ridondanza è più efficiente per questa op
 
  ![LogicoPt1](resources/logicopt1.jpg)
 
-![LogicoPt2](resources/logicopt2.jpg)
+![LogicoPt2](resources/logicopt2.jpeg)
 
 <div style="page-break-after: always;"></div>
 
