@@ -24,8 +24,8 @@ def default_window():
             'Aggiungi porzione'), sg.Button('Visualizza quantità prodotto nei magazzini'), sg.Button('Visualizza prodotti terminati nei magazzini')],
         [sg.Text('Statistiche')],
         [sg.Button('Visualizza 10 prodotti più acquistati'), sg.Button('Visualizza 10 prodotti meno acquistati'), sg.Button('Visualizza 10 prodotti più costosi'), sg.Button(
-            'Visualizza 10 prodotti meno costosi'), sg.Button('Visualizza 10 alimenti porzionati più costosi'), sg.Button('Visualizza 10 alimenti porzionati meno costosi')],
-        [sg.Button('Visualizza 10 alimenti confezionati più costosi'), sg.Button(
+            'Visualizza 10 prodotti meno costosi'), sg.Button('Visualizza 10 alimenti porzionati più costosi')],
+        [sg.Button('Visualizza 10 alimenti porzionati meno costosi'), sg.Button('Visualizza 10 alimenti confezionati più costosi'), sg.Button(
             'Visualizza 10 alimenti confezionati meno costosi'), sg.Button('Visualizza 10 prodotti con sconto maggiore')]
     ]
 
