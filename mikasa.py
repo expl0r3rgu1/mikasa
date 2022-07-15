@@ -830,7 +830,7 @@ while True:
         while True:
             event, values = window.read()
 
-            if event == 'Conferma':
+            if event == 'Licenzia':
                 for personale in ['manager', 'amministratore', 'tecnico', 'tecnico commerciale']:
                     for persona in values[personale]:
                         db_cursor.execute(
