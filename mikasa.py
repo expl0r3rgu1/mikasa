@@ -26,6 +26,7 @@ while True:
     if event == 'Visualizza clienti':
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = clienti_window(clienti)
     elif event == 'Aggiungi cliente':
@@ -50,6 +51,7 @@ while True:
     elif event == 'Rendi socio un cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = rendi_socio_cliente_window(clienti)
 
@@ -71,6 +73,7 @@ while True:
     elif event == 'Rendi non socio un cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = rendi_non_socio_cliente_window(clienti)
 
@@ -92,6 +95,7 @@ while True:
     elif event == 'Aggiungi manager':
         db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_personale_window(negozi)
 
@@ -113,6 +117,7 @@ while True:
     elif event == 'Aggiungi tecnico':
         db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_personale_window(negozi)
 
@@ -135,6 +140,7 @@ while True:
     elif event == 'Aggiungi tecnico commerciale':
         db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_personale_window(negozi)
 
@@ -157,6 +163,7 @@ while True:
     elif event == 'Aggiungi amministratore':
         db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
+        db.commit()
         zone = [(1, 'Alimentari'), (2, 'Ristoro'),
                 (3, 'Esposizione'), (4, 'Magazzino')]
         window.close()
@@ -180,6 +187,7 @@ while True:
     elif event == 'Aggiungi negozio':
         db_cursor.execute(QUERIES['Visualizza acquirenti'])
         acquirenti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_negozio_window(acquirenti)
 
@@ -201,12 +209,16 @@ while True:
     elif event == 'Effettua ordine per cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza prodotti'])
         prodotti = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza composizioni'])
         composizioni = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = effettua_ordine_cliente_window(
             clienti, prodotti, composizioni, negozi)
@@ -235,12 +247,14 @@ while True:
                     db_cursor.execute(
                         QUERIES['Visualizza percentuale sconto di uno sconto'], (prodotto[7],))
                     sconto = db_cursor.fetchone()
+                    db.commit()
                     if sconto is None:
                         costo_totale += prodotto[2]
                     else:
                         db_cursor.execute(
                             QUERIES['Visualizza storico sconto prodotto'], (prodotto[7],))
                         storico = db_cursor.fetchone()
+                        db.commit()
                         data_inizio = storico[0]
                         data_fine = storico[1]
                         data_inizio.replace(year=date.today().year)
@@ -257,16 +271,19 @@ while True:
                     db_cursor.execute(
                         QUERIES['Visualizza prodotti in composizione'], (composizione[0],))
                     prodotti_composizione = db_cursor.fetchall()
+                    db.commit()
                     for prodotto in prodotti_composizione:
                         db_cursor.execute(
                             QUERIES['Visualizza percentuale sconto di uno sconto'], (prodotto[7],))
                         sconto = db_cursor.fetchone()
+                        db.commit()
                         if sconto is None:
                             costo_totale += prodotto[2]
                         else:
                             db_cursor.execute(
                                 QUERIES['Visualizza storico sconto prodotto'], (prodotto[7],))
                             storico = db_cursor.fetchone()
+                            db.commit()
                             data_inizio = storico[0]
                             data_fine = storico[1]
                             data_inizio.replace(year=date.today().year)
@@ -281,10 +298,12 @@ while True:
 
                 db_cursor.execute(QUERIES['Visualizza tecnici commerciali'])
                 tecnici_commerciali = db_cursor.fetchall()
+                db.commit()
 
                 db_cursor.execute(
                     QUERIES['Visualizza se cliente è socio'], (values['cliente'][0],))
                 is_socio = db_cursor.fetchone()[0]
+                db.commit()
                 if(is_socio):
                     costo_totale *= 0.95
 
@@ -313,6 +332,7 @@ while True:
                     db_cursor.execute(
                         QUERIES['Visualizza prodotti in composizione'], (composizione[0],))
                     prodotti_composizione = db_cursor.fetchall()
+                    db.commit()
                     costo_composizione = 0
                     peso_composizione = 0
                     for prodotto in prodotti_composizione:
@@ -334,6 +354,7 @@ while True:
                 if(values['spedizione'] == 'Con spedizione' and (data_prodotti != () or data_composizioni != ())):
                     db_cursor.execute(QUERIES['Visualizza tecnici'])
                     tecnici = db_cursor.fetchall()
+                    db.commit()
                     tecnico = random.choice(tecnici)
                     db_cursor.execute(
                         QUERIES['Aggiungi spedizione'], (cod_ordine, values['indirizzo'], tecnico[0]))
@@ -366,6 +387,7 @@ while True:
         window.close()
         db_cursor.execute(QUERIES['Visualizza sconti'])
         sconti = db_cursor.fetchall()
+        db.commit()
         window = aggiungi_prodotto_window(sconti)
 
         while True:
@@ -408,6 +430,7 @@ while True:
                 db_cursor.execute(QUERIES['Visualizza ordini in un mese'], (
                     values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
                 ordini = db_cursor.fetchall()
+                db.commit()
                 window['ordini'].update(values=ordini)
             elif event == 'Indietro':
                 window.close()
@@ -418,6 +441,7 @@ while True:
     elif event == 'Visualizza ordini cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = ordini_cliente_window(clienti)
 
@@ -428,6 +452,7 @@ while True:
                 db_cursor.execute(
                     QUERIES['Visualizza ordini di un cliente'], (values['cliente'][0],))
                 ordini = db_cursor.fetchall()
+                db.commit()
                 window['ordini'].update(values=ordini)
             elif event == 'Indietro':
                 window.close()
@@ -446,6 +471,7 @@ while True:
                 db_cursor.execute(QUERIES['Visualizza spedizioni in un mese'], (
                     values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
                 spedizioni = db_cursor.fetchall()
+                db.commit()
                 window['spedizioni'].update(values=spedizioni)
             elif event == 'Indietro':
                 window.close()
@@ -464,6 +490,7 @@ while True:
                 db_cursor.execute(QUERIES['Visualizza ritiri in un mese'], (
                     values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
                 ritiri = db_cursor.fetchall()
+                db.commit()
                 window['ritiri'].update(values=ritiri)
             elif event == 'Indietro':
                 window.close()
@@ -482,6 +509,7 @@ while True:
                 db_cursor.execute(QUERIES['Visualizza montaggi in un mese'], (
                     values['-CAL-'].split('-')[0], values['-CAL-'].split('-')[1]))
                 montaggi = db_cursor.fetchall()
+                db.commit()
                 window['montaggi'].update(values=montaggi)
             elif event == 'Indietro':
                 window.close()
@@ -492,24 +520,28 @@ while True:
     elif event == 'Visualizza 10 prodotti più acquistati':
         db_cursor.execute(QUERIES['Visualizza 10 prodotti più acquistati'])
         prodotti = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = prodotti_piu_acquistato_window(prodotti)
     elif event == 'Visualizza 10 prodotti meno acquistati':
         db_cursor.execute(QUERIES['Visualizza 10 prodotti meno acquistati'])
         prodotti = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = prodotti_meno_acquistati_window(prodotti)
     elif event == 'Visualizza 10 prodotti più costosi':
         db_cursor.execute(QUERIES['Visualizza 10 prodotti più costosi'])
         prodotti = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = prodotti_piu_costosi_window(prodotti)
     elif event == 'Visualizza 10 prodotti meno costosi':
         db_cursor.execute(QUERIES['Visualizza 10 prodotti meno costosi'])
         prodotti = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = prodotti_meno_costosi_window(prodotti)
@@ -517,6 +549,7 @@ while True:
         db_cursor.execute(
             QUERIES['Visualizza 10 alimenti porzionati più costosi'])
         prodotti = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = alimenti_porzionati_piu_costosi_window(prodotti)
@@ -524,6 +557,7 @@ while True:
         db_cursor.execute(
             QUERIES['Visualizza 10 alimenti porzionati meno costosi'])
         prodotti = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = alimenti_porzionati_meno_costosi_window(prodotti)
@@ -531,6 +565,7 @@ while True:
         db_cursor.execute(
             QUERIES['Visualizza 10 alimenti confezionati più costosi'])
         prodotti = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = alimenti_confezionati_piu_costosi_window(prodotti)
@@ -538,12 +573,14 @@ while True:
         db_cursor.execute(
             QUERIES['Visualizza 10 alimenti confezionati meno costosi'])
         prodotti = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = alimenti_confezionati_meno_costosi_window(prodotti)
     elif event == 'Visualizza quantità prodotto nei magazzini':
         db_cursor.execute(QUERIES['Visualizza prodotti'])
         prodotti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = quantita_prodotto_magazzini_window(prodotti)
 
@@ -554,6 +591,7 @@ while True:
                 db_cursor.execute(
                     QUERIES['Visualizza quantità magazzini prodotto'], (values['prodotto'][0],))
                 quantita = db_cursor.fetchall()
+                db.commit()
                 window['quantita'].update(values=quantita)
             elif event == 'Indietro':
                 window.close()
@@ -564,12 +602,14 @@ while True:
     elif event == 'Visualizza prodotti terminati nei magazzini':
         db_cursor.execute(QUERIES['Visualizza prodotti terminati'])
         quantita = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = prodotti_terminati_window(quantita)
     elif event == 'Visualizza personale':
         db_cursor.execute(QUERIES['Visualizza personale'])
         personale = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = personale_window(personale)
@@ -577,6 +617,7 @@ while True:
         db_cursor.execute(
             QUERIES['Visualizza 10 prodotti con sconto maggiore'])
         prodotti = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = prodotti_sconto_maggiore_window(prodotti)
@@ -591,6 +632,7 @@ while True:
                 db_cursor.execute(
                     QUERIES['Visualizza ordini dopo data'], (values['-CAL-'],))
                 ordini = db_cursor.fetchall()
+                db.commit()
                 window['ordini'].update(values=ordini)
             elif event == 'Indietro':
                 window.close()
@@ -601,12 +643,14 @@ while True:
     elif event == 'Visualizza 10 ordini più costosi':
         db_cursor.execute(QUERIES['Visualizza 10 ordini più costosi'])
         ordini = db_cursor.fetchall()
+        db.commit()
 
         window.close()
         window = ordini_costosi_window(ordini)
     elif event == 'Visualizza 10 ordini più costosi di un cliente':
         db_cursor.execute(QUERIES['Visualizza clienti'])
         clienti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = ordini_cliente_window(clienti)
 
@@ -617,6 +661,7 @@ while True:
                 db_cursor.execute(
                     QUERIES['Visualizza 10 ordini più costosi cliente'], (values['cliente'][0],))
                 ordini = db_cursor.fetchall()
+                db.commit()
                 window['ordini'].update(values=ordini)
             elif event == 'Indietro':
                 window.close()
@@ -647,6 +692,7 @@ while True:
     elif event == 'Aggiungi composizione':
         db_cursor.execute(QUERIES['Visualizza prodotti'])
         prodotti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_composizione_window(prodotti)
 
@@ -683,6 +729,7 @@ while True:
     elif event == 'Aggiungi sconto':
         db_cursor.execute(QUERIES['Visualizza storico sconti'])
         storico_sconti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_sconto_window(storico_sconti)
 
@@ -745,8 +792,10 @@ while True:
     elif event == 'Aggiungi confezione':
         db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza alimenti'])
         alimenti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_confezione_window(negozi, alimenti)
 
@@ -769,8 +818,10 @@ while True:
     elif event == 'Aggiungi porzione':
         db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza alimenti'])
         alimenti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_porzione_window(negozi, alimenti)
 
@@ -793,8 +844,10 @@ while True:
     elif event == 'Aggiungi colorazione':
         db_cursor.execute(QUERIES['Visualizza colori'])
         colori = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza prodotti'])
         prodotti = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_colorazione_window(colori, prodotti)
 
@@ -817,12 +870,16 @@ while True:
     elif event == 'Licenzia personale':
         db_cursor.execute(QUERIES['Visualizza manager'])
         manager = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza amministratori'])
         amministratori = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza tecnici'])
         tecnici = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza tecnici commerciali'])
         tecnici_commerciali = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = licenzia_personale_window(
             manager, amministratori, tecnici, tecnici_commerciali)
@@ -849,6 +906,7 @@ while True:
     elif event == 'Aggiungi colore':
         db_cursor.execute(QUERIES['Visualizza colori'])
         colori = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = aggiungi_colore_window(colori)
 
@@ -871,8 +929,10 @@ while True:
     elif event == 'Esponi composizione':
         db_cursor.execute(QUERIES['Visualizza composizioni'])
         composizioni = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = esponi_composizione_window(composizioni, negozi)
 
@@ -895,8 +955,10 @@ while True:
     elif event == 'Restock prodotto':
         db_cursor.execute(QUERIES['Visualizza prodotti'])
         prodotti = db_cursor.fetchall()
+        db.commit()
         db_cursor.execute(QUERIES['Visualizza negozi'])
         negozi = db_cursor.fetchall()
+        db.commit()
         window.close()
         window = restock_prodotto_window(prodotti, negozi)
 
