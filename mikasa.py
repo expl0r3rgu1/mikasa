@@ -239,7 +239,7 @@ while True:
                         costo_totale += prodotto[2]
                     else:
                         db_cursor.execute(
-                            'SELECT s.inizio, s.fine FROM storico_sconti s WHERE cod_storico = (SELECT sc.cod_storico FROM sconti sc WHERE cod_sconto = %s LIMIT 1)', (prodotto[7],))
+                            QUERIES['Visualizza storico sconto prodotto'], (prodotto[7],))
                         storico = db_cursor.fetchone()
                         data_inizio = storico[0]
                         data_fine = storico[1]
@@ -255,7 +255,7 @@ while True:
 
                 for composizione in composizioni_acquistate:
                     db_cursor.execute(
-                        'SELECT p.* FROM prodotti p WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s AND p.cod_prodotto = cod_prodotto)', (composizione[0],))
+                        QUERIES['Visualizza prodotti in composizione'], (composizione[0],))
                     prodotti_composizione = db_cursor.fetchall()
                     for prodotto in prodotti_composizione:
                         db_cursor.execute(
@@ -265,7 +265,7 @@ while True:
                             costo_totale += prodotto[2]
                         else:
                             db_cursor.execute(
-                                'SELECT s.inizio, s.fine FROM storico_sconti s WHERE cod_storico = (SELECT sc.cod_storico FROM sconti sc WHERE cod_sconto = %s LIMIT 1)', (prodotto[7],))
+                                QUERIES['Visualizza storico sconto prodotto'], (prodotto[7],))
                             storico = db_cursor.fetchone()
                             data_inizio = storico[0]
                             data_fine = storico[1]
@@ -311,7 +311,7 @@ while True:
                 data_composizioni = ()
                 for i, composizione in enumerate(composizioni_acquistate):
                     db_cursor.execute(
-                        'SELECT p.* FROM prodotti p WHERE EXISTS (SELECT * FROM composte WHERE cod_composizione = %s AND p.cod_prodotto = cod_prodotto)', (composizione[0],))
+                        QUERIES['Visualizza prodotti in composizione'], (composizione[0],))
                     prodotti_composizione = db_cursor.fetchall()
                     costo_composizione = 0
                     peso_composizione = 0
@@ -857,7 +857,7 @@ while True:
 
             if event == 'Conferma':
                 db_cursor.execute(
-                    'INSERT INTO colori(nome) VALUES (%s)', (values['nome'],))
+                    QUERIES['Aggiungi colore'], (values['nome'],))
                 db.commit()
                 window.close()
                 window = default_window()
@@ -909,7 +909,7 @@ while True:
                 db.commit()
                 rows_affected = db_cursor.rowcount
                 if rows_affected == 0:
-                    db_cursor.execute('INSERT INTO quantità(prodotto, negozio, quantità) VALUES (%s, %s, %s)', (
+                    db_cursor.execute(QUERIES['Aggiungi quantità'], (
                         values['prodotto'][0], values['negozio'][0], values['quantita']))
                     db.commit()
                 window.close()
