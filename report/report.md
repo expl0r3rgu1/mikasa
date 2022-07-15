@@ -349,6 +349,10 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Riferimento Composizione          | R         | numero di composizioni acquistate                                                      | S    |
 #### Totale: (6/7 + 4\*numero di composizioni acquistate + 5\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)L, (3/7 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/14 + 7\*numero di composizioni acquistate + 8\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)all'anno
 
+Schema di navigazione
+
+![NavigazioneOrdine](resources/schema_navigazione.png)
+
 ### OP6: Aggiungere un nuovo prodotto
 | Concetto  | Costrutto | Accessi | Tipo |
 | --------- | --------- | ------- | ---- |
