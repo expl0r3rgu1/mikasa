@@ -563,13 +563,13 @@ def licenzia_personale_window(manager, amministratori, tecnici, tecnici_commerci
     layout = [
         [sg.Text('Licenzia personale')],
         [sg.Text('Manager'), sg.Listbox(values=manager,
-                                        select_mode='extended', key='manager')],
+                                        select_mode='extended', key='manager', size=(0, 10))],
         [sg.Text('Amministratori'), sg.Listbox(values=amministratori,
-                                               select_mode='extended', key='amministratori')],
+                                               select_mode='extended', key='amministratore', size=(0, 10))],
         [sg.Text('Tecnici'), sg.Listbox(values=tecnici,
-                                        select_mode='extended', key='tecnici')],
+                                        select_mode='extended', key='tecnico', size=(0, 10))],
         [sg.Text('Tecnici commerciali'), sg.Listbox(
-            values=tecnici_commerciali, select_mode='extended', key='tecnici_commerciali')],
+            values=tecnici_commerciali, select_mode='extended', key='tecnico commerciale', size=(0, 10))],
         [sg.Button('Licenzia'), sg.Button('Annulla')]
     ]
 
