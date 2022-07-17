@@ -33,7 +33,7 @@ Valentina Pieri, matricola: 0000974789
   - [Traduzione di entità e associazioni in relazioni](#traduzione-di-entità-e-associazioni-in-relazioni)
   - [Schema relazionale finale](#schema-relazionale-finale)
   - [Traduzione delle operazioni in query SQL](#traduzione-delle-operazioni-in-query-sql)
-- [Capitolo 4 - Progettazione dell'applicazione](#capitolo-4---progettazione-dell'-applicazione)
+- [Capitolo 4 - Progettazione dell'applicazione](#capitolo-4---progettazione-dell-'-applicazione)
 
 <div style="page-break-after: always;"></div>
 
