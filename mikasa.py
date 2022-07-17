@@ -243,13 +243,15 @@ while True:
 
                 costo_totale = 0
                 peso_totale = 0
-                for prodotto in prodotti_acquistati:
+                for i, prodotto in enumerate(prodotti_acquistati):
+                    costo_prodotto = 0
+                    peso_prodotto = 0
                     db_cursor.execute(
                         QUERIES['Visualizza percentuale sconto di uno sconto'], (prodotto[7],))
                     sconto = db_cursor.fetchone()
                     db.commit()
                     if sconto is None:
-                        costo_totale += prodotto[2]
+                        costo_prodotto += prodotto[2]
                     else:
                         db_cursor.execute(
                             QUERIES['Visualizza storico sconto prodotto'], (prodotto[7],))
@@ -261,24 +263,32 @@ while True:
                         data_fine.replace(year=date.today().year)
 
                         if date.today() > data_inizio and date.today() < data_fine:
-                            costo_totale += (prodotto[2]
+                            costo_prodotto += (prodotto[2]
                                              * (1 - sconto[0] / 100))
                         else:
-                            costo_totale += prodotto[2]
-                    peso_totale += prodotto[6]
+                            costo_prodotto += prodotto[2]
+                    peso_prodotto += prodotto[6]
+                    costo_totale += costo_prodotto * int(values['quantità_prodotti'].split(',')[i])
+                    peso_totale += peso_prodotto * int(values['quantità_prodotti'].split(',')[i])
 
-                for composizione in composizioni_acquistate:
+                for i, composizione in enumerate(composizioni_acquistate):
+                    costo_composizione = 0
+                    peso_composizione = 0
                     db_cursor.execute(
                         QUERIES['Visualizza prodotti in composizione'], (composizione[0],))
                     prodotti_composizione = db_cursor.fetchall()
                     db.commit()
                     for prodotto in prodotti_composizione:
+                        costo_prodotto = 0
+                        peso_prodotto = 0
                         db_cursor.execute(
                             QUERIES['Visualizza percentuale sconto di uno sconto'], (prodotto[7],))
                         sconto = db_cursor.fetchone()
                         db.commit()
+                        db_cursor.execute('SELECT quantità FROM composte WHERE cod_prodotto = %s AND cod_composizione = %s LIMIT 1', (prodotto[0], composizione[0]))
+                        quantita_prodotto = int(db_cursor.fetchone()[0])
                         if sconto is None:
-                            costo_totale += prodotto[2]
+                            costo_prodotto += prodotto[2]
                         else:
                             db_cursor.execute(
                                 QUERIES['Visualizza storico sconto prodotto'], (prodotto[7],))
@@ -290,11 +300,15 @@ while True:
                             data_fine.replace(year=date.today().year)
 
                             if date.today() > data_inizio and date.today() < data_fine:
-                                costo_totale += prodotto[2] * \
+                                costo_prodotto += prodotto[2] * \
                                     (1 - sconto[0] / 100)
                             else:
-                                costo_totale += prodotto[2]
-                        peso_totale += prodotto[6]
+                                costo_prodotto += prodotto[2]
+                        peso_prodotto += prodotto[6]
+                        costo_composizione += costo_prodotto * quantita_prodotto
+                        peso_composizione += peso_prodotto * quantita_prodotto
+                    costo_totale += costo_composizione * int(values['quantità_composizioni'].split(',')[i])
+                    peso_totale += peso_composizione * int(values['quantità_composizioni'].split(',')[i])
 
                 db_cursor.execute(QUERIES['Visualizza tecnici commerciali'])
                 tecnici_commerciali = db_cursor.fetchall()
@@ -336,8 +350,10 @@ while True:
                     costo_composizione = 0
                     peso_composizione = 0
                     for prodotto in prodotti_composizione:
-                        costo_composizione += prodotto[2]
-                        peso_composizione += prodotto[6]
+                        db_cursor.execute('SELECT quantità FROM composte WHERE cod_prodotto = %s AND cod_composizione = %s LIMIT 1', (prodotto[0], composizione[0]))
+                        quantita_prodotto = int(db_cursor.fetchone()[0])
+                        costo_composizione += prodotto[2] * quantita_prodotto
+                        peso_composizione += prodotto[6] * quantita_prodotto
 
                     data_composizioni += (cod_ordine, composizione[0], int(values['quantità_composizioni'].split(
                         ',')[i]), costo_composizione, peso_composizione)
