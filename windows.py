@@ -126,7 +126,6 @@ def aggiungi_negozio_window(acquirenti):
             acquirenti, default_value=acquirenti[0], key='acquirente')],
         [sg.Text('Numero posti ristoro'),
          sg.InputText(key='num_posti_ristoro')],
-        [sg.Text('Numero composizioni'), sg.InputText(key='num_composizioni')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
