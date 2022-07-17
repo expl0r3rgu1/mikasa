@@ -348,7 +348,8 @@ Le tabelle che seguono mostrano gli accessi di tutte le operazioni effettuabili
 | Riferimento prodotto              | R         | numero di prodotti acquistati                                                          | S    |
 | Dettaglio Composizione            | R         | numero di composizioni acquistate                                                      | S    |
 | Riferimento Composizione          | R         | numero di composizioni acquistate                                                      | S    |
-#### Totale: (6/7 + 4\*numero di composizioni acquistate + 5\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)L, (3/7 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/14 + 7\*numero di composizioni acquistate + 8\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)all'anno
+| Ordine senza Spedizione           | E         | 0/1                                                                                    | S    | 
+#### Totale: (6/7 + 4\*numero di composizioni acquistate + 5\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)L, (3/8 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/15 + 7\*numero di composizioni acquistate + 8\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)all'anno
 
 Schema di navigazione
 
@@ -406,10 +407,10 @@ Schema di navigazione
 #### Totale: 2L -> 2 al mese
 
 ### OP13: Leggere tutti i ritiri effettuati in un determinato mese  
-| Concetto              | Costrutto | Accessi | Tipo |
-| --------------------- | --------- | ------- | ---- |
-| Ordine con Spedizione | E         | 1       | L    |
-| Ordine                | E         | 1       | L    |
+| Concetto                | Costrutto | Accessi | Tipo |
+| ----------------------- | --------- | ------- | ---- |
+| Ordine senza Spedizione | E         | 1       | L    |
+| Ordine                  | E         | 1       | L    |
 #### Totale: 2L -> 2 al mese
 
 ### OP14: Leggere tutti i montaggi effettuati in un determinato mese 
@@ -650,24 +651,24 @@ Schema di navigazione
 - Gerarchia Impiegato-Tecnico-TecnicoCommerciale-Amministratore: è stato utilizzato il collasso verso il basso, portando gli attributi di Impiegato in Tecnico, in Tecnico Commerciale e in Amministartore. In questa maniera la tabella Impiegato viene eliminata.
 - Gerarchia Prodotto-Mobile-Accessorio-Elettrodomestico: è stato utilizzato il collasso verso l'alto, aggiungendo il campo "tipo" alla tabella Prodotto. Per ogni prodotto aggiunto, il suo attributo "tipo" sarà uguale a 1 se si tratta di un mobile, uguale a 2 se si tratta di un accessorio e uguale a 3 se si tratta di un elettrodomestico. 
 - Gerarchia Zona-Alimentari-Ristoro-Esposizione-Magazzino: è stato utilizzato il collasso verso l'alto portando i vari attributi di Alimentari, Ristoro, Esposizione e Magazzino in Zona; dopo di chè è stato fatto un accorpamento di entità da Zona verso Negozio. In questo modo i vari attributi di Alimentari, Ristoro, Esposizione e Magazzino vengono salvati in Negozio
-- Gerarchia Ordine-OrdineNoSpedizione-OrdineSpedizione-OrdineNoMontaggio-OrdineMontaggio: nello schema logico sono state eliminate le tabelle Ordine senza Spedizione e Ordine Senza Montaggio, mentre le tabelle Ordine con Montaggio e Ordine con Spedizione vengono rispettivamente rinominate in Montaggio e Spedizione. Per evitare ambiguità la precedente relazione Montaggio che lega Ordine con Montaggio e Tecnico viene rinominata in Dettaglio Montaggio. 
+- Gerarchia Ordine-OrdineNoSpedizione-OrdineSpedizione-OrdineNoMontaggio-OrdineMontaggio: nello schema logico è stata eliminata la tabella Ordine Senza Montaggio, mentre le tabelle Ordine con Montaggio, Ordine senza Spedizione e Ordine con Spedizione vengono rispettivamente rinominate in Montaggio, Ritiro e Spedizione. Per evitare ambiguità la precedente relazione Montaggio che lega Ordine con Montaggio e Tecnico viene rinominata in Dettaglio Montaggio. 
 
 ### Eliminazione degli attributi compositi
 Ogni attributo composto presente è stato suddiviso nelle sue sotto-componenti. Gli attributi composti in questione sono: Indirizzo di Persona, Luogo di Negozio, Giorno di Orario, Etichetta di Alimento, Dimensioni di Prodotto e PeriodoSconto di Storico Sconti.
 
 ### Eliminazione degli identificatori esterni
 Nello schema E/R sono eliminate le seguenti relazioni:
-- Effettua: importanto cf_cliente di Cliente in Ordine
+- Effettua: importando cf_cliente di Cliente in Ordine
 - Consegna: importando cf_tecnico di Tecnico Spedizione
 - Montaggio: reificata, importando codOrdine da Ordine con Montaggio e importando cf_tecnico da Tecnico; creando una nuova entità Dettaglio Montaggio
-- Ritiro: importando codNegozio di Negozio in Ordine senza Spedizione.
+- Ritiro: importando codNegozio di Negozio in Ordine senza Spedizione (Ordine senza Spedizione diventa Ritiro nello schema logico).
 - DettaglioProdotto: importando codOrdine di Ordine in Dettaglio Ordine per Prodotto
 - DettaglioComposizione: importando codOrdine di Ordine in Dettaglio Ordine per Composizione
 - RiferimentoProdotto: importando codProdotto di Prodotto in Dettaglio Ordine per Prodotto
 - RiferimentoComposizione: importando codComposizione di Composizione in Dettaglio Ordine per Prodotto
 - Gestione: importando cf_tecnico_commerciale di Tecnico Commerciale in Ordine
-- OrarioLavorativo: importando codOrario di Orario in Personale
-- OrarioApertura: importando codOrario di Orario in Negozio
+- Orario Lavorativo: importando codOrario di Orario in Personale
+- Orario Apertura: importando codOrario di Orario in Negozio
 - Apertura: importando cf_acquirente di Acquirente in Negozio
 - Management: importando codNegozio di Negozio in Manager
 - Amministra: importando codNegozio di Negozio in Amministratore
@@ -749,7 +750,8 @@ Con ridondanza:
 | Riferimento prodotto              | R         | numero di prodotti acquistati                                                          | S    |
 | Dettaglio Composizione            | R         | numero di composizioni acquistate                                                      | S    |
 | Riferimento Composizione          | R         | numero di composizioni acquistate                                                      | S    |
-#### Totale: (6/7 + 4\*numero di composizioni acquistate + 5\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)L, (3/7 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/14 + 7\*numero di composizioni acquistate + 8\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)all'anno
+| Ordine senza Spedizione           | E         | 0/1                                                                                    | S    |
+#### Totale: (6/7 + 4\*numero di composizioni acquistate + 5\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)L, (3/8 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/15 + 7\*numero di composizioni acquistate + 8\*numero di prodotti acquistati + 5\*numero di prodotti delle composizioni acquistate)all'anno
 
 Senza ridondanza: 
 
@@ -780,7 +782,8 @@ Senza ridondanza:
 | Riferimento prodotto              | R         | numero di prodotti acquistati                                                                                                  | S    |
 | Dettaglio Composizione            | R         | numero di composizioni acquistate                                                                                              | S    |
 | Riferimento Composizione          | R         | numero di composizioni acquistate                                                                                              | S    |
-#### Totale: (6/7 + 6\*numero di composizioni acquistate + 6\*numero di prodotti acquistati + 6\*numero di prodotti delle composizioni acquistate)L, (3/7 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/14 + 9\*numero di composizioni acquistate + 9\*numero di prodotti acquistati + 6\*numero di prodotti delle composizioni acquistate)all'anno
+| Ordine senza Spedizione           | E         | 0/1                                                                                    | S    |
+#### Totale: (6/7 + 6\*numero di composizioni acquistate + 6\*numero di prodotti acquistati + 6\*numero di prodotti delle composizioni acquistate)L, (3/8 + 3\*numero di prodotti acquistati + 3\*numero di composizioni acquistate)S -> (9/15 + 9\*numero di composizioni acquistate + 9\*numero di prodotti acquistati + 6\*numero di prodotti delle composizioni acquistate)all'anno
 
 Osservando le somme totali delle operazioni nei due casi, risulta più efficiente la versione con le ridondanze
 
@@ -908,11 +911,12 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 ```
 
 ### OP5: Effettuazione di un ordine da parte di un cliente
-Si visualizzano i clienti per poter selezionare il cf_cliente di colui che effettuerà l'ordine
+Si visualizzano i clienti per poter selezionare il cf_cliente di colui che effettuerà l'ordine.
 ```
 SELECT * FROM clienti
 ```
 
+Vengono visualizzati i prodotti e le composizioni per selezionare quelli da comprare.
 ```
 SELECT * FROM prodotti
 ```
@@ -921,6 +925,7 @@ SELECT * FROM prodotti
 SELECT * FROM composizioni
 ```
 
+Vengono visualizzati i negozi per scegliere quello in cui eventualmente verrà effettuato il ritiro.
 ```
 SELECT * FROM negozi
 ```
@@ -984,6 +989,12 @@ Per ogni composizione acquistata viene creato un dettaglio ordine per prodotto
 ```
 INSERT INTO dettagli_composizione (cod_ordine, cod_composizione, quantità, prezzo_totale, peso_totale) 
 VALUES (?, ?, ?, ?, ?)
+```
+
+Se è un ordine senza spedizione viene creata una entry in Ritiri
+```
+INSERT INTO ritiri (cod_ordine, cod_negozio)
+VALUES (?, ?)
 ```
 
 Se l'ordine è un ordine con spedizione si seleziona un tecnico che se ne occuperà e viene registrato l'ordine creando una entry nella tabella degli ordini con spedizioni
@@ -1094,12 +1105,13 @@ AND MONTH(o.data_effettuazione) = ?
 AND o.cod_ordine = s.cod_ordine
 ```
 
-### OP13: Leggere tutti i ritiri effettuati in un determinato mese 
+### OP13: Leggere tutti i ritiri effettuati in un determinato mese
 ```
-SELECT o.cod_ordine, o.data_effettuazione FROM ordini o 
-WHERE NOT EXISTS (SELECT s.cod_ordine FROM spedizioni s WHERE s.cod_ordine = o.cod_ordine) 
-AND YEAR(o.data_effettuazione) = ?
-AND MONTH(o.data_effettuazione) = ?
+SELECT o.cod_ordine, r.cod_negozio, o.data_effettuazione, o.data_arrivo 
+FROM ordini o, ritiri r
+WHERE YEAR(o.data_effettuazione) = ? 
+AND MONTH(o.data_effettuazione) = ? 
+AND o.cod_ordine = r.cod_ordine
 ```
 
 ### OP14: Leggere tutti i montaggi effettuati in un determinato mese 
