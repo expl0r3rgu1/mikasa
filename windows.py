@@ -245,7 +245,7 @@ def ritiri_mese_window():
 
 def montaggi_mese_window():
     table = sg.Table(key='montaggi', values=[], headings=[
-                     'Codice Ordine', 'Data arrivo', 'Codice Fiscale tecnico'])
+                     'Codice Ordine', 'Data arrivo'])
 
     layout = [
         [sg.Text('Montaggi in un mese')],
