@@ -97,7 +97,7 @@ while True:
         negozi = db_cursor.fetchall()
         db.commit()
         window.close()
-        window = aggiungi_personale_window(negozi)
+        window = aggiungi_personale_window(negozi, 'manager')
 
         while True:
             event, values = window.read()
@@ -119,7 +119,7 @@ while True:
         negozi = db_cursor.fetchall()
         db.commit()
         window.close()
-        window = aggiungi_personale_window(negozi)
+        window = aggiungi_personale_window(negozi, 'tecnico')
 
         while True:
             event, values = window.read()
@@ -142,7 +142,7 @@ while True:
         negozi = db_cursor.fetchall()
         db.commit()
         window.close()
-        window = aggiungi_personale_window(negozi)
+        window = aggiungi_personale_window(negozi, 'tecnico commerciale')
 
         while True:
             event, values = window.read()
@@ -396,7 +396,7 @@ while True:
                             tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
                         db.commit()
                 else:
-                    db_cursor.execute(QUERIES['Aggiungi ritiro'], (cod_ordine, values['negozio']))
+                    db_cursor.execute(QUERIES['Aggiungi ritiro'], (cod_ordine, values['negozio'][0]))
                     db.commit()
 
                 window.close()
@@ -677,7 +677,7 @@ while True:
         clienti = db_cursor.fetchall()
         db.commit()
         window.close()
-        window = ordini_cliente_window(clienti)
+        window = ordini_costosi_cliente_window(clienti)
 
         while True:
             event, values = window.read()

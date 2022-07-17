@@ -52,12 +52,12 @@ def aggiungi_cliente_window():
 
 def rendi_socio_cliente_window(clienti):
     layout = [
-        [sg.Text('Iscrivi cliente')],
+        [sg.Text('Rendi socio un cliente')],
         [sg.Combo(clienti, default_value=clienti[0], key='cliente')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
-    return sg.Window('Iscrivi cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+    return sg.Window('Rendi socio un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
 
 def rendi_non_socio_cliente_window(clienti):
@@ -70,9 +70,9 @@ def rendi_non_socio_cliente_window(clienti):
     return sg.Window('Rendi non socio un cliente', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
 
-def aggiungi_personale_window(negozi):
+def aggiungi_personale_window(negozi, personale):
     layout = [
-        [sg.Text('Aggiungi manager o tecnico o tecnico commerciale')],
+        [sg.Text('Aggiungi' + personale)],
         [sg.Text('Codice Fiscale'), sg.InputText()],
         [sg.Text('Nome'), sg.InputText()],
         [sg.Text('Cognome'), sg.InputText()],
@@ -88,7 +88,7 @@ def aggiungi_personale_window(negozi):
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
-    return sg.Window('Aggiungi manager o tecnico o tecnico commerciale', layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
+    return sg.Window('Aggiungi' + personale, layout, margins=MARGINS, element_justification='c', resizable=False, finalize=True)
 
 
 def aggiungi_amministratore_window(negozi, zone):
