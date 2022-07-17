@@ -39,7 +39,7 @@ QUERIES = {
     'Visualizza prodotti terminati' : 'SELECT q.cod_negozio, q.cod_prodotto, p.nome, p.tipo FROM quantità q, prodotti p WHERE q.cod_prodotto = p.cod_prodotto AND q.quantità = 0',
     'Visualizza personale' : 'SELECT cf_manager AS cf, nome, cognome FROM manager UNION ALL SELECT cf_amministratore, nome, cognome FROM amministratori UNION ALL SELECT cf_tecnico, nome, cognome FROM tecnici UNION ALL SELECT cf_tecnico_commerciale, nome, cognome FROM tecnici_commerciali',
     'Visualizza 10 prodotti con sconto maggiore' : 'SELECT p.cod_prodotto, p.tipo, p.nome, s.cod_sconto, s.percentuale FROM sconti s, prodotti p WHERE p.cod_sconto = s.cod_sconto GROUP BY p.cod_sconto ORDER BY s.percentuale DESC LIMIT 10',
-    'Visualizza ordini dopo data': 'SELECT * FROM ordini WHERE data_effettuazione > %s',
+    'Visualizza ordini dopo data': 'SELECT * FROM ordini WHERE data_effettuazione >= %s',
     'Visualizza 10 ordini più costosi': 'SELECT * FROM ordini ORDER BY costo_totale DESC LIMIT 10',
     'Visualizza 10 ordini più costosi cliente': 'SELECT * FROM ordini o WHERE cf_cliente = %s ORDER BY costo_totale DESC LIMIT 10',
     'Visualizza sconti' : 'SELECT * FROM sconti',
