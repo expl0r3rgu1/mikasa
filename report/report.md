@@ -48,7 +48,7 @@ Per ogni composizione viene salvato il nome, il numero di prodotti al suo intern
 Una composizione è formata da più prodotti e ogni prodotto appartiene ad una sola composizione. Per ogni prodotto vengono salvati: il nome, il prezzo, le dimensioni, il peso e il codice prodotto. Ci sono 3 tipi di prodotti: i mobili, gli accessori e gli elettrodomestici.
 Ad ogni prodotto viene inoltre associato uno o più colori e ogni colore può essere di più prodotti. Per ogni colore vengono salvati il nome e il codice colore.
 Per i prodotti si mantiene uno storico sconti: a ogni prodotto possono essere applicati più sconti in base al periodo dell'anno. Il periodo di validità di uno sconto viene mantenuto tramite lo storico sconti. Ogni sconto può essere applicato a più prodotti. Per lo sconto vengono salvati una percentuale conto e un codice sconto, mentre, per lo storico sconti vengono salvati il periodo di sconto e il codice dello storico.
-Tutti i prodotti vengono stockati nei magazzini dei vari negozi. In ogni magazzino ci sono da zero a N prodotti e, allo stesso tempo, ogni prodotto può essere presente in uno, nessuno o tanti magazzini. Per lo stockaggio dei prodotti vengono salvati la locazione del prodotto nel magazzino e la quantità di prodotto presente.
+Tutti i prodotti vengono stoccati nei magazzini dei vari negozi. In ogni magazzino ci sono da zero a N prodotti e, allo stesso tempo, ogni prodotto può essere presente in uno, nessuno o tanti magazzini. Per lo stoccaggio dei prodotti vengono salvati la locazione del prodotto nel magazzino e la quantità di prodotto presente.
 Per quanto riguarda lo shop alimentari e la zona di ristoro, questi vendono diversi alimenti. La zona ristoro vende gli alimenti al dettaglio mentre, la zona dello shop li vende all'ingrosso. Per entrambe le vendite vengono mantenuti i prezzi, al pezzo da una parte e all'ingrosso dall'altra. Inoltre, nella vendita all'ingrosso viene mantenuto il numero di pezzi venduti per ogni prodotto. Per i vari alimenti vengono salvati: il nome, gli ingredienti con i relativi allergeni, la provenienza, la scadenza e il codice a barre.
 In questo database vi sono anche diversi tipi di persone. Per ogni persona vengono salvati: il nome, il cognome, il numero di telefono, l'indirizzo email, l'indirizzo e il codice fiscale. Ci sono 3 tipi di persone: clienti, personale e acquirenti. Ogni acquirente può aprire diversi negozi della catena mentre, ogni negozio ha un solo acquirente.
 Per il personale vengono salvati: il salario, l'orario lavorativo e il codice personale. Il personale si divide tra impiegati e manager.
@@ -90,13 +90,13 @@ Per lo sviluppo dello schema ER generale si procede suddividendolo in  schemi ER
 ### Persona
 
 Per modellare i vari ruoli presenti nel database si parte da un'entità padre: **Persona**. Persona racchiude tutti i campi necessari al modellamento di **Cliente**, **Acquirente** e **Personale**. L'entità Personale modella un generico membro del corpo lavorativo di MiKasa e si divide in **Impiegato** e **Manager**. Infine, l'entità Impiegato è stata divisa nelle tre categorie; **Tecnico**, **Tecnico Commerciale** e **Amministratore**.
-La gerarchia Persona-Cliente-Personale-Acquirente è totale ma non esclusiva; è infatti possibile, ad esempio, che una stessa persona possa sia essere un cliente che un membro del personale. Entrambi le gerarchie Personale-Impiegato-Manager e Impiegato-Tecnico-Tecnico Commerciale-Amministratore sono sia totale che esclusive.
+La gerarchia Persona-Cliente-Personale-Acquirente è totale ma non esclusiva; è infatti possibile, ad esempio, che una stessa persona possa sia essere un cliente che un membro del personale. Entrambe le gerarchie Personale-Impiegato-Manager e Impiegato-Tecnico-Tecnico Commerciale-Amministratore sono sia totale che esclusive.
 
 ![Persona](resources/persona.jpg)
 
 ### Cliente-Ordine
 
-Una relazione fontamentale è quella del **Cliente** che effettua un **Ordine**. 
+Una relazione fondamentale è quella del **Cliente** che effettua un **Ordine**. 
 Ogni cliente può effettuare tutti gli ordini che vuole. Per ogni ordine è fondamentale calcolare il suo peso e costo totale, ottenuti dai dati dei singoli prodotti acquistati. Per il prezzo totale è importante controllare che il cliente sia socio o meno, da socio infatti si ha diritto ha uno sconto sul prezzo totale dell'ordine.
 Il cliente può anche scegliere se far spedire l'ordine al suo indirizzo o ad un negozio MiKasa dove si recherà il cliente stesso per ritirarlo. In caso di ordine con spedizione si hanno due ulteriori scelte: ordine senza montaggio e ordine con montaggio, in quest'ultimo l'assemblaggio dei mobili viene eseguito da un tecnico del personale.
 
@@ -112,13 +112,13 @@ I tecnici commerciali gestiscono gli ordini: mettono insieme i vari articoli ord
 ### Negozio-Zona
 
 Ogni **Negozio** della catena viene aperto da un **Acquirente** e gestito da un **Manager**. 
-Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposizione** e **Magazzino**.
+Ogni negozio è suddiviso in 4 zone: **Alimentari**, **Ristoro**, **Esposizione** e **Magazzino**.
  
  ![Personale-Ordine](resources/negozioZona.jpg)
  
  ### Orario
  
- L'entità **orario** viene utilizzata per definire l'orario lavorativo dei memebri del personale e l'orario di apertura dei negozi. Ogni orario che viene creato può essere usato da più membri del personale/negozi.
+ L'entità **orario** viene utilizzata per definire l'orario lavorativo dei membri del personale e l'orario di apertura dei negozi. Ogni orario che viene creato può essere usato da più membri del personale/negozi.
  
   ![Orario](resources/orario.jpg)
  
@@ -130,7 +130,7 @@ Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposiz
  
  ###  Prodotto-Composizione
  
- La zona **esposizioni** di ogni negozio è formata da tante **composizioni** di mobili. Questa zona è pensata per mostrare al cliente, non solo ogni singolo prodotto venduto (in quanto non ci sono prodotti non esposti), ma anche per creare composizioni che siano esteticamente belle e funzionali. Tra le composizioni proposte ci sono infatti diverse proposte di cucina, salotto, bagno, ufficio, camera da letto, ecc ...
+ La zona **esposizioni** di ogni negozio è formata da tante **composizioni** di mobili. Questa zona è pensata per mostrare al cliente, non solo ogni singolo prodotto venduto (in quanto non ci sono prodotti non esposti), ma anche per creare composizioni che siano esteticamente belle e funzionali. Tra le composizioni proposte ci sono infatti diverse proposte di cucina, salotto, bagno, ufficio, camera da letto, ecc...
  
   ![Prodotto-Composizione](resources/prodottoComposizione.jpg)
  
@@ -139,7 +139,7 @@ Ogni negozio è suddiviso in 4 zone: **Shop alimentari**, **Ristoro**, **Esposiz
   In ogni **Negozio** vi è un **Magazzino**; quest'ultimo può contenere o meno tutti i prodotti oppure essere addirittura vuoto.  Ogni **Prodotto** venduto nei negozi della catena infatti, si potrebbe trovare in ogni magazzino, in solo alcuni magazzini (quindi è presente in solo alcuni negozi) o anche in nessuno magazzino se la sua disponibilità è terminata ovunque. 
   In ogni magazzino ci lavorano alcuni tecnici detti magazzinieri.
   
-   ![ProdottoMagazzino](resources/prodottoMagazzino.jpg)
+   ![Prodotto-Magazzino](resources/prodottoMagazzino.jpg)
  
  ### Prodotto
  
@@ -678,7 +678,7 @@ Nello schema E/R sono eliminate le seguenti relazioni:
 - Porzione: reificata, importando codNegozio da Negozio e importando codAlimento da Alimento; creando una nuova entità Porzione
 - Esposta: reificata, importando codNegozio e Negozio e importando il codComposizione da Composizione; creando una nuova entità Esposta
 - Composta: reificata, importando codNegozio e codComposizione da Composizione e importando il codProdotto da Prodotto; creando una nuova entità Composta
-- Stockaggio: reificata, importando codNegozio da Negozio e importando codProdotto da Prodotto; creando una nuova entità Quantità
+- Stoccaggio: reificata, importando codNegozio da Negozio e importando codProdotto da Prodotto; creando una nuova entità Quantità
 - Colorazione: reificata, importando codColore da Colore e importando codProdotto da Prodotto; creando una nuova entità Colorazione
 - Applicato: importando codSconto di Sconto in Prodotto
 - Storico: importando codStorico di Storico in Sconto
@@ -842,7 +842,7 @@ Si vede chiaramente che mantenere la ridondanza è più efficiente per questa op
 - **TECNICO COMMERCIALE**(<u>cf_tecnico_commerciale</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario)
 - **AMMINISTRATORE** (<u>cf_amministratore</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario, cod_zona)
 - **ORARIO** (<u>cod_orario</u>, giorni, oreinizio, orefine)
-- **NEGOZIO** (<u>cod_negozio</u>, via, civico, cap, città, data_inaugurazione, cf_acquirente: Acquirente, cod_orario: Orario, num_posti_ristoro, num_composizioni)
+- **NEGOZIO** (<u>cod_negozio</u>, via, civico, cap, città, data_inaugurazione, cf_acquirente: Acquirente, cod_orario: Orario, num_posti_ristoro)
 - **ALIMENTO** (<u>cod_alimento</u>, nome, provenienza, scadenza, ingredienti, allergeni, prezzo_porzionato, prezzo_confezionato)
 - **CONFEZIONE** (<u>cod_negozio</u>: Negozio, <u>cod_alimento</u>: Alimento, quantità, prezzo_totale)
 - **PORZIONE** (<u>cod_negozio</u>: Negozio, <u>cod_alimento</u>: Alimento)
@@ -862,7 +862,7 @@ Si vede chiaramente che mantenere la ridondanza è più efficiente per questa op
 
  ![LogicoPt1](resources/logicopt1.jpg)
 
-![LogicoPt2](resources/logicopt2.jpeg)
+![LogicoPt2](resources/logicopt2.jpg)
 
 <div style="page-break-after: always;"></div>
 
@@ -902,8 +902,8 @@ SELECT * FROM acquirenti
 ```
 
 ```
-INSERT INTO negozi(via, civico, cap, città, data_inaugurazione, cf_acquirente, cod_orario, num_posti_ristoro, num_composizioni) 
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO negozi(via, civico, cap, città, data_inaugurazione, cf_acquirente, cod_orario, num_posti_ristoro) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 ```
 
 ### OP5: Effettuazione di un ordine da parte di un cliente
@@ -1201,7 +1201,7 @@ ORDER BY s.percentuale DESC LIMIT 10
 ### OP25: Leggere tutti gli ordini effettuati dopo una certa data
 ```
 SELECT * FROM ordini 
-WHERE data_effettuazione > ?
+WHERE data_effettuazione >= ?
 ```
 
 ### OP26: Leggere gli ordini più costosi
@@ -1435,3 +1435,7 @@ VALUES (?, ?)
 INSERT INTO acquirenti (cf_acquirente, nome, cognome, telefono, email, via, civico, cap, città)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 ```
+
+<div style="page-break-after: always;"></div>
+
+# Capitolo 4 - Progettazione dell'applicazione
