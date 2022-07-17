@@ -364,7 +364,7 @@ def alimenti_confezionati_meno_costosi_window(alimenti):
 
 def quantita_prodotto_magazzini_window(prodotti):
     table = sg.Table(key='quantita', values=[], headings=[
-                     'Codice Negozio', 'Quantità'])
+                     'Codice Negozio', 'Codice Prodotto', 'Tipo', 'Quantità'])
 
     layout = [
         [sg.Text('Quantità prodotto nei magazzini')],
