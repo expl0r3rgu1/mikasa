@@ -835,30 +835,62 @@ Si vede chiaramente che mantenere la ridondanza è più efficiente per questa op
 
 ## Traduzione di entità e associazioni in relazioni
 - **ORDINE** (<u>cod_ordine</u>, data_effettuazione, costo_totale, peso_totale, data_arrivo, cf_cliente: Cliente, cf_tecnico_commerciale: Tecnico Commerciale)
+UNIQUE(cod_ordine)
 - **DETTAGLIO PRODOTTO** (<u>cod_ordine</u>: Ordine, <u>cod_prodotto</u>: Prodotto, quantità, prezzo_totale, peso_totale)
+UNIQUE(cod_prodotto, cod_ordine)
 - **DETTAGLIO COMPOSIZIONE** (<u>cod_ordine</u>: Ordine, <u>cod_composizione</u>: Composizione, quantità, prezzo_totale, peso_totale)
+UNIQUE(cod_composizione, cod_ordine)
+- **DETTAGLIO MONTAGGIO** (<u>cod_ordine</u>: Ordine, <u>cf_tecnico</u>: Tecnico)
+UNIQUE(cod_ordine, cf_tecnico)
 - **SPEDIZIONE** (<u>cod_ordine</u>: Ordine, indirizzo, cf_tecnico: Tecnico)
+UNIQUE(cod_ordine)
+- **RITIRO** (<u>cod_ordine</u>: Ordine, cod_negozio: Negozio)
+UNIQUE(cod_ordine)
 - **MONTAGGIO** (<u>cod_ordine</u>: Ordine)
+UNIQUE(cod_ordine)
 - **CLIENTE** (<u>cf_cliente</u>, nome, cognome, telefono, email*, via, civico, cap, città, socio)
+UNIQUE(cf_cliente)
 - **ACQUIRENTE** (<u>cf_acquirente</u>, nome, cognome, telefono, email*, via, civico, cap, città)
-- **MANAGER** (<u>cf_manager</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario)
-- **TECNICO** (<u>cf_tecnico</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario)
-- **TECNICO COMMERCIALE**(<u>cf_tecnico_commerciale</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario)
-- **AMMINISTRATORE** (<u>cf_amministratore</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario, cod_zona)
+UNIQUE(cf_acquirente)
+- **MANAGER** (<u>cf_manager</u>, nome, cognome, telefono, email*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario\*: Orario)
+UNIQUE(cf_manager)
+- **TECNICO** (<u>cf_tecnico</u>, nome, cognome, telefono, email\*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario*: Orario)
+UNIQUE(cf_tecnico)
+- **TECNICO COMMERCIALE**(<u>cf_tecnico_commerciale</u>, nome, cognome, telefono, email\*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario\*: Orario)
+UNIQUE(cf_tecnico_commerciale)
+- **AMMINISTRATORE** (<u>cf_amministratore</u>, nome, cognome, telefono, email\*, via, civico, cap, città, salario, cod_negozio: Negozio, cod_orario\*: Orario, cod_zona)
+UNIQUE(cf_amministratore)
 - **ORARIO** (<u>cod_orario</u>, giorni, oreinizio, orefine)
+UNIQUE(cod_orario)
 - **NEGOZIO** (<u>cod_negozio</u>, via, civico, cap, città, data_inaugurazione, cf_acquirente: Acquirente, cod_orario: Orario, num_posti_ristoro)
+UNIQUE(cod_negozio)
+UNIQUE(cf_acquirente)
 - **ALIMENTO** (<u>cod_alimento</u>, nome, provenienza, scadenza, ingredienti, allergeni, prezzo_porzionato, prezzo_confezionato)
+UNIQUE(cod_alimento)
 - **CONFEZIONE** (<u>cod_negozio</u>: Negozio, <u>cod_alimento</u>: Alimento, quantità, prezzo_totale)
+UNIQUE(cod_negozio, cod_alimento)
 - **PORZIONE** (<u>cod_negozio</u>: Negozio, <u>cod_alimento</u>: Alimento)
+UNIQUE(cod_negozio, cod_alimento)
 - **COMPOSIZIONE** (<u>cod_composizione</u>, nome, num_prodotti, peso)
+UNIQUE(cod_composizione)
+UNIQUE(nome)
 - **ESPOSTA** (<u>cod_composizione</u>: Composizione, <u>cod_negozio</u>: Negozio)
+UNIQUE(cod_negozio, cod_composizione)
 - **COMPOSTA** (<u>cod_composizione</u>: Composizione, <u>cod_prodotto</u>: Prodotto)
+UNIQUE(cod_composizione, cod_prodotto)
 - **PRODOTTO** (<u>cod_prodotto</u>, nome, prezzo, altezza, larghezza, profondità, peso, cod_sconto*: Sconto, tipo)
+UNIQUE(cod_prodotto)
 - **QUANTITÀ** (<u>cod_negozio</u>: Negozio, <u>cod_prodotto</u>: Prodotto, quantità)
+UNIQUE(cod_negozio, cod_prodotto)
 - **SCONTO** (<u>cod_sconto</u>, percentuale, cod_storico: Storico Sconti)
+UNIQUE(cod_sconto)
 - **STORICO SCONTI** (<u>cod_storico</u>, inizio, fine)
+UNIQUE(cod_storico)
 - **COLORE** (<u>cod_colore</u>, nome)
+UNIQUE(cod_colore) 
+UNIQUE(nome)
 - **COLORAZIONE** (<u>cod_colore</u>: Colore, <u>cod_prodotto</u>: Prodotto)
+UNIQUE(cod_prodotto, cod_colore)
 
 <div style="page-break-after: always;"></div>
 
@@ -1452,3 +1484,43 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 <div style="page-break-after: always;"></div>
 
 # Capitolo 4 - Progettazione dell'applicazione
+L'applicazione è stata realizzata con Python sfruttando le librerie: pysimplegui e mysql-connector-python, rispettivamente per creare l'interfaccia grafica e creare la connessione tra il server e l'applicazione. Il database MySQL è in esecuzione su un server remoto, al quale ci si connette tramite le credenziali definite in: credentials.py.
+
+La schermata principale è suddivisa in categorie e si presenta cosi:
+
+![schermata-principale](resources/principale.png)
+
+Di seguito vengono riportare le schermate di alcune operazioni scelte tra le varie categorie.
+
+![licenzia-personale](resources/licenziaPersonale.png)
+
+Nella schermata per il licenziamento del personale si possono scegliere fino a un membro per ogni categoria mostrata nella schermata.
+
+Ci sono diverse schermata per l'inserimento di nuovi dati del database:. I dati in questione possono riguardare i prodotti, gli sconti, i clienti, i vari membri del personale, ecc...
+
+![aggiungi-prodotto](resources/aggiungiProdotto.png)
+
+![aggiungi-negozio](resources/aggiungiNegozio.png)
+
+![aggiungi-manager](resources/aggiungiManager.png)
+
+Nella schermata per l'effettuazione dell'ordine si possono scegliere i vari prodotti e composizioni da acquistare, specificandone la quantità desiderata. Si possono poi richiedere i vari servizi quali la spedizione (o il ritiro) e il montaggio, specificando gli eventuali indirizzi per la spedizione o il ritiro.
+
+![effettua-ordine](resources/effettuaOrdine.png)
+
+Ci sono poi diverse operazioni per la visualizzazione di statistiche sull'andamento delle vendite dei prodotti e sugli ordini effettuati dai clienti:
+
+![prodotti-più-acquistati](resources/prodottiPiuAcquistati.png)
+
+![prodotti-sconto-maggiore](resources/prodottiConScontoMaggiore.png)
+
+![ordini-in-mese](resources/ordiniInMese.png)
+
+![ordini-più-costosi](resources/ordiniPiuCostosi.png)
+
+Infine ci sono alcune operazioni riguardanti la gestione dei negozi e il loro rifornimento:
+
+ad esempio, la seguenti schermate servono rispettivamente per esporre una composizione in un negozio o per visualizzare la quantità presente, in ogni negozio, di un prodotto scelto.
+![esponi-composizione](resources/esponiComposizione.png)
+
+![prodotto-in-magazzini](resources/prodottoInMagazzini.png)
