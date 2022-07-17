@@ -540,7 +540,7 @@ def aggiungi_porzione_window(negozi, alimenti):
     layout = [
         [sg.Text('Aggiungi porzione')],
         [sg.Text('Negozio'), sg.Combo(negozi, key='negozio')],
-        [sg.Text('Alimenti'), sg.Combo(alimenti, key='alimento')],
+        [sg.Text('Alimenti'), sg.Combo(alimenti, key='alimento', size=(60, 1))],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
