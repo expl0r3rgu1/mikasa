@@ -528,7 +528,8 @@ def aggiungi_confezione_window(negozi, alimenti):
     layout = [
         [sg.Text('Aggiungi confezione')],
         [sg.Text('Negozio'), sg.Combo(negozi, key='negozio')],
-        [sg.Text('Alimenti'), sg.Combo(alimenti, key='alimento', size=(60, 1))],
+        [sg.Text('Alimenti'), sg.Combo(
+            alimenti, key='alimento', size=(60, 1))],
         [sg.Text('Quantità'), sg.InputText(key='quantita')],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
@@ -540,7 +541,8 @@ def aggiungi_porzione_window(negozi, alimenti):
     layout = [
         [sg.Text('Aggiungi porzione')],
         [sg.Text('Negozio'), sg.Combo(negozi, key='negozio')],
-        [sg.Text('Alimenti'), sg.Combo(alimenti, key='alimento', size=(60, 1))],
+        [sg.Text('Alimenti'), sg.Combo(
+            alimenti, key='alimento', size=(60, 1))],
         [sg.Button('Conferma'), sg.Button('Annulla')]
     ]
 
@@ -562,13 +564,13 @@ def licenzia_personale_window(manager, amministratori, tecnici, tecnici_commerci
     layout = [
         [sg.Text('Licenzia personale')],
         [sg.Text('Manager'), sg.Listbox(values=manager,
-                                        select_mode='extended', key='manager', size=(0, 10))],
+                                        select_mode='extended', key='manager', size=(0, 9))],
         [sg.Text('Amministratori'), sg.Listbox(values=amministratori,
-                                               select_mode='extended', key='amministratore', size=(0, 10))],
+                                               select_mode='extended', key='amministratore', size=(0, 9))],
         [sg.Text('Tecnici'), sg.Listbox(values=tecnici,
-                                        select_mode='extended', key='tecnico', size=(0, 10))],
+                                        select_mode='extended', key='tecnico', size=(0, 9))],
         [sg.Text('Tecnici commerciali'), sg.Listbox(
-            values=tecnici_commerciali, select_mode='extended', key='tecnico commerciale', size=(0, 10))],
+            values=tecnici_commerciali, select_mode='extended', key='tecnico commerciale', size=(0, 9))],
         [sg.Button('Licenzia'), sg.Button('Annulla')]
     ]
 
