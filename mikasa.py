@@ -396,7 +396,7 @@ while True:
                             tecnici_montaggio[0][0], cod_ordine, tecnici_montaggio[1][0], cod_ordine))
                         db.commit()
                 else:
-                    db_cursor.execute(QUERIES['Aggiungi ritiro'], (cod_ordine, values['negozio']))
+                    db_cursor.execute(QUERIES['Aggiungi ritiro'], (cod_ordine, values['negozio'][0]))
                     db.commit()
 
                 window.close()
