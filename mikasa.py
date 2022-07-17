@@ -97,7 +97,7 @@ while True:
         negozi = db_cursor.fetchall()
         db.commit()
         window.close()
-        window = aggiungi_personale_window(negozi)
+        window = aggiungi_personale_window(negozi, 'manager')
 
         while True:
             event, values = window.read()
@@ -119,7 +119,7 @@ while True:
         negozi = db_cursor.fetchall()
         db.commit()
         window.close()
-        window = aggiungi_personale_window(negozi)
+        window = aggiungi_personale_window(negozi, 'tecnico')
 
         while True:
             event, values = window.read()
@@ -142,7 +142,7 @@ while True:
         negozi = db_cursor.fetchall()
         db.commit()
         window.close()
-        window = aggiungi_personale_window(negozi)
+        window = aggiungi_personale_window(negozi, 'tecnico commerciale')
 
         while True:
             event, values = window.read()
@@ -677,7 +677,7 @@ while True:
         clienti = db_cursor.fetchall()
         db.commit()
         window.close()
-        window = ordini_costosi_cliente_window(clienti)g ad
+        window = ordini_costosi_cliente_window(clienti)
 
         while True:
             event, values = window.read()
