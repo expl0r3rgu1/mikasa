@@ -677,7 +677,7 @@ while True:
         clienti = db_cursor.fetchall()
         db.commit()
         window.close()
-        window = ordini_cliente_window(clienti)
+        window = ordini_costosi_cliente_window(clienti)g ad
 
         while True:
             event, values = window.read()
